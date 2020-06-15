@@ -1,0 +1,13 @@
+site:
+  title: Sweet Tooth docs
+  url: https://sweettooth.dev
+  start_page: endpoint::index.adoc
+content:
+  sources:
+  - url: /Users/daniel/projects/web/sweet-tooth/endpoint
+    start_path: docs
+    branches: [antora-docs]
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
