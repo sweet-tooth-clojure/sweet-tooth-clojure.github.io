@@ -261,3 +261,5 @@
     :delete {:handle-ok
              (fn [{{:keys [params]} :request}]
                (db/delete! :todo-list (:id params)))}}})
+
+(start-server (handler (db-connection)))
