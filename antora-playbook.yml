@@ -9,7 +9,9 @@ content:
     branches: [antora-docs]
 ui:
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    # url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    # url: /Users/daniel/projects/web/sweet-tooth/documentation-ui/build/ui-bundle.zip
+    url: https://github.com/sweet-tooth-clojure/documentation-ui/raw/master/build/ui-bundle.zip
     snapshot: true
 asciidoc:
   attributes:
