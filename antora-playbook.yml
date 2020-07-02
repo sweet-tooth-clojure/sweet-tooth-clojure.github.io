@@ -1,9 +1,12 @@
 site:
   title: Sweet Tooth, a Clojure SPA Framework
   url: https://sweettooth.dev
-  start_page: endpoint::index.adoc
+  start_page: todo-example::index.adoc
 content:
   sources:
+  - url: /Users/daniel/projects/web/sweet-tooth/todo-example
+    start_path: docs
+    branches: [antora-docs]
   - url: /Users/daniel/projects/web/sweet-tooth/endpoint
     start_path: docs
     branches: [antora-docs]
