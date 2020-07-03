@@ -4,10 +4,13 @@ site:
   start_page: todo-example::index.adoc
 content:
   sources:
-  - url: /Users/daniel/projects/web/sweet-tooth/todo-example
+  - url: /Users/daniel/projects/web/sweet-tooth/documentation
+    start_path: docs
+    branches: [master]
+  - url: /Users/daniel/projects/web/sweet-tooth/endpoint
     start_path: docs
     branches: [antora-docs]
-  - url: /Users/daniel/projects/web/sweet-tooth/endpoint
+  - url: /Users/daniel/projects/web/sweet-tooth/todo-example
     start_path: docs
     branches: [antora-docs]
 ui:
