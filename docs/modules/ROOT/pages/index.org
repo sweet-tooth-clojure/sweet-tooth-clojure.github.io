@@ -1,9 +1,7 @@
 #+TITLE: Sweet Tooth
 
-
-* What is Sweet Tooth?
-
-My dream for Sweet Tooth is to make it easier, faster, and funner for developers
+Sweet Tooth (ST) is a Clojure and ClojureScript Single Page App (SPA) framework. My
+dream for Sweet Tooth is to make it easier, faster, and funner for developers
 like you to get your ideas into production.
 
 Swet Tooth does this by giving you the tools to deal with common SPA concerns
@@ -12,29 +10,54 @@ These use cases are not particular to the app you're trying to build, but as a
 Clojurian you've likely had to figure them out for yourself when building an
 SPA. In the same way that you shouldn't have to write your own filesystem when
 making a desktop app, you shouldn't have to write your own form handling system
-to launch your cool idea. (BTW - word on the street is in the 80's a new OS
-would the street [[https://twitter.com/GeePawHill/status/1256342997643526151][every month or so]], supporting my thesis that operating systems
-are frameworks.)
+to launch your cool idea.
 
-I've tried to write Sweet Tooth so that using it doesn't lock you into some
-weird, arcane world the way some frameworks do. It's built on top of popular and
-proven libraries like re-frame, duct, integrant, liberator, ring, and reitit,
-and you can always use those libraries directly if you need to.
-
-The analogy I've had in mind is taken from the way we use files: files can be
-structured as text, text can be structured as JSON, and JSON can be structured
-as transit. Each additional degree of structure gives you added power while
-requiring more special-purpose tools. Your XML tools won't work on a JSON file.
-However, you can still use the lower-level tools; `sed` and `awk` work just
-fine. For more on my underlying approach to framework development, see
-[[http://flyingmachinestudios.com/programming/why-programmers-need-frameworks/][Frameworks and Why (Clojure) Programmers Need Them]]
+I've tried to write Sweet Tooth so that using it doesn't lock you in the way
+some frameworks do. ST is built as layers on top of popular and proven libraries
+like re-frame, duct, integrant, liberator, ring, and reitit, and you can always
+use those libraries directly if you need to. For example, ST's form system
+introduces a default re-frame handler for successful form submissions, but it's
+ultimately just re-frame and you can use whatever handler you want. Or, you can
+elect not to use Sweet Tooth forms at all, but still use the frontend navigation
+system for handling URL changes.
 
 Eventually, I'd like to make it dramatically easier for beginners to make cool
-stuff and show it to their friends and family. For that reason, I haven't put
-any effort into making use of tools like GraphQL which can be quite powerful but
-harder for beginners to grok and which, in my opinion, many apps don't need.
+stuff and show it to the world. There's still much work to be done to get there,
+both in tooling and documentation.
 
-* What isn't Sweet Tooth?
+If it turns out that what I've put together here is useful, it might even be
+possible for us to begin creating an ecosystem of SPA libraries for handling
+common concerns like email, authentication, payments, and more. Wouldn't that be
+amazing? I think it would be.
 
-Sweet Tooth is not for creating server-rendered apps. It hasn't been used for
-high-traffic projects, so it's currently not for that, either.
+What is this project not made for? Sweet Tooth is not for creating
+server-rendered apps. It hasn't been used for high-traffic projects, so it's
+currently not for that, either. It has no support for GraphQL, though I think
+it'd be possible to add that.
+
+These docs aren't complete, but I hope that what I've put together so far is no
+spark your curiosity and give these tools a try. I've found them to be very fun
+to use, and they've helped me -- a solo developer -- build and maintain some
+real, honest-to-god production sites that even make a little money. I hope I've
+made something useful to the broader Clojure community here. Time will tell.
+
+
+* What Sweet Tooth Provides
+
+** Frontend
+** Backend
+** Deploying
+
+* Documentation Overview
+
+** To-Do Example Walkthrough
+** endpoint
+
+* Contributing
+
+I am inconsistent when it comes to keeping up with open source collaboration.
+
+* Acknowledgments
+
+- re-frame
+- weavejester
