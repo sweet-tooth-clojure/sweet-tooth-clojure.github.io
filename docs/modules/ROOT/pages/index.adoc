@@ -2,17 +2,16 @@
 Daniel Higginbotham
 
 
-Sweet Tooth (ST) is a Clojure and ClojureScript Single Page App (SPA) framework. My
+Sweet Tooth is a Clojure and ClojureScript Single Page App (SPA) framework. My
 dream for Sweet Tooth is to make it easier, faster, and funner for developers
 like you to get your ideas into production.
 
-Swet Tooth does this by giving you the tools to deal with common SPA concerns
-like handling forms, configuring routing and navigation, and managing API calls.
-These use cases are not particular to the app you're trying to build, but as a
-Clojurian you've likely had to figure them out for yourself when building an
-SPA. In the same way that you shouldn't have to write your own filesystem when
-making a desktop app, you shouldn't have to write your own form handling system
-to launch your cool idea.
+Swet Tooth (ST) handles common SPA concerns like form workflows, routing and
+navigation, and API call management. These use cases are not particular to the
+app you're trying to build, but as a Clojurian you've likely had to figure them
+out for yourself when building an SPA. In the same way that you shouldn't have
+to write your own filesystem when making a desktop app, you shouldn't have to
+write your own form handling system to launch your idea.
 
 I've tried to write Sweet Tooth so that using it doesn't lock you in the way
 some frameworks do. ST is built as layers on top of popular and proven libraries
@@ -29,19 +28,20 @@ both in tooling and documentation.
 
 If it turns out that what I've put together here is useful, it might even be
 possible for us to begin creating an ecosystem of SPA libraries for handling
-common concerns like email, authentication, payments, and more. Wouldn't that be
-amazing? I think it would be.
+common concerns like email, payments, and more. Wouldn't that be amazing? I
+think it would be.
 
 What is this project not made for? Sweet Tooth is not for creating
 server-rendered apps. It hasn't been used for high-traffic projects, so it's
 currently not for that, either. It has no support for GraphQL, though I think
 it'd be possible to add that.
 
-These docs aren't complete, but I hope that what I've put together so far is no
-spark your curiosity and give these tools a try. I've found them to be very fun
-to use, and they've helped me -- a solo developer -- build and maintain some
-real, honest-to-god production sites that even make a little money. I hope I've
-made something useful to the broader Clojure community here. Time will tell.
+These docs aren't complete, but I hope that what I've put together so far will
+spark your curiosity and you'll give these tools a try. I've found them to be
+very fun to use, and they've helped me -- a solo developer -- build and maintain
+some real, honest-to-god production sites that even make a little money. I hope
+I've made something useful to the broader Clojure community here. Time will
+tell.
 
 
 
