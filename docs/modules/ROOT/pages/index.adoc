@@ -4,15 +4,24 @@ Daniel Higginbotham
 
 Sweet Tooth is a Clojure and ClojureScript Single Page App (SPA) framework. My
 dream for Sweet Tooth is to make it easier, faster, and funner for developers
-like you to get your ideas into production.
+like you to get your ideas into production. I want to provide a modular,
+extensible, composable foundation that lets you *focus on the work that thrills
+you* -- without worrying that the framework will make your life harder months or
+years from now.
 
-Swet Tooth (ST) handles common SPA concerns like form workflows, routing and
-navigation, and API call management. These use cases are not particular to the
-app you're trying to build, but as a Clojurian you've likely had to figure them
-out for yourself when building an SPA. In the same way that you shouldn't have
-to write your own filesystem when making a desktop app, you shouldn't have to
-write your own form handling system to launch your idea.
+This project is under
 
+
+== Easier, Faster, Funner ==
+Sweet Tooth (ST) handles common SPA concerns like form workflows, routing and
+navigation, and HTTP request management. These use cases are not particular to
+the app you're trying to build, but as a Clojurian you've likely had to figure
+them out for yourself when building an SPA. In the same way that you shouldn't
+have to write your own filesystem when making a desktop app, you shouldn't have
+to write your own form handling system to launch your idea.
+
+
+== Modularity, Extensibility, Composability ==
 I've tried to write Sweet Tooth so that using it doesn't lock you in the way
 some frameworks do. ST is built as layers on top of popular and proven libraries
 like re-frame, duct, integrant, liberator, ring, and reitit, and you can always
@@ -44,8 +53,7 @@ I've made something useful to the broader Clojure community here. Time will
 tell.
 
 
-
-== What Sweet Tooth Provides ==
+== Responsibilities ==
 
 === Frontend ===
 
@@ -54,7 +62,10 @@ tell.
 === Deploying ===
 
 
+
 == Documentation Overview ==
+
+=== Philosophy ===
 
 === To-Do Example Walkthrough ===
 
@@ -66,5 +77,14 @@ I am inconsistent when it comes to keeping up with open source collaboration.
 
 
 == Acknowledgments ==
+
+=== libs ===
 * re-frame
-* weavejester
+* duct, integrant
+
+
+=== people ===
+* walter
+* tom
+* andrew
+* dmitri

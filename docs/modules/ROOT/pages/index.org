@@ -2,14 +2,21 @@
 
 Sweet Tooth is a Clojure and ClojureScript Single Page App (SPA) framework. My
 dream for Sweet Tooth is to make it easier, faster, and funner for developers
-like you to get your ideas into production.
+like you to get your ideas into production. I want to provide a modular,
+extensible, composable foundation that lets you *focus on the work that thrills
+you* -- without worrying that the framework will make your life harder months or
+years from now.
 
-Swet Tooth (ST) handles common SPA concerns like form workflows, routing and
-navigation, and API call management. These use cases are not particular to the
-app you're trying to build, but as a Clojurian you've likely had to figure them
-out for yourself when building an SPA. In the same way that you shouldn't have
-to write your own filesystem when making a desktop app, you shouldn't have to
-write your own form handling system to launch your idea.
+* Easier, Faster, Funner
+
+Sweet Tooth (ST) handles common SPA concerns like form workflows, routing and
+navigation, and HTTP request management. These use cases are not particular to
+the app you're trying to build, but as a Clojurian you've likely had to figure
+them out for yourself when building an SPA. In the same way that you shouldn't
+have to write your own filesystem when making a desktop app, you shouldn't have
+to write your own form handling system to launch your idea.
+
+* Modularity, Extensibility, Composability
 
 I've tried to write Sweet Tooth so that using it doesn't lock you in the way
 some frameworks do. ST is built as layers on top of popular and proven libraries
@@ -32,7 +39,9 @@ think it would be.
 What is this project not made for? Sweet Tooth is not for creating
 server-rendered apps. It hasn't been used for high-traffic projects, so it's
 currently not for that, either. It has no support for GraphQL, though I think
-it'd be possible to add that.
+it'd be possible to add that. It's not intended for drawing applications
+(think [[intended for form-oriented applications rather than drawing applications - it's meant to build apps like
+ ][Whimsical]]), but who knows, maybe that would work out ok?
 
 These docs aren't complete, but I hope that what I've put together so far will
 spark your curiosity and you'll give these tools a try. I've found them to be
@@ -41,15 +50,16 @@ some real, honest-to-god production sites that even make a little money. I hope
 I've made something useful to the broader Clojure community here. Time will
 tell.
 
-
-* What Sweet Tooth Provides
+* Responsibilities
 
 ** Frontend
 ** Backend
 ** Deploying
 
+
 * Documentation Overview
 
+** Philosophy
 ** To-Do Example Walkthrough
 ** endpoint
 
@@ -59,5 +69,13 @@ I am inconsistent when it comes to keeping up with open source collaboration.
 
 * Acknowledgments
 
+** libs
 - re-frame
-- weavejester
+- duct, integrant
+  
+** people
+
+- walter
+- tom
+- andrew
+- dmitri
