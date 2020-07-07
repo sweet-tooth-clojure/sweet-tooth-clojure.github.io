@@ -1,0 +1,12 @@
+#+TITLE: Prior Art
+
+- [[http://hoplon.io/][Hoplon]]
+- [[https://luminusweb.com/][Luminus]]
+- [[http://pedestal.io/][Pedestal]]
+- [[http://fulcro.fulcrologic.com/][Fulcro]]
+- [[https://github.com/coast-framework/coast][Coast]]
+- [[https://github.com/keechma/keechma][Keechma]]
+- [[https://github.com/duct-framework/duct][Duct]]
+
+Or see the entire list of frameworks at https://www.clojure-toolbox.com/ under
+Web Frameworks.

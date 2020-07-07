@@ -5,7 +5,10 @@ site:
 content:
   sources:
   - url: /Users/daniel/projects/web/sweet-tooth/documentation
-    start_path: docs
+    start_path: docs/overview
+    branches: [master]
+  - url: /Users/daniel/projects/web/sweet-tooth/documentation
+    start_path: docs/quickstart
     branches: [master]
   - url: /Users/daniel/projects/web/sweet-tooth/endpoint
     start_path: docs

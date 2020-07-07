@@ -9,10 +9,10 @@ years from now. I want Clojure beginners to be able to make something freakin'
 badass right at the start of their journey.
 
 If that sounds interesting to you, I hope you'll give the framework a try. The
-xref:quickstart.adoc[Quickstart] will take you through the steps to create your
-own Sweet Tooth project. The xref:todo-example:ROOT:index.adoc[To-Do Example
-Walkthrough] is a depth-first exploration of the framework using a simple
-working app. The rest of this page provides an overview of the project.
+xref:quickstart:index.adoc[Quickstart] will take you through the steps to create
+your own Sweet Tooth project. The xref:todo-example:ROOT:index.adoc[To-Do
+Example Walkthrough] is a depth-first exploration of the framework using a
+simple working app. The rest of this page provides an overview of the project.
 
 This documentation is a work in progress 🙂. It doesn't cover every function,
 every re-frame event handler, every nook and cranny. It does cover the major
@@ -23,8 +23,8 @@ for devs with some Clojure experience.
 I love making web apps; it's a form of creative expression for me. Clojure is
 the best medium I've found so far for this kind of creativity. I hope this
 little project makes it possible for more people to experience the same joy and
-excitement of bringing their ideas to life. Whether or not it will remains to be
-seen, but in the mean time I hope you'll have some fun trying it out!
+excitement as I feel in bringing ideas to life. Whether or not it will remains
+to be seen, but in the mean time I hope you'll have some fun trying it out!
 
 -- [[https://twitter.com/nonrecursive][Daniel Higginbotham]], author of [[https://braveclojure.com][Clojure for the Brave and True]]
 
@@ -132,8 +132,8 @@ Sweet Tooth handles the following:
 - pagination
 - validation
 ** Deploying
-- Ansible scripts to provision a new VPS and deploy your app to it. VPS can
-  host multiple ST apps.
+Ansible scripts to provision a new VPS and deploy your app to it. VPS can host
+multiple ST apps.
 ** Misc
 - *Code generation.* (still in its infancy) - generate new endpoints from the
   REPL.
