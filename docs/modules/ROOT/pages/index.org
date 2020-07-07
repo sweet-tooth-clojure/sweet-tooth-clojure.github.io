@@ -5,16 +5,64 @@ dream for Sweet Tooth is to make it easier, faster, and funner for developers
 like you to get your ideas into production. I want to provide a modular,
 extensible, composable foundation that lets you *focus on the work that thrills
 you* -- without worrying that the framework will make your life harder months or
-years from now.
+years from now. I want Clojure beginners to be able to make something freakin'
+badass right at the start of their journey.
+
+If that sounds interesting to you, I hope you'll give the framework a try. The
+xref:quickstart.adoc[Quickstart] will take you through the steps to create your
+own Sweet Tooth project. The xref:todo-example:ROOT:index.adoc[To-Do Example
+Walkthrough] is a depth-first exploration of the framework using a simple
+working app. The rest of this page provides an overview of the project.
+
+This documentation is a work in progress 🙂. It doesn't cover every function,
+every re-frame event handler, every nook and cranny. It does cover the major
+ideas, and many facets of the framework are explained in detail. Though I want
+to one day write a guide for complete beginners, the docs are currently written
+for devs with some Clojure experience.
+
+I love making web apps; it's a form of creative expression for me. Clojure is
+the best medium I've found so far for this kind of creativity. I hope this
+little project makes it possible for more people to experience the same joy and
+excitement of bringing their ideas to life. Whether or not it will remains to be
+seen, but in the mean time I hope you'll have some fun trying it out!
+
+-- [[https://twitter.com/nonrecursive][Daniel Higginbotham]], author of [[https://braveclojure.com][Clojure for the Brave and True]]
 
 * Easier, Faster, Funner
 
-Sweet Tooth (ST) handles common SPA concerns like form workflows, routing and
-navigation, and HTTP request management. These use cases are not particular to
-the app you're trying to build, but as a Clojurian you've likely had to figure
-them out for yourself when building an SPA. In the same way that you shouldn't
-have to write your own filesystem when making a desktop app, you shouldn't have
-to write your own form handling system to launch your idea.
+Getting a basic Clojure SPA into production should be easy, fast, and fun.
+/Easy/ simply means that you shouldn't have to struggle. /Fast/ means you should
+be able to show friends or colleagues a very simple, deployed, functioning app
+after only a couple hours. /Fun/ is the dopamine hit you should feel from easy
+and fast. This is good for the individual developer, but it's also good for the
+organization: it's the first step toward continuous deployment and reaping the
+benefits of continuous feedback.
+
+Sweet Tooth's (ST) approach is to provide abstractions and helpers for common
+SPA concerns like form workflows, routing and navigation, and HTTP request
+management. These use cases are not particular to the app you're trying to
+build, but as a Clojurian you've likely had to figure them out for yourself when
+building an SPA. In the same way that you shouldn't have to write your own
+filesystem when making a desktop app, you shouldn't have to write your own form
+handling system to launch your idea. ST also introduces a collection of [[https://www.ansible.com/][Ansible]]
+scripts tailored to Sweet Tooth apps so that you can start deploying immediately.
+
+Whether or not this approach makes development easier, faster, and funner for a
+broad audience has yet to be proven. It's definitely helped me in creating my
+own apps (that I've even made money with!) in my free time as a solo developer.
+
+One possible impediment: there's /a lot/ going on! For starters, Sweet Tooth
+relies on integrant, re-frame, and liberator, each of which has its own learning
+curve. It introduces its own abstractions and conventions on top of that.
+
+My hypothesis is that this can be addressed through the coding equivalent of
+progressive enhancement: the framework should provide tools for you to get
+something simple working without understanding how exactly it works. You should
+be able to be somewhat productive without investing inordinate time in learning
+the framework. Good documentation and design should assist you in doing more
+complicated work.
+
+And speaking of design...
 
 * Modularity, Extensibility, Composability
 
@@ -27,14 +75,18 @@ ultimately just re-frame and you can use whatever handler you want. Or, you can
 elect not to use Sweet Tooth forms at all, but still use the frontend navigation
 system for handling URL changes.
 
-Eventually, I'd like to make it dramatically easier for beginners to make cool
-stuff and show it to the world. There's still much work to be done to get there,
-both in tooling and documentation.
+If it turns out that this framework is useful, it might even be possible for us
+to begin creating an ecosystem of SPA libraries for handling common concerns
+like email, payments, and more. Wouldn't that be amazing? I think it would be.
 
-If it turns out that what I've put together here is useful, it might even be
-possible for us to begin creating an ecosystem of SPA libraries for handling
-common concerns like email, payments, and more. Wouldn't that be amazing? I
-think it would be.
+
+* Responsibilities
+
+** Frontend
+** Backend
+** Deploying
+
+** Not Responsibilities
 
 What is this project not made for? Sweet Tooth is not for creating
 server-rendered apps. It hasn't been used for high-traffic projects, so it's
@@ -42,19 +94,6 @@ currently not for that, either. It has no support for GraphQL, though I think
 it'd be possible to add that. It's not intended for drawing applications
 (think [[intended for form-oriented applications rather than drawing applications - it's meant to build apps like
  ][Whimsical]]), but who knows, maybe that would work out ok?
-
-These docs aren't complete, but I hope that what I've put together so far will
-spark your curiosity and you'll give these tools a try. I've found them to be
-very fun to use, and they've helped me -- a solo developer -- build and maintain
-some real, honest-to-god production sites that even make a little money. I hope
-I've made something useful to the broader Clojure community here. Time will
-tell.
-
-* Responsibilities
-
-** Frontend
-** Backend
-** Deploying
 
 
 * Documentation Overview

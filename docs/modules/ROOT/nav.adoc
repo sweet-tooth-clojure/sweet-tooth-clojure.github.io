@@ -1,1 +1,1 @@
-* xref:prior-art.adoc[Prior Art]
+* xref:quickstart.adoc[Quick Start]
