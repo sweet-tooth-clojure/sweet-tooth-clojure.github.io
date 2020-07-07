@@ -79,15 +79,65 @@ If it turns out that this framework is useful, it might even be possible for us
 to begin creating an ecosystem of SPA libraries for handling common concerns
 like email, payments, and more. Wouldn't that be amazing? I think it would be.
 
+/Modularity/ means that the framework's responsibilities should be well-defined,
+and it should be possible for you to swap out one implementation of a
+responsibility for another. For example, Sweet Tooth uses reitit for routing,
+but it's possible for you to use a different library as long as you can adapt it
+to the routing protocol.
+
+/Exntensibility/ means that devs should be able to easily introduce custom
+implementations of core framework offerings. (OMG I need to find a better way to
+phrase this!) In practice this mostly means identifying where it's possible and
+appropriate to use a multimethod, and doing so. One example is Sweet Tooth's
+form component system: ST takes care of all the details for storing a form
+input's data on the frontend and submiting that data to the backend. It's
+trivial to extend the system for new components, for example by introducing a
+markdown editor component. The to-do example walkthrough will show you how this
+works.
+
+/Composability/ means two things: first, that the framework should be written
+from a UNIX-y "do one thing well" standpoint. Back to form components: the form
+component system is layered, with re-frame subscriptions and handlers as the
+bottom layer. A multimethod composes those subscriptions and handlers into DOM
+options like `:on-change` and `:checked` as appropriate for the different kinds
+of inputs. You can use this system for composing the re-frame subscriptions and
+handlers, or you could introduce your own.
+
+The second meaning is that it should be possible to write framework plugins. For
+example, you should be able to write an auth plugin that spans the frontend and
+backend, introducing API endpoints and reagent components that Just Work. I
+haven't put much thought into supporting this kind of compsability.
 
 * Responsibilities
 
+Sweet Tooth handles the following:
+
 ** Frontend
+- *Navigation and Routing.* Handling the relationship between URLs and what gets
+  rendered.
+- *Syncing.* Or, AJAX requests. Make requests using shared, named endpoint
+  routes. Requsts are tracked so you can easily show activity indicators.
+- *Forms.*
+  - *data* stop worry about where to store form data
+  - *workflow* validation: handle server side validation and get nitpicky with
+    client-side validation, e.g. only validate a field on blur. Form submission
+    handled too.
+  - *components* a thorough and extensible component system
+- *App initialization.* 
+- *JS Event Handling* tools for registering js event handlers the re-frame way
 ** Backend
+- endpoints
+- testing
+- mocking
+- pagination
+- validation
 ** Deploying
-
+- Ansible scripts to provision a new VPS and deploy your app to it. VPS can
+  host multiple ST apps.
+** Misc
+- *Code generation.* (still in its infancy) - generate new endpoints from the
+  REPL.
 ** Not Responsibilities
-
 What is this project not made for? Sweet Tooth is not for creating
 server-rendered apps. It hasn't been used for high-traffic projects, so it's
 currently not for that, either. It has no support for GraphQL, though I think
@@ -95,10 +145,7 @@ it'd be possible to add that. It's not intended for drawing applications
 (think [[intended for form-oriented applications rather than drawing applications - it's meant to build apps like
  ][Whimsical]]), but who knows, maybe that would work out ok?
 
-
 * Documentation Overview
-
-** Philosophy
 ** To-Do Example Walkthrough
 ** endpoint
 
