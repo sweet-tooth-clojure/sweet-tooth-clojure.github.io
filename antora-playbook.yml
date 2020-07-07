@@ -1,7 +1,7 @@
 site:
   title: Sweet Tooth, a Clojure Single-Page App Framework
   url: https://sweettooth.dev
-  start_page: todo-example::index.adoc
+  start_page: overview::index.adoc
 content:
   sources:
   - url: /Users/daniel/projects/web/sweet-tooth/documentation

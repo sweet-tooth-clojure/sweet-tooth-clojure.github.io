@@ -9,10 +9,13 @@ years from now. I want Clojure beginners to be able to make something freakin'
 badass right at the start of their journey.
 
 If that sounds interesting to you, I hope you'll give the framework a try. The
-xref:quickstart:index.adoc[Quickstart] will take you through the steps to create
-your own Sweet Tooth project. The xref:todo-example:ROOT:index.adoc[To-Do
+xref:quickstart:ROOT:index.adoc[Quickstart] will take you through the steps to
+create your own Sweet Tooth project. The xref:todo-example:ROOT:index.adoc[To-Do
 Example Walkthrough] is a depth-first exploration of the framework using a
 simple working app. The rest of this page provides an overview of the project.
+
+.the xref:todo-example:ROOT:index.adoc[To-Do example app]
+image::todo-example:ROOT:01-running.png[todo example screenshot]
 
 This documentation is a work in progress 🙂. It doesn't cover every function,
 every re-frame event handler, every nook and cranny. It does cover the major
@@ -107,6 +110,10 @@ The second meaning is that it should be possible to write framework plugins. For
 example, you should be able to write an auth plugin that spans the frontend and
 backend, introducing API endpoints and reagent components that Just Work. I
 haven't put much thought into supporting this kind of compsability.
+
+If Sweet Tooth succeeds at being modular, extensible, and composable, it's
+because it's built on top of integrant and re-frame, two extremely well-designed
+libraries.
 
 * Responsibilities
 
