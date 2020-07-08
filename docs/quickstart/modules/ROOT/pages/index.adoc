@@ -2,9 +2,280 @@
 Daniel Higginbotham
 
 
-* create project
-* start it
+This Quickstart will show you how to:
+
+* create a new Sweet Tooth app
+* start dev environment
 * add an endpoint
+* add a subscription for hobbit data
+* create a frontend component & route
 * fetch endpoint data
-* create new route
-* submit new thing
+* submit a form
+
+NOTE: There are ansible scripts for easily deploying Sweet Tooth apps. This
+Quickstart will eventually include instructions for deploying.
+
+
+== Create a new Sweet Tooth app ==
+You can create a new app with the `sweet-tooth-app` leiningen template. Let's
+create an app for managing a hobbit settlement:
+
+[source,sh]
+----
+lein new sweet-tooth-app hobbit-haven # alternatively, "hobbit-hovel" if it's in bad shape
+cd hobbit-haven
+----
+
+Now let's set it up. You'll need to have npm and shadow-cljs installed. You can
+check if they're installed with `./bin/check-ready.sh`:
+
+[source,sh]
+----
+./bin/check-ready.sh
+# =>
+✔ npm installed
+✔ shadow-cljs installed
+----
+
+Next, install npm dependencies:
+
+[source,sh]
+----
+npm install
+----
+
+
+== Start dev environment ==
+First, start shadow-cljs:
+
+[source,sh]
+----
+shadow-cljs watch dev
+----
+
+Next, start a REPL from another terminal or from your editor. If you're using
+CIDER with emacs, you might be given the option to choose `lein`, `clojure-cli`,
+or `shadow-cljs`. Select `lein`.
+
+From the REPL, evaluate `(dev)`. This will take a few seconds to evaluate, and
+when it's done the REPL's namespace will have changed from `user` to `dev`.
+
+Start a server with `(go)`. Visit `http://localhost:3000[http://localhost:3000]` and you should see
+your running Sweet Tooth app!
+
+
+== Add an endpoint ==
+From the REPL, evaluate:
+
+[source,clojure]
+----
+(g/generate :sweet-tooth/endpoint "hobbit")
+----
+
+This does two things:
+
+* It adds the file `src/hobbit_haven/backend/endpoint/hobbit.clj`
+* It updates the file `src/hobbit_haven/cross/endpoint_routes.cljc`, adding the
+form `[:hobbit-haven.backend.endpoint.hobbit]`
+
+TIP: Check out the xref:endpoint:routes-and-handlers:index.adoc[endpoint guide]
+to learn what these files do.
+
+Update `src/hobbit_haven/backend/endpoint/hobbit.clj` so that it looks like
+this:
+
+[source,clojure]
+.updated hobbit endpoint
+----
+(ns hobbit-haven.backend.endpoint.hobbit)
+
+(def decisions
+  {:collection
+   {:get  {:handle-ok (fn [ctx] [{:name "Froyo" :id 0}])} ;; edit this line
+    :post {:handle-created (fn [ctx] [])}}
+
+   :member
+   {:get {:handle-ok (fn [ctx] [])}
+    :put {:handle-ok (fn [ctx] [])}
+    :delete {:handle-ok nil}}})
+----
+
+The change will return some canned data when you make an API call. Now let's
+work on displaying this canned data, starting with creating a re-frame
+subscription that will hold it.
+
+
+== Add a subscription for hobbit data ==
+Update `src/hobbit_haven/frontend/subs.cljs` to look like this:
+
+[source,clojure]
+.`src/hobbit_haven/frontend/subs.cljs`
+----
+(ns hobbit-haven.frontend.subs
+  (:require [re-frame.core :as rf]))
+
+(rf/reg-sub :hobbits
+  (fn [db]
+    (->> (get-in db [:entity :hobbit])
+         vals
+         (sort-by :name))))
+----
+
+Now let's create a component to display the subscription:
+
+
+== Create a new frontend component & route ==
+Create the file `src/hobbit_haven/frontend/components/hobbit/list.cljs` and make
+it look like this:
+
+[source,clojure]
+.`src/hobbit_haven/frontend/components/hobbit/list.cljs`
+----
+(ns hobbit-haven.frontend.components.hobbit.list
+  (:require [re-frame.core :as rf]))
+
+(defn component
+  []
+  [:div
+   [:h1 "Hobbit List"]
+   [:ul (->> @(rf/subscribe [:hobbits])
+             (map (fn [h] [:li (:name h)]))
+             doall)]])
+----
+
+This component will eventually list our hobbits. Let's create a route to display
+it. Update `src/hobbit_haven/frontend/routes.cljs` to look like this:
+
+[source,clojure]
+.`src/hobbit_haven/frontend/routes.cljs`
+----
+(ns hobbit-haven.frontend.routes
+  (:require [hobbit-haven.frontend.components.home :as h]
+            [hobbit-haven.frontend.components.hobbit.list :as hl]))
+
+(def frontend-routes
+  [["/"
+    {:name       :home
+     :lifecycle  {}
+     :components {:main [h/component]}
+     :title      "Home"}]
+   ["/hobbits"
+    {:name       :hobbits
+     :lifecycle  {}
+     :components {:main [hl/component]}
+     :title      "Hobbits"}]])
+----
+
+Now let's create a link to view our handiwork. Update
+`src/hobbit_haven/frontend/components/app.cljs`:
+
+[source,clojure]
+.`src/hobbit_haven/frontend/components/app.cljs`
+----
+(ns hobbit-haven.frontend.components.app
+  (:require [re-frame.core :as rf]
+            [sweet-tooth.frontend.routes :as stfr]
+            [sweet-tooth.frontend.nav.flow :as stnf]))
+
+(defn app
+  []
+  [:div.app
+   [:div.head
+    [:div.container
+     [:a {:href (stfr/path :home)} "Home"]]]
+   [:div.container
+    [:nav [:a {:href (stfr/path :hobbits)} "Hobbits"]]
+    [:div.main @(rf/subscribe [::stnf/routed-component :main])]]])
+----
+
+When you update `app.cljs`, you should see a new link that says "Hobbits". Click
+on that link and you should see a big, bold header that reads `Hobbit List`.
+
+Now let's wire things up to fetch data from the hobbit endpoint.
+
+
+== Fetch endpoint data ==
+You can dispatch re-frame events when routes change. Let's return to our
+frontend routes file, `src/hobbit_haven/frontend/routes.cljs`. `:require` a new
+namespace and add an event for the `:enter` lifecycle hook; the result should
+look like this:
+
+[source,clojure]
+----
+(ns hobbit-haven.frontend.routes
+  (:require [hobbit-haven.frontend.components.home :as h]
+            [hobbit-haven.frontend.components.hobbit.list :as hl]
+            [sweet-tooth.frontend.sync.flow :as stsf]))
+
+(def frontend-routes
+  [["/"
+    {:name       :home
+     :lifecycle  {}
+     :components {:main [h/component]}
+     :title      "Home"}]
+   ["/hobbits"
+    {:name       :hobbits
+     :lifecycle  {:enter [::stsf/get :hobbits]}
+     :components {:main [hl/component]}
+     :title      "Hobbits"}]])
+----
+
+And now the component should be displaying a hobbit, Froyo!
+
+It's time to add more hobbits.
+
+
+== Submit a form ==
+We'll first need to update the endpoint with a data store. To keep this
+quickstart simple, we're just going to use an atom. Here's what
+`src/hobbit_haven/backend/endpoint/hobbit.clj` should look like:
+
+[source,clojure]
+.Add "data store" to `src/hobbit_haven/backend/endpoint/hobbit.clj`
+----
+(ns hobbit-haven.backend.endpoint.hobbit
+  (:require [sweet-tooth.endpoint.liberator :as el]))
+
+(def haven (atom [{:name "Froyo" :id 0}]))
+
+(def decisions
+  {:collection
+   {:get  {:handle-ok (fn [ctx] @haven)}
+    :post {:post! (fn [ctx] (swap! haven (fn [hobbits]
+                                           (conj hobbits (assoc (el/params ctx)
+                                                                :id (count hobbits))))))
+           :handle-created (fn [ctx] @haven)}}
+
+   :member
+   {:get {:handle-ok (fn [ctx] [])}
+    :put {:handle-ok (fn [ctx] [])}
+    :delete {:handle-ok nil}}})
+----
+
+Now let's add a form to `src/hobbit_haven/frontend/components/hobbit/list.cljs`,
+along with some namespace aliases:
+
+[source,clojure]
+.add a form to `src/hobbit_haven/frontend/components/hobbit/list.cljs`
+----
+(ns hobbit-haven.frontend.components.hobbit.list
+  (:require [re-frame.core :as rf]
+            [sweet-tooth.frontend.form.components :as stfc]
+            [sweet-tooth.frontend.form.flow :as stff]))
+
+(defn component
+  []
+  [:div
+   [:h1 "Hobbit List"]
+   [:ul (->> @(rf/subscribe [:hobbits])
+             (map (fn [{:keys [name]}] [:li {:key name} name]))
+             doall)]
+
+   [:h2 "Add Hobbit"]
+   (stfc/with-form [:hobbits :create]
+     [:form (on-submit {:sync {:on {:success [::stff/clear form-path #{:buffer}]}}})
+      [input :text :name]
+      [:input {:type "submit" :value "add hobbit"}]])])
+----
+
+And now you should be able to add new hobbits!
