@@ -141,8 +141,7 @@ Sweet Tooth handles the following:
 Ansible scripts to provision a new VPS and deploy your app to it. VPS can host
 multiple ST apps.
 ** Misc
-- [[https://github.com/sweet-tooth-clojure/generate][*Code generation.*]] (still in its infancy) - generate new endpoints from the
-  REPL.
+- [[https://github.com/sweet-tooth-clojure/generate][*Code generation.*]] Generate new endpoints from the REPL! Still in its infancy.
 - [[https://github.com/sweet-tooth-clojure/describe][*Validation.*]] Yes, another validation library.
 ** Not Responsibilities
 What is this project not made for? Sweet Tooth is not for creating

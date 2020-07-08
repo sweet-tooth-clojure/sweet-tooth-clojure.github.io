@@ -1,3 +1,10 @@
 = Quickstart =
 Daniel Higginbotham
 
+
+* create project
+* start it
+* add an endpoint
+* fetch endpoint data
+* create new route
+* submit new thing
