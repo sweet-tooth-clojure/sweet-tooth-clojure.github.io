@@ -1,5 +1,5 @@
 name: overview
-title: 0. Overview
+title: Overview
 version: dev
 nav:
   - modules/ROOT/nav.adoc

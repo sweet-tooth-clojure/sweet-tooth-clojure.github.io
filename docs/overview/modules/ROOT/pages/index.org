@@ -124,7 +124,7 @@ Sweet Tooth handles the following:
   rendered.
 - *Syncing.* Or, AJAX requests. Make requests using shared, named endpoint
   routes. Requsts are tracked so you can easily show activity indicators.
-- *Forms.*
+- xref:todo-example:ROOT:form-handling.adoc[*Forms.*]
   - *data* stop worry about where to store form data
   - *workflow* validation: handle server side validation and get nitpicky with
     client-side validation, e.g. only validate a field on blur. Form submission
@@ -133,17 +133,17 @@ Sweet Tooth handles the following:
 - *App initialization.* 
 - *JS Event Handling* tools for registering js event handlers the re-frame way
 ** Backend
-- endpoints
-- testing
-- mocking
-- pagination
-- validation
+- xref:endpoint:ROOT:index.adoc[*Endpoints.*] Create API endpoints.
+- xref:endpoint:systems:index.adoc[*Systems*.] Tools for working with Duct systems.
+- *Testing*. Tools for testing Duct systems.
+- *Mocking*. Making it easy to mock Duct components.
 ** Deploying
 Ansible scripts to provision a new VPS and deploy your app to it. VPS can host
 multiple ST apps.
 ** Misc
-- *Code generation.* (still in its infancy) - generate new endpoints from the
+- [[https://github.com/sweet-tooth-clojure/generate][*Code generation.*]] (still in its infancy) - generate new endpoints from the
   REPL.
+- [[https://github.com/sweet-tooth-clojure/describe][*Validation.*]] Yes, another validation library.
 ** Not Responsibilities
 What is this project not made for? Sweet Tooth is not for creating
 server-rendered apps. It hasn't been used for high-traffic projects, so it's
@@ -153,22 +153,59 @@ it'd be possible to add that. It's not intended for drawing applications
  ][Whimsical]]), but who knows, maybe that would work out ok?
 
 * Documentation Overview
-** To-Do Example Walkthrough
-** endpoint
+** xref:quickstart:ROOT:index.adoc[Quickstart]
+
+The Quickstart shows you how to:
+
+1. Create a new Sweet Tooth project
+2. Create a new endpoint
+3. Fetch and display records from the frontend
+4. Add a frontend route
+
+** xref:todo-example:ROOT:index.adoc[To-Do Example Walkthrough]
+
+The To-Do Example Walkthrough is a depth-first exploration of the framework
+using a simple working app. It's still a work in progress, but it covers the
+following in detail:
+
+- Rendering the initial "page":
+  - handling URLs and navigation events
+  - routing URLs to components and the routing lifecycle
+  - frontend system initialization with integrant
+
+** xref:endpoint:ROOT:index.adoc[endpoint]
+
+While the Quickstart and Walkthrough are guided tours of the framework, the
+endpoint docs are meant more as a reference for the [[https://github.com/sweet-tooth-clojure/endpoint][endpoint library]], which you
+use to build an API server. However, the docs do include tutorials for
+liberator, duct, and integrant, because Sweet Tooth uses those libraries as a
+foundation, and understanding them is the only way to become proficient with
+Sweet Tooth.
 
 * Contributing
 
-I am inconsistent when it comes to keeping up with open source collaboration.
+I welcome issues and PRs! However, please be aware that I am *very* inconsistent
+when it comes to keeping up with open source collaboration. If people become
+interested in this project, then I would especially welcome any help in
+systematizing the running of an OS project. That's a big if, though!
 
 * Acknowledgments
 
-** libs
+** Libraries / Prior Art
+
 - re-frame
 - duct, integrant
+- hoplon
   
-** people
+** People
 
-- walter
-- tom
-- andrew
-- dmitri
+The following people have contributed to Sweet Tooth's development:
+
+- [[https://github.com/walterl][Walter Leibbrandt]]
+- Andrew Sinclair
+- [[https://github.com/tlrobinson][Tom Robinson]]
+- [[https://github.com/sbelak][Simon Belak]]
+- [[https://github.com/yogthos][Dmitri Sotnikov]]
+- [[https://github.com/tomjkidd][Tom Kidd]]
+
+Thank you!
