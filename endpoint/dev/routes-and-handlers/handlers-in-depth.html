@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Handlers In Depth :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/routes-and-handlers/handlers-in-depth.html">
+    <link rel="prev" href="routes-in-depth.html">
+    <link rel="next" href="responses.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Routes and Handlers</a></li>
+    <li><a href="handlers-in-depth.html">Handlers in Depth</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/routes-and-handlers/pages/handlers-in-depth.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Handlers In Depth</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide explains how <a href="https://clojure-liberator.github.io/liberator/">Liberator</a> works and how Sweet Tooth uses it to
+create request handlers. It explains how to write handlers for your own apps.</p>
+</div>
+<div class="paragraph">
+<p>It begins with a high-level discussion of the core Liberator concepts
+<em>decisions</em> and <em>context</em>. It then provides practical guidance on creating
+handlers in Sweet Tooth apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_liberator_decisions"><a class="anchor" href="#_liberator_decisions"></a>Liberator Decisions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, Sweet Tooth uses Liberator to construct request handlers. Liberator
+provides an abstraction for the common decisions that a request handler has to
+make, decisions like: Is this data valid? If not, return a 400 status. Is the
+user authorized? If not, return a 401 status. The following two snippets
+demonstrate two different approaches I&#8217;ve seen to handling this kind of logic
+within the common use-case of creating a new resource:</p>
+</div>
+<div class="listingblock">
+<div class="title">typical endpoint code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defn create-todo
+  [{:keys [params session] :as _req}]
+  (if-not (authorized? session)
+    (throw NotAuthorized "you do not have permission to do that"))
+  (if-let [errors (validation-errors ::create-todo params)]
+    {:status 400
+     :body   {:errors errors}}
+    (create-todo! params)))
+
+(defn create-todo
+  [{:keys [params session] :as _req}]
+  (cond (not (authorized? session))
+        {:status 401
+         :body   {:errors "not authorized"}}
+
+        (not (valid? ::create-todo params))
+        {:status 400
+         :body   {:errors (validation-errors ::create-todo params)}}
+
+        :else
+        (create-todo! params)))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The structure of this if/then logic to determine which status to return is
+always ways the same. You&#8217;ll always want to check whether the user is authorized
+before attempting to validate data, and you&#8217;ll always want to validate data
+before attempting to insert it in a db. If the request isn&#8217;t authorized, you
+should always return a 401 status, and if it&#8217;s not valid you should return a 400
+status. You can visualize this structure as a <em>decision graph</em>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/decision-graph.png" alt="diagram of a decision graph">
+</div>
+</div>
+<div class="paragraph">
+<p>Liberator provides a function that captures the the decision graph&#8201;&#8212;&#8201;the order
+that the decisions are traversed and the status codes associated with each final
+result&#8201;&#8212;&#8201;so that your code only has to focus on the logic specific to each
+decision.</p>
+</div>
+<div class="paragraph">
+<p>Below is a simplified version of that function. It takes a map of decision
+functions and returns a request handler which can be used to return responses
+for ring requests.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Liberator uses <code>:malformed?</code> instead of <code>:valid?</code> and <code>:handle-ok</code> instead
+of <code>:success</code> because it&#8217;s actually structuring decisions regarding how to
+return a valid HTTP response, and the language of <code>malformed</code> and <code>ok</code> hews more
+closely to the HTTP spec.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">simplified decision request generator</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def decision-graph
+  {:authorized? {true  :malformed?
+                 false 401}
+   :malformed?  {true  400
+                 false :handle-ok}
+   :handle-ok   200})
+
+(defn decisions-&gt;handler
+  [decision-nodes]
+  (fn request-handler [req]
+    (loop [node :authorized?]
+      (let [result              ((node decision-nodes) req)
+            edges-or-status     (node decision-graph)
+            next-node-or-status (get edges-or-status (boolean result) edges-or-status)]
+        (if (keyword? next-node-or-status)
+          (recur next-node-or-status) ;; it was a node; on to the next decision!
+          {:status next-node-or-status
+           :body   result})))))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code might be a little dense and I welcome suggestions clearer :)
+<code>decisions&#8594;handler</code> returns a function that traverses <code>decision-graph</code>,
+starting with the <code>:authorized?</code> node. As it traverses the graph, it looks up
+decision functions in <code>decision-nodes</code>. It uses the return value of the decision
+function to retrieve either the next decision node or the response status. If a
+status is retrieved, the function returns.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how you would call this function to create a handler:</p>
+</div>
+<div class="listingblock">
+<div class="title">create and call a handler</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def handler (decisions-&gt;handler {:authorized? (constantly true)
+                                  :malformed? (constantly false)
+                                  :handle-ok (constantly "hi")}))
+
+(handler {})
+;; =&gt;
+{:status 200, body "hi"}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The simplified Liberator re-implementation differs from actual Liberator in a
+couple important ways. First, the real library provides sane defaults for
+<code>:authorized?</code>, <code>:malformed?</code> and all the rest of its decision functions. I
+didn&#8217;t include default handling in these examples to keep the code more focused.</p>
+</div>
+<div class="paragraph">
+<p>Second, Liberator allows you to provide constants, so you can write
+<code>:authorized? true</code> instead of <code>:authorized? (constantly true)</code> and <code>:handle-ok
+"hi"</code> instead of <code>:handle-ok (constantly "hi"))</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_liberator_context"><a class="anchor" href="#_liberator_context"></a>Liberator Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The above examples are incomplete: Liberator actually allows you to convey data
+from decision function to the next. For example, in the <code>:authorized?</code> decision
+you might look up the identity associated with a request. The <code>:handle-ok</code>
+function could use this data; rather than looking it up again, <code>:authorized?</code>
+can store it so that <code>:handle-ok</code> can access it.</p>
+</div>
+<div class="paragraph">
+<p>Liberator accomplishes this by passing the request <em>context</em> in to each decision
+function. A Liberator context is just a map. It includes the ring request under
+the key <code>:request</code>. Your decision functions can append to the context by
+returning a vector like so:</p>
+</div>
+<div class="listingblock">
+<div class="title">append to a context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defn authorized?
+  [ctx]
+  (when-let [user (find-user ctx)]
+    [true {:auth-user user}]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first element of the vector, <code>true</code>, is the decision result, and it
+determines which node of the decision graph to visit next. The second element,
+<code>{:auth-user user}</code>, is a map that gets merged into context. The updated context
+is available to downstream decision handlers:</p>
+</div>
+<div class="listingblock">
+<div class="title">create and call a handler</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defn handle-ok
+  [ctx]
+  (create-todo! (merge (get-in ctx [:request :params])
+                       {:user-id (get-in ctx [:auth-user :id])})))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an updated version of the <code>decisions&#8594;handler</code> function that implements
+this feature, along with a toy handler that makes use of it:</p>
+</div>
+<div class="listingblock">
+<div class="title">decisions&#8594;handler with context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defn conform-decision-result
+  [result]
+  (if (vector? result)
+    result
+    [result {}]))
+
+(defn decisions-&gt;handler
+  [decision-nodes]
+  (fn [req]
+    (loop [ctx  {:request req}
+           node :authorized?]
+      (let [[result added-context] (conform-decision-result ((node decision-nodes) ctx))
+            edges-or-status        (node decision-graph)
+            next-node-or-status    (get edges-or-status (boolean result) edges-or-status)]
+        (if (keyword? next-node-or-status)
+          (recur (merge ctx added-context) next-node-or-status) ;; it was a node; on to the next decision!
+          {:status next-node-or-status
+           :body   result})))))
+
+(def handler
+  (decisions-&gt;handler
+   {:authorized? (fn [ctx] [true {:auth-user {:user-id 1}}])
+    :malformed?  (constantly false)
+    :handle-ok   (fn [ctx] (str "Logged in as " (get-in ctx [:auth-user :user-id])))}))
+
+(handler {})
+;; =&gt;
+"Logged in as 1"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_liberator_decision_functions_vs_status_handlers"><a class="anchor" href="#_liberator_decision_functions_vs_status_handlers"></a>Liberator Decision Functions vs Status Handlers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far I&#8217;ve been conflating <em>decision functions</em> and <em>status handlers</em> under the
+perhaps misguided notion that it would allow us to focus on one facet of
+Liberator at a time. Let&#8217;s correct that now.</p>
+</div>
+<div class="paragraph">
+<p>While decision functions are used to determine which HTTP status code to return
+for a request, status handlers determine the response body. Status handlers are
+leave nodes in the decision graph. <code>:handle-ok</code> is one such function, but
+Liberator also makes use of <code>:handle-malformed</code>, <code>:handle-unauthorized</code>, and
+<a href="http://clojure-liberator.github.io/liberator/doc/handlers.html">dozens more</a>. A more accurate decision graph would look like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/decision-and-handler-graph.png" alt="more accurate decision graph">
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s update our example code to capture this distinction and add
+<code>:handle-malformed</code> and <code>:handle-unauthorized</code> handlers:</p>
+</div>
+<div class="listingblock">
+<div class="title">decisions&#8594;handler with context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def decision-graph
+  {:authorized?         {true  :malformed?
+                         false :handle-unauthorized}
+   :malformed?          {true  :handle-malformed
+                         false :handle-ok}
+   :handle-unauthorized 401
+   :handle-malformed    400
+   :handle-ok           200})
+
+(defn decisions-&gt;handler
+  [decision-nodes]
+  (fn [req]
+    (loop [ctx  {:request req}
+           node :authorized?]
+      (let [edges-or-status (node decision-graph)
+            node-type       (if (map? edges-or-status)
+                                  :decision
+                                  :status-handler)]
+        (case node-type
+          :decision (let [[result added-context] (conform-decision-result ((node decision-nodes) ctx))
+                          next-node              (get edges-or-status (boolean result))]
+                      (recur (merge ctx added-context) next-node))
+          :status   {:status edges-or-status
+                     :body   ((node decision-nodes (constantly nil)) ctx)})))))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s a more realistic example of how this could all work together. First we
+create a handler, then we call it with a couple different "requests":</p>
+</div>
+<div class="listingblock">
+<div class="title">more detailed decisions</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def create-todo-list-handler
+  (decisions-&gt;handler
+   {:authorized?      (fn [ctx]
+                        (when-let [user (get-in ctx [:request :user])]
+                          [true {:user user}]))
+    :malformed?       (fn [ctx]
+                        (if (get-in ctx [:request :params :todo-list/title])
+                          false
+                          [true {:errors ["No to-do list title"]}]))
+    :handle-malformed (fn [ctx] (select-keys ctx [:errors]))
+    :handle-ok        (fn [ctx]
+                        (merge (get-in ctx [:request :params])
+                               {:todo-list/owner (get-in ctx [:user :id])}))}))
+
+(create-todo-list-handler {:user {:id 1}})
+;; =&gt;
+{:status 400, :body {:errors ["No to-do list title"]}}
+
+
+(create-todo-list-handler
+ {:user   {:id 1}
+  :params {:todo-list/title "write some docs this is your life now"}})
+;; =&gt;
+{:status 200
+ :body #:todo-list{:title "write some docs this is your life now"
+                   :owner 1}}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sweet_tooth_handlers"><a class="anchor" href="#_sweet_tooth_handlers"></a>Sweet Tooth handlers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sweet Tooth uses Liberator to create request handlers from decision maps.
+Sweet Tooth&#8217;s approach differs from vanilla liberator in a few key ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It simplifies dispatching by request method (:get, :post, etc)</p>
+</li>
+<li>
+<p>It uses an opinionated set of decision functions and status handlers</p>
+</li>
+<li>
+<p>It&#8217;s meant to be used with Integrant, and it provides tools to make that easy</p>
+</li>
+<li>
+<p>It expects responses to conform to a Sweet Tooth-specific response protocol,
+and automatically formats some values so that they&#8217;ll conform</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_simpler_http_method_dispatching"><a class="anchor" href="#_simpler_http_method_dispatching"></a>Simpler HTTP method dispatching</h3>
+<div class="paragraph">
+<p>In vanilla Liberator, you typically create a single handler for a given route.
+From <a href="http://clojure-liberator.github.io/liberator/tutorial/all-together.html">Liberator&#8217;s docs</a>:</p>
+</div>
+<div class="listingblock">
+<div class="title">vanilla liberator</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">;; create and list entries
+(defresource list-resource
+  :available-media-types ["application/json"]
+  :allowed-methods [:get :post]
+  :known-content-type? #(check-content-type % ["application/json"])
+  :malformed? #(parse-json % ::data)
+  :post! #(let [id (str (inc (rand-int 100000)))]
+            (dosync (alter entries assoc id (::data %)))
+            {::id id})
+  :post-redirect? true
+  :location #(build-entry-url (get % :request) (get % ::id))
+  :handle-ok #(map (fn [id] (str (build-entry-url (get % :request) id)))
+                   (keys @entries)))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this snippet, <code>defresource</code> is a Liberator macro that creates a request
+handler function, <code>list-resource</code>, from the given decision key/value pairs. From
+<code>:allowed-methods</code>, you can see that it handles both <code>:get</code> and <code>:post</code>
+requests.</p>
+</div>
+<div class="paragraph">
+<p>I personally find it confusing to combine two different workflows within the
+same function like this. In Sweet Tooth, the decision maps used to generate
+handlers look like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">example Sweet Tooth decisions, taken from <a href="https://github.com/sweet-tooth-clojure/todo-example">the To-Do example</a></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def decisions
+  {:collection
+   {:get  {:handle-ok (comp tl/todo-lists ed/db)}
+    :post {:malformed?     (v/validate-describe v/todo-list-rules)
+           :post!          ed/create-&gt;:result
+           :handle-created ed/created-pull}}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Decision maps are keyed first by route type (see
+<a href="routes-in-depth.html" class="page">Routes in Depth</a> for an explanation of route types),
+then by request method. As developers working on RESTful APIs, we categorize
+units of work by request method, so I think it&#8217;s useful to unambiguously
+distinguish handlers for different methods.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_slightly_opinionated_default_decisions"><a class="anchor" href="#_slightly_opinionated_default_decisions"></a>Slightly opinionated default decisions</h3>
+<div class="paragraph">
+<p>Liberator is very flexible, very cool. You can use it for content negotiation,
+for example, serving different responses based on a request&#8217;s media type and
+returning the appropriate HTTP status code when a request&#8217;s media types don&#8217;t
+match what the server provides. You saw an example of this in the last section:</p>
+</div>
+<div class="listingblock">
+<div class="title">media types</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defresource list-resource
+  :available-media-types ["application/json"]
+  :known-content-type? #(check-content-type % ["application/json"]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, Sweet Tooth endpoints expect to receive and return <a href="https://blog.cognitect.com/blog/2014/7/22/transit">Transit</a>. It also
+has conventions for error handling, expecting errors to be placed under
+<code>:errors</code> in the context map. Here are all of Sweet Tooth&#8217;s <a href="https://github.com/sweet-tooth-clojure/endpoint/blob/0f0fa42d17e1aef27e7381c3f99e22a25ec0aade/src/sweet_tooth/endpoint/liberator.clj#L102">defaults</a>:</p>
+</div>
+<div class="listingblock">
+<div class="title">sweet tooth decision defaults</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def decision-defaults
+  "A base set of liberator resource decisions"
+  (let [errors-in-ctx (fn [ctx] [:errors (:errors ctx)])
+        base          {:available-media-types ["application/transit+json"
+                                               "application/transit+msgpack"
+                                               "application/json"]
+                       :allowed-methods       [:get]
+                       :authorized?           true
+                       :handle-unauthorized   errors-in-ctx
+                       :handle-malformed      errors-in-ctx
+                       :respond-with-entity?  true
+                       :new?                  false}]
+    {:get    base
+     :post   (merge base {:allowed-methods [:post]
+                          :new?            true
+                          :handle-created  record})
+     :put    (merge base {:allowed-methods [:put]})
+     :patch  (merge base {:allowed-methods [:patch]})
+     :head   (merge base {:allowed-methods [:head]})
+     :delete (merge base {:allowed-methods      [:delete]
+                          :respond-with-entity? false})}))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_integrant_integration"><a class="anchor" href="#_integrant_integration"></a>Integrant integration</h3>
+<div class="paragraph">
+<p>Sweet Tooth is built on top of <a href="https://github.com/weavejester/integrant">Integrant</a>, a dependency injection framework. When
+you use Integrant, you create components for interacting with external services
+like databases, then pass in those components in as arguments to the functions
+that need them.</p>
+</div>
+<div class="paragraph">
+<p>So how does one pass in components to handlers in a Sweet Tooth app? One does
+this in the route definition. Here&#8217;s the route  definition for the to-do example
+app:</p>
+</div>
+<div class="listingblock">
+<div class="title">routes passing in components</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns sweet-tooth.todo-example.cross.endpoint-routes
+  (:require [sweet-tooth.endpoint.routes.reitit :as serr]
+            [integrant.core :as ig]))
+
+(def routes
+  (serr/expand-routes
+   [{:ctx               {:db (ig/ref :sweet-tooth.endpoint.datomic/connection)}
+     :id-key            :db/id
+     :auth-id-key       :db/id
+     ::serr/path-prefix "/api/v1"}
+    [:sweet-tooth.todo-example.backend.endpoint.todo-list]
+    [:sweet-tooth.todo-example.backend.endpoint.todo]]))
+
+(defmethod ig/init-key ::routes [_ _]
+  routes)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(See <a href="routes-in-depth.html" class="page">Routes in Depth</a> if you&#8217;re not familiar with <code>serr/expand-routes</code>.)</p>
+</div>
+<div class="paragraph">
+<p>We pass <code>expand-routes</code> a vector where the first element is a map. The map is a
+set of route options that gets applied to every route that follows. The <code>:ctx</code>
+key defines a map that should get merged into the context of every liberator
+handler for those routes.</p>
+</div>
+<div class="paragraph">
+<p>In this case, the map is <code>{:db (ig/ref
+:sweet-tooth.endpoint.datomic/connection)}</code>. The function <code>ig/ref</code> returns an
+Integrant reference to the specified component. When the system is initialized,
+it will be replaced with the initialized
+<code>:sweet-tooth.endpoint.datomic/connection</code> component, and decision functions can
+access the component like so:</p>
+</div>
+<div class="listingblock">
+<div class="title">routes passing in components</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(fn [ctx]
+  (d/transact! (:db ctx) [...]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>TODO go into more detail about how this actually works</p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="routes-in-depth.html">Routes in Depth</a></span>
+  <span class="next"><a href="responses.html">Responses</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

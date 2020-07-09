@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sweet Tooth To-Do Example Walkthrough :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/todo-example/dev/index.html">
+    <link rel="next" href="initial-rendering.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="todo-example" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="index.html">To-Do Example Walkthrough</a></h3> -->
+      <h3 class="title"><a href="../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../../endpoint/dev/index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../endpoint/dev/architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../endpoint/dev/systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">To-Do Example Walkthrough</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../endpoint/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">To-Do Example Walkthrough</a></li>
+    <li><a href="index.html">Sweet Tooth To-Do Example Walkthrough</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/todo-example/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Sweet Tooth To-Do Example Walkthrough</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Get a <em>taste</em> of what it&#8217;s like to work with Sweet Tooth, a single-page app
+framework for Clojure! I&#8217;ll guide you through many of its features by taking you
+on a depth-first walk through a single action: creating a new to-do list in a
+simple to-do list app.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_target_audience"><a class="anchor" href="#_target_audience"></a>Target Audience</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This walkthrough has been written for people who have written at least one
+Clojure web app. It assumes knowledge of web app development; it is not intended
+for complete for beginners. (Maybe one day I&#8217;ll write that!) In particular, I&#8217;ll
+refer to Integrant and re-frame concepts and explain them only briefly, if at
+all.</p>
+</div>
+<div class="paragraph">
+<p>I dive into Sweet Tooth internals more than I would in a tutorial that was
+focused solely on building stuff with the framework because you&#8217;re experienced
+and I&#8217;m hoping to reveal some of its design and get your valuable feedback :)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_first_steps"><a class="anchor" href="#_first_steps"></a>First Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For the rest of this doc I&#8217;ll show you Sweet Tooth&#8217;s ideas and features by
+walking you through what happens when you create a to-do list. First, get the
+app running:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In a terminal, run <code>npm install</code> then <code>shadow-cljs watch dev</code></p>
+</li>
+<li>
+<p>Start a REPL. If prompted to choose between <code>lein</code>, <code>clojure-cli</code>, and
+<code>shadow-cljs</code>, choose <code>lein</code>.</p>
+</li>
+<li>
+<p>Evaluate <code>(dev)</code> in the REPL. The REPL will pause for a little bit while it
+thinks.</p>
+</li>
+<li>
+<p>Evaluate <code>(go)</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The app should now be running at <a href="http://localhost:3000">http://localhost:3000</a> and you should see
+something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/01-running.png" alt="todo example screenshot">
+</div>
+</div>
+<div class="paragraph">
+<p>Now, create a to-do list by entering its title and hitting enter or clicking the
+"create to-do list" button. You should see a little activity indicator appear
+for a split second, then you should get redirected to your newly-created to-do
+list. The URL should have changed to something like
+<code><a href="http://localhost:3000/to-do-list/17592186045431" class="bare">http://localhost:3000/to-do-list/17592186045431</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>In even these two simple steps there&#8217;s a lot going on, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Initial rendering</p>
+<div class="ulist">
+<ul>
+<li>
+<p>App initialization</p>
+</li>
+<li>
+<p>Route handling for the URL <code><a href="http://localhost:3000/" class="bare">http://localhost:3000/</a></code></p>
+</li>
+<li>
+<p>Rendering the "home page"</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Form handling</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managing the input for the to-do list title</p>
+</li>
+<li>
+<p>Submitting the form</p>
+</li>
+<li>
+<p>Displaying an activity indicator</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>API request handling</p>
+</li>
+<li>
+<p>Frontend response handling</p>
+</li>
+<li>
+<p>Navigating to the new to-do list</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s dig in!</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="next"><a href="initial-rendering.html">Initial Rendering</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

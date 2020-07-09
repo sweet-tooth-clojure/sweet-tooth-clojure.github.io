@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Intro to Request Handling :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/routes-and-handlers/request-handling-intro.html">
+    <link rel="prev" href="responses.html">
+    <link rel="next" href="../architecture/index.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="responses.html">Responses</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Routes and Handlers</a></li>
+    <li><a href="request-handling-intro.html">Introduction to Request Handling</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/routes-and-handlers/pages/request-handling-intro.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Intro to Request Handling</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re here you&#8217;re likely new to web development. Cool!! Welcome and I&#8217;m so
+pleased that you&#8217;re using Sweet Tooth to get your start. I&#8217;ve been doing this
+for like 15 years now and it continues to be rewarding. I hope you&#8217;ll enjoy it,
+too, and that these tools will help you on your journey.</p>
+</div>
+<div class="paragraph">
+<p>This guide covers <em>request routing</em> and <em>request handlers</em>. It assumes that you
+have some experience programming, and in particular that you have experience
+using the command line. If that&#8217;s not where you are, take some time to check out
+<a href="https://www.learnenough.com/command-line-tutorial/basics">Learn Enough Command Line to Be Dangerous</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_routing_and_handling_on_the_command_line"><a class="anchor" href="#_routing_and_handling_on_the_command_line"></a>Routing and Handling on the Command Line</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A lot of programming is about sending messages from one process to another, and
+single page apps are no exception. To understand how request handling works,
+let&#8217;s look at a kind of message sending that you&#8217;re familiar: running commands
+at the command line.</p>
+</div>
+<div class="paragraph">
+<p>When you type in a simple command like <code>ls</code>, you can think of it as a terminal
+process sending a message consisting of the text <code>"ls"</code> to a shell process. The
+shell uses the <code>$PATH</code> environment variable to look up an executable whose name
+matches the text <code>"ls"</code>. You can think of it as a lookup table. If your <code>$PATH</code>
+is <code>/.gem/ruby/2.4.6/bin:/.yarn/bin:/bin</code> then the table would look like this:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Directory</th>
+<th class="tableblock halign-left valign-top">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/.gem/ruby/2.4.6/bin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>asciidoctor</code> <code>bundle</code> <code>tmuxinator</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/.yarn/bin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yarn</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/bin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bash</code> <code>cat</code> <code>ls</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The shell progresses through the table to find a match for the text <code>"ls"</code>. It
+goes through each directory in order, finding a file named <code>"ls"</code>, until it
+reaches <code>/bin/ls</code>. The command line "message" can include arguments like <code>"-la"</code>
+in <code>ls -la</code>, and these are passed to the executable. Arguments don&#8217;t affect the
+executable lookup procedure.</p>
+</div>
+<div class="paragraph">
+<p>You can think of this as the shell&#8217;s procedure for <em>routing</em> a command line
+message to the correct <em>handler</em>. Routing is the process of finding a handler
+that can respond to a message. Handlers perform the work specified by a message,
+whether that&#8217;s reading data or modifying state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You might have noticed that this explanation ignores the fact that you can
+create shell aliases and functions. This doesn&#8217;t fundamentally change the
+explanation: you can imagine an internal, virtual "directory" of aliases and
+function names that gets checked first.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_routing_and_handling_in_web_apps"><a class="anchor" href="#_routing_and_handling_in_web_apps"></a>Routing and Handling in Web Apps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When creating web apps, we&#8217;re still performing work by sending messages from one
+process to another. It&#8217;s just that, instead of sending messages from a terminal
+to a shell running on the same machine, we&#8217;re sending messages from a browser to
+a server presumably running on separate machines. The message sent from a
+browser to a server is called a <em>request</em>, and the message the server sends back
+is called a <em>response</em>.</p>
+</div>
+<div class="paragraph">
+<p>In a terminal, requests have the structure <code>[command-name] [command arguments]</code>.
+Web app requests are structured as <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages">HTTP messages</a>. Here&#8217;s an example of the kind
+of text your browser would send to a server:</p>
+</div>
+<div class="listingblock">
+<div class="title">example HTTP message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>GET /user HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.
+Host: www.your-cool-site.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Shells destructure the messages they receive from a terminal and use the command
+name to route a message to the correct handler. With web apps, routing is
+usually performed by matching the text of the request <em>method</em> and <em>path</em>. In
+the example above, these are <code>GET</code> and <code>/user</code>.</p>
+</div>
+<div class="paragraph">
+<p>Shells are programs that other people wrote, and at some point they had to
+implement routing logic. A web app server is a program that you are writing, and
+you have to implement message routing yourself. There are a few libraries to
+facilitate this, and you&#8217;ll use them to create what&#8217;s essentially a table like:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path Pattern</th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Handler Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:get</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(fn list-users [])</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:post</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(fn create-user [])</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/user/{id}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:get</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(fn show-user [])</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/user/{id}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:put</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(fn update-user [])</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>A routing library will construct a <em>router</em> that uses such a route table to
+find the route that matches a request, and then apply the corresponding handler
+to the request.</p>
+</div>
+<div class="paragraph">
+<p><a href="index.html" class="page">Endpoint Routes and Handlers</a> explains how to do this with Sweet
+Tooth.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="responses.html">Responses</a></span>
+  <span class="next"><a href="../architecture/index.html">Server Architecture: Components and Beyond</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

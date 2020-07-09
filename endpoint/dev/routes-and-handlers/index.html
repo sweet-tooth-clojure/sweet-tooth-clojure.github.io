@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Endpoint Routes and Handlers :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/routes-and-handlers/index.html">
+    <link rel="prev" href="../index.html">
+    <link rel="next" href="routes-in-depth.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Routes and Handlers</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/routes-and-handlers/pages/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Endpoint Routes and Handlers</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>These docs explain how to write endpoint <em>routes</em> and <em>handlers</em> in a Sweet
+Tooth app. If you&#8217;re unfamiliar with routes or handlers, check out the
+<a href="request-handling-intro.html" class="page">Introduction to Request Handling</a>.</p>
+</div>
+<div class="paragraph">
+<p>This page covers practical basics, just enough for you to get some stuff
+working. For more practical, bottom-up instruction,
+<a href="routes-in-depth.html" class="page">Routes in Depth</a> covers every facet of writing routes,
+and <a href="handlers-in-depth.html" class="page">Handlers in Depth</a> explains how to write
+Liberator handlers. <a href="responses.html" class="page">Responses</a> covers Sweet Tooth&#8217;s response
+protocol.</p>
+</div>
+<div class="paragraph">
+<p><a href="../architecture/index.html" class="page">Server Architecture: Components and Beyond</a>
+explains how these sub-systems fit into the larger whole. It describes how
+they&#8217;re composed using the Duct and Integrant architecture composition
+micro-frameworks. It&#8217;s light on HOWTO instructions, but the high level
+perspective it provides should help you understand routes and handlers better.</p>
+</div>
+<div class="paragraph">
+<p>These docs assume you&#8217;re working within the <a href="https://github.com/sweet-tooth-clojure/todo-example">the Sweet Tooth To-Do List Example</a>
+project.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_routes_and_handlers"><a class="anchor" href="#_basic_routes_and_handlers"></a>Basic Routes and Handlers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sweet Tooth introduces conventions for implicitly associating route paths, route
+names, and the namespaces that hold handler definitions. This eliminates
+boilerplate but might cause some to shake their heads in disgust with a
+frowning, condemnatory grumble of "Magic!" These docs explain how everything
+works, hopefully to the satisfaction of those grumpy individuals who have
+somehow lost their love of freakin' magic.</p>
+</div>
+<div class="paragraph">
+<p>Sweet Tooth is oriented around RESTful APIs. You send <code>GET</code>, <code>POST</code>, <code>PUT</code>, and
+<code>DELETE</code> requests to paths like <code>/todo-list</code> and <code>/todo-list/1</code> in order to
+perform CRUD operations. The corresponding request handlers are located in a
+namespace like <code>sweet-tooth.todo-example.backend.endpoint.todo-list</code>.</p>
+</div>
+<div class="paragraph">
+<p>For routing, Sweet Tooth relies on the <a href="https://github.com/metosin/reitit">reitit library</a>, which represents routes
+as two-element vectors that associate URL patterns like <code>/users/{id}</code> with a map
+containing the route&#8217;s name, handler, and metadata. For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">route example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">["/users/{id}" {:name    :users
+                :handler (fn [req] {:body "response"})}]</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_namespace_routes"><a class="anchor" href="#_namespace_routes"></a>Namespace Routes</h3>
+<div class="paragraph">
+<p>It can get tedious to write a bunch of routes that look something like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">tedious routes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">[["/user" {:name    :users
+           :handler project.endpoint.user/list}]
+ ["/user{id}" {:name    :user
+               :handler project.endpoint.user/show}]
+
+ ["/todo-list" {:name    :todo-lists
+                :handler project.endpoint.todo-list/list}]
+ ["/todo-list/{id}" {:name    :todo-list
+                     :handler project.endpoint.todo-list/show}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To reduce this tedium, the
+<code>sweet-tooth.todo-example.cross.endpoint-routes/expand-routes</code> (which I&#8217;ll also
+refer to as <code>serr/expand-routes</code>) function lets you specify the names of
+namespaces that contain handlers and uses those to generate routes. Let&#8217;s
+generate some simple routes in a REPL and work our way up to more complex ones:</p>
+</div>
+<div class="listingblock">
+<div class="title">basic namespace route</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(require '[sweet-tooth.endpoint.routes.reitit :as serr])
+(serr/expand-routes
+ [[:sweet-tooth.todo-example.backend.endpoint.todo-list]])
+
+;; =&gt;
+[["/todo-list"
+  {::serr/ns   :sweet-tooth.todo-example.backend.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]
+ ["/todo-list/{id}"
+  {::serr/ns   :sweet-tooth.todo-example.backend.endpoint.todo-list
+   ::serr/type :member
+   :name       :todo-list
+   :id-key     :id}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The function took a single keyword corresponding to a namespace&#8217;s name and
+generated two routes for it, one with the path <code>"/todo-list"</code> named
+<code>:todo-lists</code> and one with the path <code>"/todo-list/{id}" `named `:todo-list</code>.
+These paths and names are derived from the namespace name, with <code>endpoint.</code> as
+the default delimiter.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handlers"><a class="anchor" href="#_handlers"></a>Handlers</h3>
+<div class="paragraph">
+<p>Routes are supposed to convey a request to a handler, and with reitit routes you
+designate a handler with the <code>:handler</code> key. The <code>:handler</code> key is conspicuously
+missing from the above routes. So how does this work?</p>
+</div>
+<div class="paragraph">
+<p>The Sweet Tooth module <code>:sweet-tooth.endpoint.module/liberator-reitit-router</code>
+adds the <code>:handler</code> key to routes. You can see see an example of the module
+being used in the To-Do app&#8217;s <code>resources/config.edn</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">To-Do app&#8217;s config.edn file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">:sweet-tooth.endpoint.module/liberator-reitit-router
+{:routes sweet-tooth.todo-example.cross.endpoint-routes/routes}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The module references <code>sweet-tooth.todo-example.cross.endpoint-routes/routes</code>,
+which contains a vector of routes as returned by <code>serr/expand-routes</code>. It
+modifies these routes, adding a <code>:handler</code> key to each. It uses the metadata
+keys <code>::serr/ns</code> and <code>::serr/type</code> to look up a <a href="https://clojure-liberator.github.io/liberator/">liberator</a> decision map and
+construct a liberator handler. The updated routes are passed to
+<code>reitit.ring/router</code> to create a ring-compatible request handler.</p>
+</div>
+<div class="paragraph">
+<p><code>::serr/ns</code> is used to find a liberator decision map. By default, these are
+defined in a var named <code>decisions</code>. If you look at
+<code>sweet-tooth.todo-example.backend.endpoint.todo-list</code> namespace you&#8217;ll see
+something like this (I&#8217;ve elided irrelevant code):</p>
+</div>
+<div class="listingblock">
+<div class="title">decisions</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def decisions
+  {:collection
+   {:get  {:handle-ok (comp tl/todo-lists ed/db)}
+    :post {:post!          ed/create-&gt;:result
+           :handle-created ed/created-pull}}
+
+   :member
+   {:get {:handle-ok (fn [ctx])}
+    :put {:put!      ed/update-&gt;:result
+          :handle-ok ed/updated-pull}
+
+    :delete {:delete!   (fn [ctx])
+             :handle-ok []}}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>decisions</code> is a map whose keys correspond to <code>::serr/type</code> in the routes above:
+if a request for <code>"/todo-list"</code> is received, the <code>::serr/type</code> value of
+<code>:collection</code> is used to look up the map of handlers under <code>:collection</code> in the
+<code>decisions</code> var. The request method (<code>:get</code>, <code>:post</code>, <code>:put</code> etc) is then used
+to look up the decision map for that method. The decision map is passed to a
+liberator function that returns a request handler.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re unfamiliar with liberator this probably looks weird as all get out. I
+explain liberator fully in <a href="handlers-in-depth.html" class="page">Handlers in Depth</a>; for
+now we&#8217;re just focusing on the relationship between routes and handlers. If
+you&#8217;re wanting to just get stuff working, follow these rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Place your handlers under the <code>:handle-ok</code> key, except for <code>:post</code> requests.
+For <code>:post</code> requests, use the <code>:handle-created</code> key.</p>
+</li>
+<li>
+<p>Handler functions take one argument, which you should name <code>ctx</code>. The ring
+request is available under the <code>:request</code> key of <code>ctx</code>.</p>
+</li>
+<li>
+<p>When returning entity data, the handler function should return a map or vector
+of maps for your entities.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In following these rules you&#8217;ll write code that looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">handlers for the impatient</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def decisions
+  {:collection
+   {:get  {:handle-ok
+           (fn [ctx]
+             ;; this is a constant, but you would probably have a function that
+             ;; returns a sequence of records from a db
+             [{:id 1, :todo-list/title "to-do list"}])}
+
+    :post {:handle-created
+           (fn [{{:keys [params]} :request}]
+             (db/insert! :todo-list params))}}
+
+   :member
+   {:get {:handle-ok
+          (fn [ctx]
+            {:id 1, :todo-list/title "to-do list"})}
+
+    :put {:handle-ok
+          (fn [{{:keys [params]} :request}]
+            (db/update! :todo-list params))}
+
+    :delete {:handle-ok
+             (fn [{{:keys [params]} :request}]
+               (db/delete! :todo-list (:id params)))}}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This outline corresponds to CRUD operations:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">handler</th>
+<th class="tableblock halign-left valign-top">CRUD operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[:collection :get]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">READs a collection of entities</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[:collection :post]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATEs an entity</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[:member :get]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">READs a single entity using an identifier</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[:member :put]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UPDATEs an entity</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[:member :delete]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DELETEs an entity</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_summary"><a class="anchor" href="#_summary"></a>Summary</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>There is a relationship between route paths, route names, namespaces, and
+handlers</p>
+</li>
+<li>
+<p>Handlers are constructed from liberator decision maps</p>
+</li>
+<li>
+<p>Those decision maps live in a var named <code>decisions</code></p>
+</li>
+<li>
+<p><code>decisions</code> is a map keyed by route type (<code>:collection</code>, <code>:member</code>) and
+request method (<code>:get</code>, <code>:post</code> etc)</p>
+</li>
+<li>
+<p>You can generate routes for an endpoint namespace using
+<code>sweet-tooth.endpoint.routes.reitit/expand-routes</code>. Route paths and names are
+derived from namespace names.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cross_compilation"><a class="anchor" href="#_cross_compilation"></a>Cross Compilation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far this doc has focused on how routes are used to convey requests to
+handlers. Routes can also be used to generate paths:</p>
+</div>
+<div class="listingblock">
+<div class="title">decisions</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(require '[reitit.core :as r])
+(-&gt; (serr/expand-routes [[:project.endpoint.todo-list]])
+    r/router
+    (r/match-by-name :todo-list {:id 1})
+    :path)
+
+;; =&gt;
+"/todo-list/1"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The frontend makes ample use of this capability to generate URLs for API calls.
+Thankfully we can define our routes in one <code>endpoint_routes.cljc</code> file and it
+will get cross-compiled to both frontend and backend targets. Pretty sweet!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s Next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="routes-in-depth.html" class="page">Routes in Depth</a> covers every facet of
+writing routes, and <a href="handlers-in-depth.html" class="page">Handlers in Depth</a> explains how
+to write Liberator handlers. <a href="responses.html" class="page">Responses</a> discusses Sweet
+Tooth&#8217;s response protocol.</p>
+</div>
+<div class="paragraph">
+<p><a href="../architecture/index.html" class="page">Server Architecture: Components and Beyond</a>
+explains how these sub-systems are composed using the Duct and Integrant
+architecture composition micro-frameworks.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../index.html">endpoint</a></span>
+  <span class="next"><a href="routes-in-depth.html">Routes in Depth</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

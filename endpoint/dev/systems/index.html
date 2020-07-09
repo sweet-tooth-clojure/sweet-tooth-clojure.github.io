@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Systems :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/systems/index.html">
+    <link rel="prev" href="../architecture/duct-tutorial.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../routes-and-handlers/index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Systems</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/systems/pages/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Systems</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Integrant introduces the concept of a <em>system</em>, a collection of components that
+has been initialized. Sweet Tooth&#8217;s <code>sweet-tooth.endpoint.system</code> namespace
+introduces some conveniences for dealing with systems:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A multimethod <code>config</code> for naming integrant configs, like <code>:dev</code>,
+<code>:test</code>, etc.</p>
+</li>
+<li>
+<p>The <code>system</code> function, which lets you customize your integrant configuration
+inline</p>
+</li>
+<li>
+<p>An <code>ig/init-key</code> alternative that allows a component&#8217;s <em>configuration</em> to
+specify an alternative component implementation, possibly bypassing the
+<code>ig/init-key</code> implementation entirely. The namespace also introduces two kinds
+of component initialization alternatives, <code>replacement</code> and <code>shrubbery-mock</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Throughout these examples you&#8217;ll see the namespace alias <code>es</code>, as in
+<code>es/config</code>. This aliases <code>sweet-tooth.endpoint.system</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_named_configs"><a class="anchor" href="#_named_configs"></a>Named configs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>sweet-tooth.endpoint.system</code> multimethod introduces a simple way to create
+named integrant configs. Here&#8217;s how it&#8217;s used in the <a href="https://github.com/sweet-tooth-clojure/todo-example">the Sweet Tooth To-Do List
+Example</a>:</p>
+</div>
+<div class="listingblock">
+<div class="title">es/config example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns sweet-tooth.todo-example.backend.duct
+  (:require [clojure.java.io :as io]
+            [duct.core :as duct]
+            [sweet-tooth.endpoint.system :as es]))
+
+(duct/load-hierarchy)
+
+;;--------
+;; Configs
+;;--------
+(defn read-config []
+  (duct/read-config (io/resource "config.edn")))
+
+(defn prep [&amp; [profiles]]
+  (duct/prep-config (read-config) profiles))
+
+(defmethod es/config :test
+  [_]
+  (dissoc (prep [:duct.profile/test]) :duct.server.http/jetty))
+
+(defmethod es/config :dev
+  [_]
+  (prep [:duct.profile/dev :duct.profile/local]))
+
+(defmethod es/config :prod
+  [_]
+  (prep [:duct.profile/prod]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A couple reasons to create a named config:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You want to combine multiple profiles, as happens in the <code>:dev</code> config</p>
+</li>
+<li>
+<p>You want to <code>dissoc</code> components from a config, as in the <code>:test</code> profile.
+Duct&#8217;s profile system is additive; when you combine profiles, you merge them,
+and there isn&#8217;t a mechanism for removing component keys.</p>
+<div class="paragraph">
+<p>The <code>:test</code> profile dissocs the <code>:duct.server.http/jetty</code> component so that
+starting a <code>:test</code> system doesn&#8217;t start an HTTP server.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_system"><a class="anchor" href="#_system"></a><code>system</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>system</code> function is the preferred way to initialize an integrant system.
+Some features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It initializes a system using a named config.</p>
+</li>
+<li>
+<p>It lets you pass in a config map that gets merged with the custom config</p>
+</li>
+<li>
+<p>It makes testing easier</p>
+</li>
+<li>
+<p>It uses a custom init process (covered in the next section)</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_named_systems"><a class="anchor" href="#_named_systems"></a>Named systems</h3>
+<div class="paragraph">
+<p>You call <code>system</code> like <code>(system :test)</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>system</code> function internally calls the <code>config</code> multimethod so that it can
+pass a named config to Integrant. I&#8217;ve found it convenient to be able to call
+<code>(es/system :test)</code> instead of something like <code>(ig/init (duct/prep-config
+(duct/read-config (io/resource "config.edn") readers) [:test]))</code></p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s also been useful to consistently delineate all the different system
+variations in one place.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_custom_configs"><a class="anchor" href="#_custom_configs"></a>Custom configs</h3>
+<div class="paragraph">
+<p><code>system</code> takes a second argument, a component config that gets merged, kind of
+like an anonymous profile. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(es/system :test {:duct.logger/timbre {:level :debug}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This can be useful for troubleshooting. It can also be using when writing tests,
+for example when you need to mock a component.</p>
+</div>
+<div class="paragraph">
+<p><code>system&#8217;s second argument can also be a function, in which case it takes an
+integrant config as an argument and should return an integrant config. That way
+you can `dissoc</code> keys.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing"><a class="anchor" href="#_testing"></a>Testing</h3>
+<div class="paragraph">
+<p>Sweet Tooth&#8217;s <a href="https://github.com/sweet-tooth-clojure/endpoint/blob/master/src/sweet_tooth/endpoint/test/harness.clj">test harness namespace</a> relies on <code>es/system</code>, introducing the
+<code>with-system</code> and <code>with-custom-system</code> macros, along with the <code>system-fixture</code>
+function. This makes it easier to use test systems in your test.</p>
+</div>
+<div class="paragraph">
+<p>Note that you can have more than one kind of test system: you might have one
+named <code>:test</code> for unit tests where components for external services are mocked
+out and one named <code>:integration</code> for integration tests where the external
+components use sandbox environments.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_custom_init_and_init_key"><a class="anchor" href="#_custom_init_and_init_key"></a>Custom <code>init</code> and <code>init-key</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>sweet-tooth.endpoint.system</code> namespace introduces a replacement for
+<code>init-key</code> that will <em>examine a component&#8217;s configuration for alternative
+implementations</em>. You can write a config like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">mocking a component</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">{::foo {::es/init-key-alternative ::es/shrubbery-mock}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and when the <code>::foo</code> component is initialized, it will return a <a href="https://github.com/bguthrie/shrubbery">mock object
+created by the shrubbery library</a> instead of the component instance it would
+normally return.</p>
+</div>
+<div class="paragraph">
+<p>(There&#8217;s also a <code>sweet-tooth.endpoint.system/init</code> function that differs from
+Integrant&#8217;s implementation only by calling the new <code>init-key</code> function rather
+than Integrant&#8217;s. <code>sweet-tooth.endpoint.system/system</code> uses
+<code>sweet-tooth.endpoint.system/init</code>.)</p>
+</div>
+<div class="paragraph">
+<p>The main motivation for introducing a custom <code>init-key</code> was to mock components.
+In vanilla Integrant, there are two main ways to mock a component that I know
+of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make use of the keyword hierarchy. Have a live component <code>:foo/component</code> and
+<code>:foo/component-mock</code> that both derive from <code>:foo/component-type</code>, and have
+consumers use <code>(ig/ref :foo/component-type)</code> to refer to the type rather than
+a specific component name. Test configs include <code>:foo/component-mock</code> and
+non-test configs include <code>:foo/component</code>.</p>
+</li>
+<li>
+<p>Make the <code>ig/init-key</code> implementation of <code>:foo/component</code> dispatch on the
+configuration it&#8217;s passed and return a mock object if something like <code>{:mock?
+true}</code> is present in the component&#8217;s config.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both of these approaches are ad-hoc and confusing. Introducing a consistent way
+to inspect component configs and produce altnernative component makes it much
+easier to see when you&#8217;re creating a mock component, and it makes it possible to
+handle mocking programatically, reducing the amount of boilerplate code you have
+to write.</p>
+</div>
+<div class="paragraph">
+<p><code>sweet-tooth.endpoint.system/init-key</code> is very simple:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>sweet-tooth.endpoint.system/init-key</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defn init-key
+  "Allows component _configuration_ to specify alterative component
+  implementations."
+  [k v]
+  (or (init-key-alternative k v)
+      (ig/init-key k v)))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The next sections will explain the <code>init-key-alternative</code> system and show you how
+to use the two bundled alternatives, shrubbery mocks and replacements.</p>
+</div>
+<div class="sect2">
+<h3 id="_init_key_alternative"><a class="anchor" href="#_init_key_alternative"></a><code>init-key-alternative</code></h3>
+<div class="paragraph">
+<p><code>init-key-alternative</code> is a multimethod that returns an alternative
+implementation of a component. Whereas <code>ig/init-key</code> dispatches on the <em>name</em> of
+the component, <code>init-key-alternative</code> dispatches on the <em>configuration</em> of the
+component. Specifically, it expects the component&#8217;s configuration to be a map,
+and it dispatches on the value of the
+<code>:sweet-tooth.endpoint.system/init-key-alternative</code> key in that map. Let&#8217;s show
+how this works with a simple component.</p>
+</div>
+<div class="listingblock">
+<div class="title">a simple printing component</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns integrant-duct-example.init-key-alternative
+  (:require [integrant.core :as ig]
+            [sweet-tooth.endpoint.system :as es]
+            [shrubbery.core :as shrub]))
+
+(defmethod ig/init-key ::printer [_ {:keys [message]}]
+  (prn (format "message: %s" message))
+  {:message message})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we initialize component with <code>ig/init-key</code>, it will print a little message
+and return a map:</p>
+</div>
+<div class="listingblock">
+<div class="title">ig/init the printer</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ig/init-key ::printer {:message "hi"})
+"message: hi"
+;; =&gt;
+{:message "hi"}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, if we initialize the component with <code>es/init-key</code> and include a
+key/value pair that <code>es/init-key-alternative</code> recognizes, we&#8217;ll get something
+different:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(es/init-key ::printer {:message                  "hi"
+                        ::es/init-key-alternative ::es/replacement
+                        ::es/replacement          "bye"})
+;; =&gt;
+"bye"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>:message "hi"</code> is still in the component config, but the message doesn&#8217;t get
+printed and the return value is <code>"bye"</code> instead of the map <code>{:message "hi"}</code>.</p>
+</div>
+<div class="paragraph">
+<p>This happens because <code>es/init-key</code> calls the <code>es/init-key-alternative</code>
+multimethod, which dispatches on the key <code>::es/init-key-alternative</code> in the
+component&#8217;s config. It finds the value <code>::es/replacement</code>, so it uses that
+multimethod implementation:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>::es/replacement</code> implementation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defmethod init-key-alternative ::replacement
+  [_ {:keys [::replacement]}]
+  replacement)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, it returns the value of <code>::es/replacement</code>, which is <code>"bye"</code> in
+the snippet above. (The multimethod references <code>::replacement</code> rather than
+<code>::es/replacement</code> because it&#8217;s defined from within the
+<code>sweet-tooth.endpoint.system</code> namespace.)</p>
+</div>
+<div class="paragraph">
+<p>Since <code>init-key-alternative</code> is a multimethod, you can extend it define your own
+classes of component alternatives. Sweet Tooth comes with <code>::es/replacement</code>,
+which you just saw, and <code>::es/shrubbery-mock</code>, which is used to create mock
+objects with the shrubbery library.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_esshrubbery_mock_init_key_alternative"><a class="anchor" href="#_the_esshrubbery_mock_init_key_alternative"></a>The <code>::es/shrubbery-mock</code> init-key alternative</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re using Integrant, it&#8217;s common to define components to interact with
+external services. If you wanted to interact with AWS SQS (simple queue
+service), for example, you would create a component to serve as the SQS client.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s also common for components to be modeled using <a href="https://www.braveclojure.com/multimethods-records-protocols/">protocols</a>, and for
+components to instantiated as records or <a href="https://clojuredocs.org/clojure.core/reify">reified objects</a> that implement those
+protocols. The <code>::es/shrubbery-mock</code> init-key alternative makes it easy for you
+to create mocks of those components.</p>
+</div>
+<div class="paragraph">
+<p>An SQS component might look something like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">very fake AWS SQS service</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns integrant-duct-example.shrubbery-mock
+  (:require [integrant.core :as ig]
+            [sweet-tooth.endpoint.system :as es]
+            [shrubbery.core :as shrub])
+  (:refer-clojure :exclude [take]))
+
+(defprotocol Queue
+  (add [_ queue-name v])
+  (take [_]))
+
+(defrecord QueueClient []
+  Queue
+  (add [_ queue-name v]
+    ;; AWS interaction goes here
+    :added)
+  (take [_]
+    ;; AWS interaction goes here
+    :taked))
+
+(defmethod ig/init-key ::queue [_ _]
+  (QueueClient.))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is what it looks like to interact with the real component:</p>
+</div>
+<div class="listingblock">
+<div class="title">interacting with the real component</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defmethod es/config ::dev [_]
+  {::queue {}})
+
+(def real-component (::queue (es/system ::dev)))
+(add real-component :foo :bar)
+;; =&gt;
+:added
+
+(take real-component :foo)
+;; =&gt;
+:taked</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>::dev</code> config initializes the <code>::queue</code> component, returning a record that
+implements the <code>Queue</code> protocol. When calling <code>add</code>, <code>:added</code> is returned. When
+calling <code>take</code>, <code>:take</code> is returned.</p>
+</div>
+<div class="paragraph">
+<p>This is what it looks like to interact with the mocked component:</p>
+</div>
+<div class="listingblock">
+<div class="title">interacting with a mocked component</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defmethod es/config ::test [_]
+  {::queue {::es/init-key-alternative ::es/shrubbery-mock
+            ::es/shrubbery-mock       {}}})
+
+(def mocked-component (::queue (es/system ::test)))
+(add mocked-component :msgs "hi")
+;; =&gt;
+nil
+
+(shrub/calls mocked-component)
+;; =&gt;
+{#function[integrant-duct-example.shrubbery-mock/eval17947/fn--17961/G--17936--17970]
+ ((:msgs "hi"))}
+
+(shrub/received? mocked-component add [:msgs "hi"])
+;; =&gt;
+true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>::test</code> config&#8217;s <code>::queue</code> component is initialized using the
+<code>::es/shrubbery-mock</code> implementation of the <code>es/init-key-alternative</code>
+multimethod. It returns a mock object created by the shrubbery library.</p>
+</div>
+<div class="paragraph">
+<p>When you call <code>add</code> on the mocked component, it returns <code>nil</code>. You can use
+shrubbery&#8217;s <code>calls</code> and <code>received?</code> functions to interrogate the mocked object.</p>
+</div>
+<div class="sect2">
+<h3 id="_mock_values"><a class="anchor" href="#_mock_values"></a>mock values</h3>
+<div class="paragraph">
+<p>What if you need the mocked method to return a value other than <code>nil</code>? Here&#8217;s
+how you could do that:</p>
+</div>
+<div class="listingblock">
+<div class="title">mock values</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(defmethod es/config ::test-2 [_]
+  {::queue {::es/init-key-alternative ::es/shrubbery-mock
+            ::es/shrubbery-mock       {:add :mock-added}}})
+
+(def mocked-component-2
+  (::queue (es/system ::test-2)))
+
+(add mocked-component-2 :msgs "hi")
+;; =&gt;
+:mock-added</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The map <code>{:add :mock-added}</code> tells shrubbery what values to return for mocked
+methods. The keyword <code>:add</code> corresponds to the <code>Queue</code> protocol&#8217;s <code>add</code> method,
+and that&#8217;s why the method call returns <code>:mock-added</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can also make use of the second argument to <code>es/system</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>es/system</code> anonymous profile</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def mocked-component-3
+  (::queue (es/system ::test {::queue {::es/shrubbery-mock {:add :mock-added}}})))</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mock_helper"><a class="anchor" href="#_mock_helper"></a>mock helper</h3>
+<div class="paragraph">
+<p>The <code>sweet-tooth.endpoint.system</code> namespace includes a mocking components,
+<code>shrubbery-mock</code>. Instead of</p>
+</div>
+<div class="listingblock">
+<div class="title">full mock config</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">{::es/init-key-alternative ::es/shrubbery-mock
+ ::es/shrubbery-mock       {:add :mock-added}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can write</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>shrubbery-mock</code> helper</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(es/shrubbery-mock {:mock {:add :mock-added}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it expands to the map above.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_duct_config_readers"><a class="anchor" href="#_duct_config_readers"></a>Duct config readers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>sweet-tooth.endpoint.system/readers</code> is a map of readers you can use when
+<a href="https://github.com/duct-framework/core/blob/master/src/duct/core.clj#L144">reading duct config files</a>. It adds the <code>st/replacement</code> and <code>st/shrubbery-mock</code>
+reader literals, allowing you to write config.edn files that look like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">example config.edn</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">{:your-project/component #st/shrubbery-mock {}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The literal will get expanded by calling the <code>es/shrubbery-mock</code> function on the
+value <code>{}</code>.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../architecture/duct-tutorial.html">Duct Tutorial</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

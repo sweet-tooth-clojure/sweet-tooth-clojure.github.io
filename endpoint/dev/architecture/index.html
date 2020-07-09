@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Server Architecture: Components and Beyond :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/architecture/index.html">
+    <link rel="prev" href="../routes-and-handlers/request-handling-intro.html">
+    <link rel="next" href="integrant-tutorial.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../routes-and-handlers/index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Server Architecture: Components and Beyond</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/architecture/pages/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Server Architecture: Components and Beyond</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide describes the architecture of Sweet Tooth API servers and the tools
+used to implement the architecture. It covers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The components involved in handling a request</p>
+</li>
+<li>
+<p>The relationships among the components</p>
+</li>
+<li>
+<p>How <a href="https://github.com/duct-framework/core">Duct</a> and <a href="https://github.com/weavejester/integrant">Integrant</a> compose and manage the components</p>
+</li>
+<li>
+<p>How a request flows through the components</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The term <em>component</em> is super generic! It&#8217;s siblings with <em>module</em> and
+<em>sub-system</em> in the "nebulous programming terms" family. For our purposes a
+component is "an instance of a computing thing that complies with an
+<em>interface</em>." An <em>interface</em> is a set of rules for sending and receiving
+messages, including both the transmission mechanism (direct function call,
+network call, etc) and the message structure.</p>
+</div>
+<div class="paragraph">
+<p>For example, a <em>machine</em> is a computing thing with a TCP/IP interface. An <em>HTTP
+server</em> is a computing thing with an HTTP interface. Let&#8217;s look at these
+components more closely.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The "and Beyond" part of this guide&#8217;s title is bs, but it&#8217;s lovely bs.
+There&#8217;s a retail chain in America called <em>Bed Bath and Beyond</em> and the "and
+beyond" totally kills me. For some reason it sounds like they could make your
+wildest dreams come true, but no, the "beyond" part is actually useless
+Americana tchotchkes like Mickey Mouse mini waffle makers.</p>
+</div>
+<div class="paragraph">
+<p>Related: I once found a blow dryer at Target whose packaging read something
+like: "Good for drying hair AND SO MUCH MORE" and I sincerely hope the
+copywriter enjoyed writing that. Thank you, noble soul, for reminding me that
+all of life is full of wondrous possibility. Even everyday consumer goods hold
+untold potential.</p>
+</div>
+<div class="paragraph">
+<p>Sweet Tooth: good for writing single page apps AND SO MUCH MORE</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_server_component_decomposition"><a class="anchor" href="#_api_server_component_decomposition"></a>API Server Component Decomposition</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Handling an HTTP request requires the coordination of multiple components.
+This section breaks down high-level components into their subcomponents and
+describes their relationships.</p>
+</div>
+<div class="paragraph">
+<p>Check out my this diagram of the components involved in handling an API request
+which looks like it was outsourced to a three year old:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/top-down-handlers.png" alt="top down handlers">
+</div>
+<div class="title">Figure 1. wow a very well-drawn architectural diagram</div>
+</div>
+<div class="paragraph">
+<p>The highest-level component is the <em>machine</em> (1). When an HTTP request is sent,
+the requestor&#8217;s only expectation is that some machine - virtual private server
+(VPS), Amazon EC2 instance, a lemon-powered raspberry pi - somewhere receives
+the request and sends a response. It doesn&#8217;t care about the machine&#8217;s OS or what
+processes are running.</p>
+</div>
+<div class="paragraph">
+<p>The machine will be running a <em>database</em> (2). It will also be running an HTTP
+server (3). There&#8217;s nothing special about HTTP servers; they&#8217;re just some
+program someone wrote, only they happen to listen for HTTP requests and send
+HTTP responses.</p>
+</div>
+<div class="paragraph">
+<p>For Clojure web apps, the HTTP server usually creates a <em>database connection</em>
+(4). The HTTP server also contains a <em>request handler</em> (5). In Clojure apps, the
+request handler is just a function which takes a request and returns a response.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the next couple paragraphs are a light overview of how a request gets
+transformed at every stage of its journey from machine to HTTP server to Clojure
+request handler. I&#8217;d love feedback on it: does it not provide enough detail?
+Does it belong elsewhere?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The relationship between machine, HTTP server, and handler, is represented by
+the boxes and lines at (6). The boxes represent an interface that communicate
+with the external world via some protocol. A protocol in this context is just
+some agreed-upon message structure that allows sender and receiver to understand
+each other. The machine interface is an open port, typically port 80 or port
+443, and communication happens via TCP/IP.</p>
+</div>
+<div class="paragraph">
+<p>The HTTP server is some process running on the machine assigned to listen to
+ports 80 and 443. It receives and sends messages that conform to the HTTP
+protocol. Internally, the HTTP server converts the raw text of an HTTP message
+into data structures that its supported programming languages understand. An
+Apache server has modules for converting a message to PHP or Perl. A Ruby server
+converts the message to some Ruby object.</p>
+</div>
+<div class="paragraph">
+<p>Clojure is hosted on the JVM, and we use Java HTTP servers, most frequently a
+library called Jetty. Jetty converts a request to a Java object. In Clojure, we
+prefer to work with native Clojure maps and vectors, and developers most
+frequently use the <a href="https://github.com/ring-clojure/ring">ring</a> library to adapt the request for Clojure. It converts
+the Java request object into <a href="https://github.com/ring-clojure/ring/wiki/Concepts#requests">a Clojure map</a> with the keys <code>:uri</code>,
+<code>:query-string</code>, <code>:request-method</code>, <code>:headers</code>, and <code>:body</code>, plus a few more.</p>
+</div>
+<div class="paragraph">
+<p>Ring allows you to define a Clojure function to handle requests - we saw that at
+(5). The request function takes a Ring request as an argument and should return
+a response, which is a map with the keys <code>:status</code>, <code>:headers</code>, and <code>:body</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can write a function to construct a Ring response any way you want to, but
+generally Ring request handlers are structured as a <em>middleware stack</em> (7) and a
+<em>router</em> (8). The Ring request map passes through the middleware stack, which
+transforms the request by adding, modifying, or removing the map&#8217;s keys. The
+ring request is then passed to the router, which routes the request, passing it
+on to an <em>endpoint handler</em> based on the request&#8217;s path (e.g. <code>/topic/1</code>) and
+method (<code>:get</code>, <code>:post</code>, etc).</p>
+</div>
+<div class="paragraph">
+<p>Endpoint handlers typically perform CRUD (create, read, update, delete)
+operations on a database, and therefore they typically have a reference to the
+database connection (9).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_component_definition_composition_and_initialization_with_integrant_and_duct"><a class="anchor" href="#_component_definition_composition_and_initialization_with_integrant_and_duct"></a>Component Definition, Composition, and Initialization with Integrant and Duct</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we know what components are involved in building an API server and how
+those components are related to each others, let&#8217;s turn our attention toward the
+work we as developers have to do to <em>implement</em> this architecture. Implementing
+an architecture includes addressing how you <em>define</em>, <em>compose</em>, and
+<em>initialize</em> a system&#8217;s components.</p>
+</div>
+<div class="paragraph">
+<p>To <strong>define</strong> a component is to establish its responsibilities and its interface.
+It also means choosing one or more language constructs to implement the notion
+of "component".</p>
+</div>
+<div class="paragraph">
+<p>In object-oriented languages this process feels more solid somehow: components
+are defined by classes; the class&#8217;s public methods are the interface and the
+notion of "component" maps directly to classes. Things feel a bit more
+loosey-goosey in Clojure land&#8201;&#8212;&#8201;is a component a function? a namespace? a
+record?&#8201;&#8212;&#8201;but I&#8217;ll introduce you to techniques for defining components shortly.</p>
+</div>
+<div class="paragraph">
+<p><strong>Composing components</strong>: how do components reference each other? The two main
+approaches are to create a globally-accessible component that other components
+reference directly from anywhere, or to follow the <a href="https://en.wikipedia.org/wiki/Dependency_injection">dependency injection pattern.</a>
+You&#8217;ll soon learn about how Sweet Tooth relies on the <a href="https://github.com/weavejester/integrant">Integrant</a> and <a href="https://github.com/duct-framework/core">Duct</a>
+libraries, which implement dependency injection for Clojure apps.</p>
+</div>
+<div class="paragraph">
+<p><strong>Initializing components</strong> refers to the process of creating any objects or state
+the component needs, and calling a function or method to start the component if
+necessary. To initialize a request handler, you just create a function. To
+initialize a database connection pool you create an instance of a connection
+pool service, which might create some initial threads for db connections.</p>
+</div>
+<div class="paragraph">
+<p>To get a Clojure API server running, you must first get a JVM process running.
+Within that process, you must initialize components in dependency order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Initialize a database connection or connection pool</p>
+</li>
+<li>
+<p>Initialize a request handler that references the database connection</p>
+</li>
+<li>
+<p>Initialize an HTTP server with the request handler</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>What does it mean to "initialize an HTTP server" from within a JVM process? If
+you&#8217;re familiar with programs like Apache or nginx, you might be used to
+thinking of an HTTP server as a program that you launch from the command line,
+not as something that you start from within the process of a program you&#8217;re
+writing.</p>
+</div>
+<div class="paragraph">
+<p>The thing is, anyone can just write a program that starts listening to a port.
+The tools are readily available. If you use your programming language&#8217;s standard
+libary to start listening for messages on a port and responding,
+congratulations: you&#8217;ve created a server!</p>
+</div>
+<div class="paragraph">
+<p>Now if you care about things like performance and resilience, you&#8217;ll have to get
+a bit fancier. That&#8217;s why we have HTTP server libriaries. In the Java world,
+one of the most popular libraries is Jetty. It adds some structure to how HTTP
+requests are handled, and it takes care of managing resources like threads.</p>
+</div>
+<div class="paragraph">
+<p>Initializing a Jetty server in your JVM process is basically a matter of
+creating an <code>org.eclipse.jetty.server.Server</code> object and calling its <code>start</code>
+method.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You could easily write something like this pseudocode to define, compose, and
+initialize your system&#8217;s components:</p>
+</div>
+<div class="listingblock">
+<div class="title">"start a server" pseudocode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def db-connection (create-connection))
+(defn handler [req] (update-db db-connection))
+(defn start-server [] (run-jetty handler {:port 3000}))
+
+(start-server)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I&#8217;ve seen plenty of Clojure API servers with code that looks like that, and that
+approach works fine.</p>
+</div>
+<div class="paragraph">
+<p>As I&#8217;ve mentioned like a billion times now, Sweet Tooth uses Integrant and Duct
+to manage these architectural concerns. We&#8217;ll first look at Integrant, because
+it provides the foundation. Then we&#8217;ll look at Duct, a layer on top of Integrant
+that 1) makes it easier to create bundles of components to share and 2) makes it
+easy to configure components for different environments (dev, test, prod, etc).</p>
+</div>
+<div class="paragraph">
+<p>So let&#8217;s look at Integrant so that you won&#8217;t have to listen to me say "In a
+minute we&#8217;re going to look at Integrant" anymore.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a></span>
+  <span class="next"><a href="integrant-tutorial.html">Integrant Tutorial</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

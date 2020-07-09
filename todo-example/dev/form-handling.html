@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Form Handling :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/todo-example/dev/form-handling.html">
+    <link rel="prev" href="initial-rendering.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="todo-example" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="index.html">To-Do Example Walkthrough</a></h3> -->
+      <h3 class="title"><a href="../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../../endpoint/dev/index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../endpoint/dev/architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../endpoint/dev/systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">To-Do Example Walkthrough</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../endpoint/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">To-Do Example Walkthrough</a></li>
+    <li><a href="form-handling.html">Form Handling</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/todo-example/docs/modules/ROOT/pages/form-handling.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Form Handling</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Form handling is one of those corners of SPA development that&#8217;s ripe for
+frameworking: it&#8217;s somewhat tedious and difficult to get right, and time spent
+on it takes away from spending time on building your product. Sweet Tooth has a
+featureful, extensible system for working with forms. The form system consists
+of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Form represenation, both the shape of form data and the convention for storing
+forms in the global state app</p>
+</li>
+<li>
+<p>The component system for building form inputs</p>
+</li>
+<li>
+<p>The set of handlers for updating form data</p>
+</li>
+<li>
+<p>Form submission</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To ground the discussion, let&#8217;s look at the small form found in the
+<code>sweet-tooth.todo-example.frontend.components.home</code> namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(stfc/with-form [:todo-lists :create]
+  [:form (on-submit {:sync {:on {:success [[::stff/clear form-path #{:buffer :ui-state}]
+                                           [::stnf/navigate-to-synced-entity :show-todo-list :$ctx]
+                                           [:focus-element "#todo-list-title" 100]]}}})
+   [input :text :todo-list/title
+    {:id          "todo-list-title"
+     :placeholder "new to-do list title"
+     :no-label    true}]
+   [:input {:type "submit" :value "create to-do list"}]
+   [ui/form-state-feedback form]])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Side note: if you actually submit the form it will disappear. It only
+shows when you have no to-do lists. To get it back, evaluate
+<code>(recreate-db) (reset)</code> in the REPL from the <code>dev</code> namespace, then
+refresh localhost:3000).</p>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll notice some peculiarties: What is <code>stfc/with-form</code>? Where did
+<code>input</code> come from - there&#8217;s no binding for it in sight? And <code>form</code>, in
+the last line?</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;ll answer those questions, but first let&#8217;s focus on answering more
+basic questions: How does this form manage state so that it can submit
+input to the backend? The first step to answering that is looking at
+how forms are stored in the global state atom:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_form_representation"><a class="anchor" href="#_form_representation"></a>Form representation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The form shown above has its state stored in the global state atom under <code>[:form
+:todo-lists :create]</code>. You can check that for yourself by hitting <code>Ctrl-h</code> when
+viewing the to-do list app in your browser; this should open the <a href="https://github.com/day8/re-frame-10x">re-frame 10x</a>
+dashboard. If you click on the app-db link and enter the path above, you should
+see values get updated when you type.</p>
+</div>
+<div class="paragraph">
+<p>If you think of the global state atom as a filesystem, forms are stored under
+the <code>:form</code> "directory" in the same way that logs are generally saved to
+<code>/var/log</code> on *nix systems. Files have names, and forms have names; the form
+above is named <code>[:todo-lists :create]</code>. This form name is closed over by event
+handlers and subscriptions created by <code>stfc/with-form</code>, making it possible to
+easily manage this particular form&#8217;s state.</p>
+</div>
+<div class="paragraph">
+<p>So that&#8217;s <em>where</em> forms are stored. But what form data gets stored? Forms are
+represented as a map with the following keys:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:buffer</code> is a map that stores the current state of form inputs. When you type
+into the input element, whatever you type gets put here. The example above
+shows the component <code>[input :text :todo-list/title &#8230;&#8203;]</code>. Its value is stored
+under <code>[:buffer :todo-list/title]</code> in the form map. The buffer map&#8217;s keys are
+<em>attributes</em>. For example, I will refer to <code>:todo-list/title</code> as an attribute.</p>
+</li>
+<li>
+<p><code>:base</code> is a map that can be used to reset a form or discard changes.</p>
+</li>
+<li>
+<p><code>:errors</code> is a map where keys are form attributes and values are error
+messages.</p>
+</li>
+<li>
+<p><code>:input-events</code> is used to control the display of error messages. For example:
+if you&#8217;re typing into a password confirmation input, the field is invalid as
+you type, but you don&#8217;t want to display error messages until the input loses
+focus (unless you want to come off as extremely aggressive).</p>
+</li>
+<li>
+<p><code>:state</code> refers to the form&#8217;s submission state: unsubmitted, active, success.
+I think. I&#8217;m not sure this is a good idea.</p>
+</li>
+<li>
+<p><code>:ui-state</code> This is a convenience for when you want to, say, show/hide a form.
+I&#8217;m not sure this is a good idea either, but associating ui state with a form
+makes it easy to completely reset a form. For example, when you navigate out
+of a view where you&#8217;ve shown a form, you might want to completely reset the
+form state so that the form isn&#8217;t showing the next time you navigate to that
+view. Or something.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now that we know how we represent and store forms, let&#8217;s look at the input
+components and how they update form state.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_input_components"><a class="anchor" href="#_input_components"></a>Input components</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Input components need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Store their value somewhere</p>
+</li>
+<li>
+<p>Update their value in response to&#8230;&#8203; well, input</p>
+</li>
+<li>
+<p>Display their value</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sweet Tooth provides tools to create input components that manage these tasks
+consistently, unobtrusively, and extensibly. Look at the how the to-do list
+title input is defined:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">[input :text :todo-list/title
+ {:id          "todo-list-title"
+  :placeholder "new to-do list title"
+  :no-label    true}]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This works with no <code>:value</code> or <code>:on-change</code> in sight, which is as it should be;
+those are details that should be handled for you, and shouldn&#8217;t have to clutter
+your code with them. But how does <code>input</code> achieve this? That&#8217;s what we&#8217;ll look
+at in this section.</p>
+</div>
+<div class="paragraph">
+<p>The high level strategy is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create event handlers and subscriptions that are common to all input
+components. I&#8217;ll refer to these as <em>input options</em>.</p>
+</li>
+<li>
+<p>Modify input options according to an input&#8217;s type as necessary. For example,
+with most inputs you display the current value by providing a <code>:value</code> key.
+With checkboxes and radio buttons, though, you instead provide a <code>:checked</code>
+key.</p>
+</li>
+<li>
+<p>Pass the input options to the appropriate components. <code>:text</code>, <code>:password</code>,
+and <code>:number</code> input types can all be handled with a <code>[:input input-opts]</code>
+HTML element, but a <code>:select</code> needs special handling.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To see how Sweet Tooth implements this strategy, let&#8217;s look at the input
+component in context:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(stfc/with-form [:todo-lists :create]
+  [:form
+   [input :text :todo-list/title
+    {:id          "todo-list-title"
+     :placeholder "new to-do list title"
+     :no-label    true}]])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the expression <code>(stfc/with-form [:todo-lists :create])</code>, <code>with-form</code> is a
+macro—the only one in Sweet Tooth&#8217;s frontend lib!—that creates a bunch of
+bindings. (If you really, really, really hate that, like with a passion, then
+you can use the function <code>stfc/form</code> and destructure the bindings yourself.)</p>
+</div>
+<div class="paragraph">
+<p>One of the values it binds is the <code>input</code> function. (Functions are Reagent
+components. This is completely badass.) <code>input</code> closes over the form&#8217;s name,
+<code>[:todo-lists :create]</code>. <code>input</code> uses that name and the argument
+<code>:todo-list/title</code> to create event handlers that will update the attribute&#8217;s
+value in the global state atom at the path <code>[:form :todo-lists :create :buffer
+:todo-list/title]</code>. It likewise creates subscriptions for the attribute&#8217;s buffer
+and its errors. These subscriptions and handlers are composed in a map and
+passed to the multimethod <code>stfc/input-type-opts</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>stfc/input-type-opts</code> is implemented for different input types as needed:
+<code>:checkbox</code>, <code>:date</code>, etc. This multimethod performs any transformations
+necessary so that the generic form subscriptions and handlers will work with the
+specified input type. For example, the <code>:checkbox</code> implementation returns a
+<code>:default-checked</code> key instead of a <code>:value</code> key.</p>
+</div>
+<div class="paragraph">
+<p>The <code>input</code> function takes the updated options from <code>stfc/input-type-opts</code> and
+passes them to the multimethod <code>stfc/input</code>. <code>stfc/input</code> is implemented for
+different input elements like <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code>, etc.</p>
+</div>
+<div class="paragraph">
+<p>So that explains what I mean when I say that Sweet Tooth&#8217;s input component
+system is <em>consistent</em> and <em>unobtrusive</em>: all form inputs are managed using the
+same tools, and the implementation details are in the background where they
+belong (you don&#8217;t have to pass <code>:on-change</code> to <code>input</code> unless you want custom
+behavior.)</p>
+</div>
+<div class="paragraph">
+<p>The system is <em>extensible</em> in that you can use these tools for custom input
+types, which I think is pretty cool. Here&#8217;s an example of extending <code>stfc/input</code>
+so you can use a markdown editor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns sweet-tooth.todo-example.frontend.components.ui.simplemde
+  (:require ["react-simplemde-editor" :default SimpleMDE]
+            [sweet-tooth.frontend.form.components :as stfc]))
+
+(defmethod stfc/input :simplemde
+  [{:keys [partial-form-path attr-path value]}]
+  [:&gt; SimpleMDE {:onChange (fn [val] (stfc/dispatch-new-val partial-form-path attr-path val))
+                 :value    value}])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To try this out, modify <code>sweet-tooth.todo-example.frontend.components.home</code> by
+changing <code>[input :text :todo-list/title &#8230;&#8203;]</code> to <code>[input :simplemde
+:todo-list/title &#8230;&#8203;]</code></p>
+</div>
+<div class="paragraph">
+<p>Sweet Tooth provides all the machinery necessary for this new input type to
+participate in the form abstracton! You, the developer, don&#8217;t have to agonize
+over whether to use global or local state, or otherwise figure out how to get
+your custom input component to play with the rest of your form.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_submitting_the_form"><a class="anchor" href="#_submitting_the_form"></a>Submitting the form</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s look at the full form again:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(stfc/with-form [:todo-lists :create]
+  [:form (on-submit {:sync {:on {:success [[::stff/clear form-path #{:buffer :ui-state}]
+                                           [::stnf/navigate-to-synced-entity :show-todo-list :$ctx]
+                                           [:focus-element "#todo-list-title" 100]]}}})
+   [input :text :todo-list/title
+    {:id          "todo-list-title"
+     :placeholder "new to-do list title"
+     :no-label    true}]
+   [:input {:type "submit" :value "create to-do list"}]
+   [ui/form-state-feedback form]])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>on-submit</code> is a function created by <code>stfc/with-form</code> that returns an
+<code>:on-submit</code> event handler when called. Evaluating it with the above arguments
+yields essentially:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">{:on-submit
+ #(rf/dispatch [::stff/submit-form
+                [:todo-lists :create]
+                {:sync {:on {:success [[::stff/clear form-path #{:buffer :ui-state}]
+                                       [::stnf/navigate-to-synced-entity :show-todo-list :$ctx]
+                                       [:focus-element "#todo-list-title" 100]]}}}])}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>::stff/submit-form</code> event handler does a couple things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Changes the form&#8217;s <code>:state</code> to <code>:submitting</code></p>
+</li>
+<li>
+<p>Dispatches an API call with the current value of the form&#8217;s buffer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Notice that you don&#8217;t have to pass in the data to be submitted. Instead, the
+<code>::stff/submit-form</code> event handler takes the form&#8217;s name, <code>[:todo-lists
+:create]</code>, and uses that to look up the form&#8217;s buffer. This is what you get when
+you let a framework introduce a few conventions about how to structure your
+data.</p>
+</div>
+<div class="paragraph">
+<p>The second argument to the <code>::stff/submit-form</code> event handler, <code>{:sync &#8230;&#8203;}</code> is
+an options map. I don&#8217;t remember <em>all</em> the keywords it expects, and because I am
+a foolish, foolish man I haven&#8217;t added specs for yet. However, it definitely
+does use <code>:sync</code> to specify re-frame events to dispatch when the API call
+succeeds or fails, as you can see in the snippet above.</p>
+</div>
+<div class="paragraph">
+<p>TODO: explain the success callback. Explain syncing.</p>
+</div>
+<div class="sect2">
+<h3 id="_displaying_an_activity_indicator"><a class="anchor" href="#_displaying_an_activity_indicator"></a>Displaying an activity indicator</h3>
+<div class="paragraph">
+<p>The last line of the form has:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">[ui/form-state-feedback form]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This component displays a spinning activity indicator while the form
+is submitting. If the API call is successful, then a little checkmark
+with the word <code>success!</code> appears. You actually won&#8217;t see the success
+message because you get redirected to the new to-do page on success,
+but you can see the success message if you create to-dos, or create a
+to-do list using the form in the left column.</p>
+</div>
+<div class="paragraph">
+<p>The <code>form</code> argument above is a map that holds subscriptions produced
+by <code>stfc/with-form</code>, including <code>sync-active?</code> and
+<code>state-success?</code>. These are passed to a couple components, which you
+can see in the  <code>sweet-tooth.todo-example.frontend.components.ui</code>
+namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def activity-icon [:i.fas.fa-spinner.fa-pulse.activity-indicator])
+
+(defn submitting-indicator
+  [sync-active?]
+  (when @sync-active? activity-icon))
+
+(defn success-indicator
+  [state-success? &amp; [opts]]
+  (let [expiring-state-success? (stcu/expiring-reaction state-success? 1000)]
+    (fn [_state-success? &amp; [opts]]
+      [:&gt; TransitionGroup
+       {:component "span"
+        :className (or (:class opts) "success")}
+       (when @expiring-state-success?
+         [:&gt; CSSTransition
+          {:classNames "fade"
+           :timeout    300}
+          [:span [:i.fas.fa-check-circle] [:span.success-message " success!"]]])])))
+
+(defn form-state-feedback
+  [{:keys [sync-active? state-success?]}]
+  [:span.activity-indicator
+   [submitting-indicator sync-active?]
+   [success-indicator state-success?]])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The more interesting component is <code>success-indicator</code>, which uses the
+helper <code>(stcu/expiring-reaction state-success? 1000)</code> to create a
+reaction <code>A'</code> over a given reaction <code>A</code> that reverts to <code>nil</code> (or a
+specified value) after a timeout. It&#8217;s how the success message fades
+out after 1 second.</p>
+</div>
+<div class="paragraph">
+<p>The bigger story here is that Sweet Tooth gives you all the resources
+you need to provide this kind of feedback. Every form you create will
+have <code>sync-active?</code> and <code>state-success?</code> subscriptions that are
+directly tied to that form, and you can use them to build generic
+components that provide useful feedback to your users.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_form_recap"><a class="anchor" href="#_form_recap"></a>Form Recap</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sweet Tooth&#8217;s form system has even more capabilities than I&#8217;ve
+covered, but you&#8217;ve at least gotten a view of the fundamentals:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each form is given a name, and the form&#8217;s data is stored by
+convention under the <code>:form</code> "directory" in the global state atom</p>
+</li>
+<li>
+<p>Forms are represented as maps, and the <code>:buffer</code> key contains the
+current values for inptus</p>
+</li>
+<li>
+<p>Form components and subscriptions are created and bound by
+<code>stfc/with-form</code>. These values close over the form&#8217;s name and rely
+on the framework&#8217;s organization conventions to update and retrieve
+form attribute values</p>
+</li>
+<li>
+<p>Form subscriptions can be used to create form state feedback
+components</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="initial-rendering.html">Initial Rendering</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

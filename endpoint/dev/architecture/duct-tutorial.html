@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Duct Tutorial :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/architecture/duct-tutorial.html">
+    <link rel="prev" href="integrant-tutorial.html">
+    <link rel="next" href="../systems/index.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../routes-and-handlers/index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Server Architecture: Components and Beyond</a></li>
+    <li><a href="duct-tutorial.html">Duct Tutorial</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/architecture/pages/duct-tutorial.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Duct Tutorial</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/duct-framework/core">Duct</a> builds on Integrant&#8217;s data-oriented approach to architecture by providing
+tools for bundling and transforming Integrant configs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>profiles</em> allow you to name integrant configs</p>
+</li>
+<li>
+<p><em>modules</em> allow you to write functions that transform configs</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Duct also adds support for easily adding environment variables to your config.</p>
+</div>
+<div class="paragraph">
+<p>To support these features, Duct introduces the "Duct config" concept and the
+<code>prep-config</code> function. I&#8217;ll explain those briefly and then dig into profiles
+and modules.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ductload_hierarchy_and_ductprep_config"><a class="anchor" href="#_ductload_hierarchy_and_ductprep_config"></a><code>duct/load-hierarchy</code> and <code>duct/prep-config</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s start with an example:</p>
+</div>
+<div class="listingblock">
+<div class="title">basic duct config</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns integrant-duct-example.duct-config
+  (:require [duct.core :as duct]
+            [integrant.core :as ig]))
+
+(defmethod ig/init-key ::message-store [_ {:keys [message]}]
+  (atom message))
+
+(defmethod ig/init-key ::printer [_ {:keys [store]}]
+  (prn (format "%s says: %s" ::printer @store)))
+
+(derive ::message-store ::store)
+
+(duct/load-hierarchy)
+(def system-config
+  (duct/prep-config {:duct.profile/base {::message-store {:message "love yourself, homie"}
+                                         ::printer       {:store   (ig/ref ::store)}}}))
+
+(ig/init system-config)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is almost identical to the Integrant hierarchy code block.
+<code>(duct/load-hierarchy)</code> is new, as is the call to <code>duct/prep-config</code>.</p>
+</div>
+<div class="paragraph">
+<p>The function <code>duct/load-hierarchy</code> looks for files named <code>duct_hierarchy.edn</code> on
+your classpath and uses them to establish keyword hierarchies. These files look
+like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">duct_hierarchy.edn</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">{:sweet-tooth.endpoint.module/middleware                            [:duct/module]
+ :sweet-tooth.endpoint.module/liberator-reitit-router               [:duct/module]
+ :sweet-tooth.endpoint.module.liberator-reitit-router/reitit-router [:duct/router]
+ :sweet-tooth.endpoint.datomic/connection                           [:duct/database]}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Keys are child keywords and values are vectors of parents that the children
+should derive from. It&#8217;s as if <code>duct/load-hierarchy</code> is calling <code>(derive
+:sweet-tooth.endpoint.module/middleware :duct/module)</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>duct/prep-config</code> takes a <em>duct config</em> as its argument and returns an
+<em>integrant config</em>. How does a duct config differ from an integrant config?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The keys for duct configs name either <em>duct profiles</em> or <em>duct modules</em>. (I
+will explain these in the upcoming sections.) The keys for integrant configs
+name <em>integrant components</em>.</p>
+</li>
+<li>
+<p>Duct configs are meant to be passed to <code>duct/prep-config</code>, which returns an
+integrant config. Integrant configs are meant to be passed to <code>ig/init</code>, which
+initializes and returns a system.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the example above, the duct config</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">{:duct.profile/base {::message-store {:message "love yourself, homie"}
+                     ::printer       {:store   (ig/ref ::store)}}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>yields the integrant config</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">{::message-store {:message "love yourself, homie"}
+ ::printer       {:store   (ig/ref ::store)}
+
+ :duct.core/environment :production}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This map, where the keys are component names and values are component config,
+can be used to initialize an integrant system.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The integrant config contains the pair <code>:duct.core/environment :production</code>.
+<code>prep-config</code> adds this. What does the <code>:duct.core/environment</code> "component" do?</p>
+</div>
+<div class="paragraph">
+<p><code>:duct.core/environment</code> is an example of a <em>config constant</em>. It&#8217;s as if the
+implementation of the <code>:duct.core/environment</code> "component" is simply the
+identify function applied to the component&#8217;s config. If another component
+references <code>:duct.core/environment</code>, it will receive the value <code>:production</code>. I
+recommend trying this out for yourself.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s instructive to look at how this is <a href="https://github.com/duct-framework/core/blob/bcd4aff6700a53e427816f4f47b93cc4ef347538/src/duct/core.clj#L253">implemented</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(derive :duct.core/environment :duct/const)
+(defmethod ig/init-key :duct/const [_ v] v)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>:duct.core/environment</code> derives from <code>:duct/const</code>. Duct implements
+<code>ig/init-key</code> for <code>:duct/const</code>, simply returning the config value.</p>
+</div>
+<div class="paragraph">
+<p>This relies on a cool, oft-overlooked feature of Clojure multimethods, <code>isa?</code>
+based dispatch, which you can read about in <a href="https://clojure.org/reference/multimethods">Multimethods and Hierarchies</a>.</p>
+</div>
+<div class="paragraph">
+<p>Duct and Integrant make ample use of Clojure&#8217;s support for hierarchies, so it&#8217;s
+worth becoming familiar with how it works. If nothing else, it&#8217;ll make you a
+better Clojure programmer, putting more cools in your developer toolkit.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>At this point, the introduction of duct config, with its <code>:duct.profile/base</code>
+key, and the function <code>duct/prep-config</code> kinda seems like a waste of time. It&#8217;s
+just adding an extra layer that doesn&#8217;t do anything.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s look at actually doing something useful with these new tools.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_duct_profiles"><a class="anchor" href="#_duct_profiles"></a>Duct Profiles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Duct introduces the idea of <em>profiles</em>. A profile is just a named integrant
+config, and <code>duct/prep-config</code> handles profiles by merging them into the <em>base
+profile</em> named <code>:duct.profile/base</code>. Behold:</p>
+</div>
+<div class="listingblock">
+<div class="title">duct profiles</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(duct/prep-config
+ {:duct.profile/base {::message-store {:message "love yourself, homie"}
+                      ::printer       {:store   (ig/ref ::store)}}
+  :duct.profile/prod {::message-store {:message "take care of yourself, homie"}}}
+ [:duct.profile/prod])
+;; =&gt;
+{::message-store {:message "take care of yourself, homie"}
+ ::printer       {:store {:key ::store}}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(I removed <code>:duct.core/environment</code> to keep the example focused.)</p>
+</div>
+<div class="paragraph">
+<p>In this example, we add the profile <code>:duct.profile/prod</code> and pass a second
+argument to <code>prep-config</code>, the vector <code>[:duct.profile/prod]</code>. This tells
+<code>prep-config</code> to merge all the profiles in that vector, in the order given.
+Profiles are merged using <a href="https://github.com/weavejester/meta-merge">meta-merge</a>, so they&#8217;re deep merged and you can also
+provide metadata hints for how values should get merged. Check out the
+meta-merge docs for more info.</p>
+</div>
+<div class="paragraph">
+<p>The result is that the <code>::message-store</code> component has the prod configuration of
+<code>{:message "take care of yourself, homie"}</code> instead of <code>{:message "love
+yourself, homie"}</code>.</p>
+</div>
+<div class="paragraph">
+<p>I don&#8217;t know why I have such an aversion to using real-life, practical examples.
+One actual honest-to-god real world use of this is creating separate dev and
+test profiles. Specifically, you can create different dev and test database
+configurations, allowing you to run tests from the REPL while your dev system is
+running.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_duct_modules"><a class="anchor" href="#_duct_modules"></a>Duct Modules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bear with me because shit&#8217;s about to get wild . Duct modules are functions that
+transform an integrant config, and they&#8217;re defined using integrant. Check it
+out:</p>
+</div>
+<div class="listingblock">
+<div class="title">duct modules</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns integrant-duct-example.duct-modules
+ (:require [duct.core :as duct]
+           [integrant.core :as ig]))
+
+(defmethod ig/init-key ::add-foo-component [_ _]
+  (fn [config]
+    (assoc config ::foo {})))
+
+(duct/prep-config {:duct.profile/base  {::some-component {}}
+                   ::add-foo-component {}})
+;; =&gt;
+{::some-component {}
+ ::foo            {}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start at the bottom, with <code>prep-config</code>. We already know that this
+function takes a <em>duct config</em> as its argument, and that the config&#8217;s keys
+should be names of <em>profiles</em> or <em>modules</em>. <code>::add-foo-component</code> names a
+module.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ig/init-key</code> implementation for all modules should return a function that
+takes an integrant config as an argument and returns an integrant config. When
+<code>::add-foo-component</code> is initialized, it returns a function that takes as its
+argument the map <code>{::some-component {}}</code>. The function adds a single component
+config, <code>::foo {}</code> to the integrant config, and result is the integrant config
+<code>{::some-component {}, ::foo {}}</code>. Note that modules are applied to a config
+<em>after</em> all profiles have been merged.</p>
+</div>
+<div class="sect2">
+<h3 id="_modules_use_iginit_key"><a class="anchor" href="#_modules_use_iginit_key"></a>Modules use ig/init-key???</h3>
+<div class="paragraph">
+<p>Internally, <code>duct/prep-config</code> calls <code>ig/init-key</code> in order to instantiate the
+module. This can be confusing! I&#8217;ve been going on about how <code>ig/init-key</code>
+instantiates a <em>component</em>, but now I&#8217;m saying that it&#8217;s being used to
+instantiate a <em>module</em>, and I&#8217;m also saying that those are two very different
+things!</p>
+</div>
+<div class="paragraph">
+<p>Perhaps a useful perspective to adopt is that ultimately Integrant is agnostic
+as to the semantic meaning of the values produced by <code>ig/init-key</code>; Integrant is
+a tool for defining a digraph (via <code>ig/ref</code>) and for walking that graph in
+topological order, applying <code>ig/init-key</code> to the nodes. In one context, we
+perform that walk in order to produce a system. In a different context, we
+perform that walk in order to produce functions that modify an Integrant config.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modules_make_it_easier_to_create_component_libraries_and_more_difficult"><a class="anchor" href="#_modules_make_it_easier_to_create_component_libraries_and_more_difficult"></a>Modules make it easier to create component libraries&#8230;&#8203; and more difficult!</h3>
+<div class="paragraph">
+<p>Modules make it bother easier and more difficult to create component libraries.
+They make it easier because they make it possible for consumers of a component
+library to add only one line to their duct config, <code>::name-of-module {}</code>, and
+that module can add any number of components and even modify existing
+components; since the integrant config is just data you can transform it however
+you want. Modules are kind of like macros in that regard.</p>
+</div>
+<div class="paragraph">
+<p>And that&#8217;s why they also make it more difficult to create compononent libraries.
+The difficulty comes from the fact that it can be very difficult to observe what
+changes a module is making to your config, or how to customize those changes.
+They introduce uncertainty as to how your config reached its final form. I have
+some ideas for how to mitigate this drawback but until then it seems like the
+only way to understand what a module is doing is to read its source.</p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="integrant-tutorial.html">Integrant Tutorial</a></span>
+  <span class="next"><a href="../systems/index.html">Systems</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

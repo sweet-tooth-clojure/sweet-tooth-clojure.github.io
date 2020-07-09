@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Routes In Depth :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/routes-and-handlers/routes-in-depth.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="handlers-in-depth.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Routes and Handlers</a></li>
+    <li><a href="routes-in-depth.html">Routes in Depth</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/routes-and-handlers/pages/routes-in-depth.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Routes In Depth</h1>
+<div class="sect1">
+<h2 id="_route_expanders"><a class="anchor" href="#_route_expanders"></a>Route Expanders</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What if you only want to generate a <code>:collection</code> route or only want to generate
+a <code>:member</code> route? Routes can take an option map, and you can specify which
+routes to generate with the key <code>::serr/expand-with</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">route generators</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [[:project.endpoint.todo-list {::serr/expand-with [:collection]}]])
+;; =&gt;
+[["/todo-list"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(I&#8217;ve switched from <code>:sweet-tooth.todo-example.backend.endpoint.todo-list</code> to
+<code>:project.endpoint.todo-list</code> because the latter is much shorter, and to show
+reinforce that everything up to <code>endpoint.</code> is ignored when generating paths and
+route names.)</p>
+</div>
+<div class="paragraph">
+<p>Notice that the value of for <code>::serr/expand-with</code> is <code>[:collection]</code> and only a
+<code>:collection</code> route was generated. You can try this with <code>[:member]</code> to see what
+happens. The default value for <code>::serr/expand-with</code> is <code>[:collection :member]</code>.</p>
+</div>
+<div class="paragraph">
+<p>In this context, <code>:collection</code> and <code>:member</code> are names of <em>route types</em>. Each
+route type has an expansion strategy associated with. The expansion strategy
+includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A rule for deriving the route&#8217;s name from the namespace&#8217;s name. The
+<code>:collection</code> strategy produces a route named <code>:todo-lists</code> when given a
+namespace name <code>:x.endpoint.todo-list</code>; <code>:member</code> produces a route named
+<code>:todo-list</code>.</p>
+</li>
+<li>
+<p>A rule for deriving the route&#8217;s path from the namespace&#8217;s name. The
+<code>:collection</code> strategy generates the path <code>/todo-list</code> and <code>:member</code> generates
+<code>/todo-list/{id}</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In later sections you&#8217;ll see how to work with additional kinds of route types,
+include <code>:singleton</code>, <code>:member</code> children, and arbitrary types.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_custom_route_paths_and_names"><a class="anchor" href="#_custom_route_paths_and_names"></a>Custom Route Paths and Names</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What if you want to create routes that match paths like the following?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/api/v1/todo-list</code></p>
+</li>
+<li>
+<p><code>/todo-lists</code></p>
+</li>
+<li>
+<p><code>/todo-list/{id}/todo-items</code></p>
+</li>
+<li>
+<p><code>/admin/todo-list</code></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_custom_route_paths_prefixes_and_suffixes"><a class="anchor" href="#_custom_route_paths_prefixes_and_suffixes"></a>Custom Route Paths: prefixes and suffixes</h3>
+<div class="paragraph">
+<p>You can specify paths with the keys <code>::serr/path-prefix</code> and
+<code>:serr/path-suffix</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">path prefixes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [[:project.endpoint.todo-list {::serr/path-prefix "/api/v1"}]])
+;; =&gt;
+[["/api/v1/todo-list"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]
+ ["/api/v1/todo-list/{id}"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :member
+   :name       :todo-list
+   :id-key     :id}]]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_custom_route_paths_per_route_type"><a class="anchor" href="#_custom_route_paths_per_route_type"></a>Custom Route Paths per route type</h3>
+<div class="paragraph">
+<p><code>::serr/path-prefix</code> was applied to both of the generated routes, but what if
+you need to modify the path for just one route type?</p>
+</div>
+<div class="listingblock">
+<div class="title">custom paths per route type</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [[:project.endpoint.todo-list {::serr/expand-with [[:collection {::serr/path-prefix "/api/v1"}]
+                                                    :member]}]])
+;; =&gt;
+[["/api/v1/todo-list"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]
+ ["/todo-list/{id}"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :member
+   :name       :todo-list
+   :id-key     :id}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can specify options for each route type under <code>::serr/expand-with</code> by adding
+a pair, <code>[:route-type options-map]</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>::serr/path</code> lets you specify a replacement for just the part of the path
+that&#8217;s generated by the route type. Here&#8217;s how you could generate <code>/todo-lists</code>
+and <code>/api/v1/todo-lists</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">per-route-type paths</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [[:project.endpoint.todo-list {::serr/expand-with [[:collection {::serr/path "/todos"}]]}]])
+;; =&gt;
+[["/todos"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]]
+
+(serr/expand-routes
+ [[:project.endpoint.todo-list {::serr/expand-with [[:collection {::serr/path-prefix "/api/v1"
+                                                                  ::serr/path "/todos"}]]}]])
+;; =&gt;
+[["/api/v1/todos"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You might be wondering why you would specify both <code>::serr/path-prefix</code> and
+<code>::serr/path</code>. In the above case it doesn&#8217;t necessarily makes sense. It makes
+more sense when you consider that route options can be applied to multiple
+routes. We saw that above when <code>::serr/path-prefix</code> was applied to both
+<code>:member</code> and <code>:collection</code> routes. In a later section you&#8217;ll see how to specify
+route options for groups of namespace routes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_member_routes"><a class="anchor" href="#_member_routes"></a>Member Routes</h3>
+<div class="paragraph">
+<p>What if you wanted to route a path like <code>"/todo-list/{id}/todo-items"</code>?</p>
+</div>
+<div class="listingblock">
+<div class="title">member routes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [[:project.endpoint.todo-list {::serr/expand-with [[:member/todo-items]]}]])
+;; =&gt;
+[["/todo-list/{id}/todo-items"
+  {::serr/ns   :project.endpoint.todo-list,
+   ::serr/type :member/todo-items,
+   :name       :todo-list/todo-items,
+   :id-key     :id}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You add a route type of <code>:member/todo-items</code>. It generates a route with the
+desired path and the name <code>:todo-list/todo-items</code>. In the corresponding
+namespace, you would define handlers with something like:</p>
+</div>
+<div class="listingblock">
+<div class="title">member route handlers</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(def decisions
+  {:member/todo-items
+   {:get {:handle-ok (fn [ctx])}
+    :post {:handle-created (fn [ctx])}}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Remember, the keys in <code>decisions</code> correspond to route types, and you generated
+the route above with the type <code>:member/todo-items</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nested_routes"><a class="anchor" href="#_nested_routes"></a>Nested Routes</h3>
+<div class="paragraph">
+<p>How about routing <code>"/admin/todo-list"</code> and <code>"/admin/todo-list/{id}"</code>? You could
+use <code>::serr/path-prefix</code>, but you probably also want the handlers to live in a
+separate namespace and to use separate route names. Here&#8217;s how you&#8217;d do it:</p>
+</div>
+<div class="listingblock">
+<div class="title">nested routes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [[:project.endpoint.admin.todo-list]])
+;; =&gt;
+[["/admin/todo-list"
+  {::serr/ns   :project.endpoint.admin.todo-list
+   ::serr/type :collection
+   :name       :admin.todo-lists}]
+ ["/admin/todo-list/{id}"
+  {::serr/ns   :project.endpoint.admin.todo-list
+   ::serr/type :member
+   :name       :admin.todo-list
+   :id-key     :id}]]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_arbitrary_routes"><a class="anchor" href="#_arbitrary_routes"></a>Arbitrary Routes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>expand-routes</code> function only performs route expansion when it encounters
+vectors where the first element is a keyword, like
+<code>[:project.endpoint.admin.todo-list]</code>. In addition to these namespace-based
+routes, you can also write plain ol' reitit routes. The next example matches a
+regular reitit route with a namespace route:</p>
+</div>
+<div class="listingblock">
+<div class="title">arbitrary routes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [["/init" {:name :init}]
+  [:project.endpoint.todo-list]])
+;; =&gt;
+[["/init" {:name :init}]
+ ["/todo-list"
+  {::serr/ns   :project.endpoint.todo-list,
+   ::serr/type :collection,
+   :name       :todo-lists}]
+ ["/todo-list/{id}"
+  {::serr/ns   :project.endpoint.todo-list,
+   ::serr/type :member,
+   :name       :todo-list,
+   :id-key     :id}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The regular route isn&#8217;t touched. One non-obvious consequence of this is that
+you&#8217;ll need to supply a <code>:handler</code> key yourself; Sweet Tooth uses the
+<code>::serr/ns</code> and <code>::serr/type</code> keys to construct a handler, but those are absent.
+You can add a handler as an integrant ref or by using the
+<code>sweet-tooth.endpoint.utils/clj-kvar</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="title">handlers for arbitrary routes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [["/init" {:name :init
+            :handler (ig/ref :project.endpoint.init/handler)}]])
+
+(serr/expand-routes
+ [["/init" {:name    :init
+            :handler (sweet-tooth.endpoint.utils/clj-kvar :project.endpoint.init/handler)}]])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>clj-kvar</code> function returns the corresponding var during Clojure compilation
+and returns the keyword during ClojureScript compilation. This makes it easier
+to write routes that can cross-compile.</p>
+</div>
+<div class="paragraph">
+<p>You should use an integrant ref if the handler needs to participate in
+integrant&#8217;s configuration system - if you need to initialize the handler with
+environment variables or system components, for example. Using <code>clj-kvar</code> would
+let you forego integrant initialization and keep your integrant config a little
+leaner.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_shared_route_options"><a class="anchor" href="#_shared_route_options"></a>Shared Route Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What if you want to give multiple routes a prefix or otherwise want to apply
+options to multiple routes?</p>
+</div>
+<div class="listingblock">
+<div class="title">shared route options</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [{::serr/path-prefix "/api/v1"}
+  [:project.endpoint.todo-list]
+  [:project.endpoint.todo]])
+;; =&gt;
+[["/api/v1/todo-list"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]
+ ["/api/v1/todo-list/{id}"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :member
+   :name       :todo-list
+   :id-key     :id}]
+ ["/api/v1/todo"
+  {::serr/ns   :project.endpoint.todo
+   ::serr/type :collection
+   :name       :todos}]
+ ["/api/v1/todo/{id}"
+  {::serr/ns   :project.endpoint.todo
+   ::serr/type :member
+   :name       :todo
+   :id-key     :id}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>expand-routes</code> takes a vector as its argument. Whenever it encounters a vector
+in that map, as it does with <code>{::serr/path-prefix}</code>, it adds that map as route
+options for all the routes that follow. If one group of routes need a set of
+common options that differs from another group of routes, you could write
+something like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">multiple sets of shared route options</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(serr/expand-routes
+ [{::serr/path-prefix "/api/v1"}
+  [:project.endpoint.todo-list]
+
+  {:id-key :db/id}
+  [:project.endpoint.todo]])
+;; =&gt;
+[["/api/v1/todo-list"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :collection
+   :name       :todo-lists}]
+ ["/api/v1/todo-list/{id}"
+  {::serr/ns   :project.endpoint.todo-list
+   ::serr/type :member
+   :name       :todo-list
+   :id-key     :id}]
+ ["/todo"
+  {::serr/ns   :project.endpoint.todo
+   ::serr/type :collection
+   :name       :todos
+   :id-key     :db/id}]
+ ["/todo/{db/id}"
+  {::serr/ns   :project.endpoint.todo
+   ::serr/type :member
+   :name       :todo
+   :id-key     :db/id}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that <code>todo</code> routes have a different <code>:id-key</code> and they also don&#8217;t have
+the <code>/api/v1</code> prefix. Whenever a new common options map (<code>{:id-key :db/id}</code>) is
+encountered, it replaces the previous map (<code>{::serr/path-prefix "/api/v1"}</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_misc_notes"><a class="anchor" href="#_misc_notes"></a>Misc. Notes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Reitit lets you to express path prefixes with data structures like</p>
+</div>
+<div class="listingblock">
+<div class="title">reitit nested routes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">["/api"
+ ["/todo-list" {:name :todo-lists}]
+ ["/todo"      {:name :todos}]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Personally, I have an aversion to using nested data structures to represent
+nested resources. I&#8217;ve found that it becomes a lot easier to get lost in
+navigating the data structures, and it can get difficult to determine what
+values might be cascading through the nested layers, or what the relationships
+among the layers might be. Ultimately what we&#8217;re producing is a lookup table,
+and I personally find it much easier to reason about such a table if there isn&#8217;t
+any nesting.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Routes and Handlers</a></span>
+  <span class="next"><a href="handlers-in-depth.html">Handlers in Depth</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

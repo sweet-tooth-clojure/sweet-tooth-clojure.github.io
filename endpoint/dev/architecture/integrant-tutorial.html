@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Integrant Tutorial :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://sweettooth.dev/endpoint/dev/architecture/integrant-tutorial.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="duct-tutorial.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="endpoint" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="../index.html">endpoint</a></h3> -->
+      <h3 class="title"><a href="../../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../routes-and-handlers/index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">endpoint</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">endpoint</a></li>
+    <li><a href="index.html">Server Architecture: Components and Beyond</a></li>
+    <li><a href="integrant-tutorial.html">Integrant Tutorial</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/daniel/projects/web/sweet-tooth/endpoint/docs/modules/architecture/pages/integrant-tutorial.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Integrant Tutorial</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/weavejester/integrant">Integrant</a> brings order to the practice of defining, composing, and initializing
+components. It introduces two architectural abstractions: <em>systems</em> and
+<em>components</em>.</p>
+</div>
+<div class="paragraph">
+<p>As defined above, a component is a computing thing that complies with an
+interface. A <em>system</em> is just the composition of all components needed for
+whatever application or service you&#8217;re trying to build. It&#8217;s the outermost
+container for all those cute little components.</p>
+</div>
+<div class="paragraph">
+<p>All of this is a bit abstract; let&#8217;s get concrete with some code:</p>
+</div>
+<div class="listingblock">
+<div class="title">simple integrant example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns integrant-duct-example.basic-components
+  (:require [integrant.core :as ig]))
+
+(defmethod ig/init-key ::message-store [_ {:keys [message]}]
+  (atom message))
+
+(defmethod ig/init-key ::printer [_ {:keys [store]}]
+  (prn (format "%s says: %s" ::printer store)))
+
+(ig/init {::message-store {:message "love yourself, homie"}
+          ::printer       {:store   (ig/ref ::message-store)}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you evaluate this code in a REPL, it will print the message,
+<code>":integrant-duct-example.basic-components/printer says: love yourself, homie"</code>.
+Let&#8217;s work through it. The code, not loving yourself.</p>
+</div>
+<div class="paragraph">
+<p>Integrant uses the multimethod <code>init-key</code> to initialize components. Components
+are identified by a keyword; this example has components named <code>::message-store</code>
+and <code>::printer</code>. The first argument to the multimethod is the component&#8217;s name,
+and the second argument is the component&#8217;s configuration. The body of the
+multimethod is the code for constructing and "running" a component. The return
+value of <code>ig/init-key</code> is a <em>component instance</em>, and it can be whatever
+construct (atom, object, clojure data structure) you want other components to
+interact with.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The term <em>component</em> is getting a little fuzzy here. I&#8217;ve been using it to
+refer to a kind of conceptual entity that can be implemented in terms of a
+definition and initialization process. But I&#8217;m also using it to refer to an
+instance of a component, an actual language object that is returned by
+<code>ig/init-key</code> and passed as an argument to other components. I&#8217;ve seen the
+return value of <code>ig/init-key</code> referred to as a component but I find it useful to
+refer to it as a <em>component instance</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For <code>::message-store</code> the configuration only includes a <code>:message</code>, but in real
+systems component configurations would include things like the port for an HTTP
+server to listen to, the max number of threads for a thread pool, or the URI for
+a database connection.</p>
+</div>
+<div class="paragraph">
+<p><code>::printer&#8217;s configuration has the key `:store</code> and value <code>(ig/ref
+::message-store)</code>. <code>(ig/ref)</code> produces an <em>integrant reference</em> to the component
+named <code>::message-store</code>. This makes it possible to pass the <code>::printer</code>
+component the initialized <code>::message-store component</code>.</p>
+</div>
+<div class="paragraph">
+<p>Integrant&#8217;s <code>ig/init</code> function initializes a system. Its argument is a map whose
+keys are component names, and whose values are the configuration for that
+component. <code>ig/init</code> uses integrant references to initialize components in
+dependency order. In the configuration above, the presence of <code>(ig/ref
+::message-store)</code> in <code>::printer&#8217;s configuration tells Integrant to initialize
+the `::message-store</code> component before <code>::printer</code>. Then, when initializing
+<code>::printer</code>, it replaces the <code>::message-store</code> reference with the value returned
+by <code>(ig/init-key ::message-store)</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>ig/init</code> returns a <em>system instance</em>. If you keep a reference to it you can
+call <code>ig/halt!</code> or <code>ig/suspend!</code> on the system. Which brings me to another note:</p>
+</div>
+<div class="paragraph">
+<p>Integrant includes a few other lifecycle methods for components:
+<code>ig/halt!</code> and <code>ig/halt-key!</code>; <code>ig/suspend!</code> and <code>ig/suspend-key!</code>; plus a
+couple more. Check out its <a href="https://github.com/weavejester/integrant">README</a> for more details.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We can see how Integrant helps us initialize (<code>ig/init</code>, <code>ig/init-key</code>) and
+compose (<code>ig/ref</code>) components, but what about defining components? Earlier I
+said,</p>
+</div>
+<div class="paragraph">
+<p>#+begin_quote
+To <strong>define</strong> a component is to establish its responsibilities and its interface.
+It also means choosing one or more language constructs to implement the notion
+of "component".
+#+end_quote</p>
+</div>
+<div class="paragraph">
+<p><code>ig/init-key</code> does help to define a component in that it gives the component an
+identity and imposes the constraint that a component be implemented as a single
+thing that can get passed as a value to other components (which eliminates some
+possibilities for defining components, like saying that namespace defines a
+component.)</p>
+</div>
+<div class="paragraph">
+<p>Integrant doesn&#8217;t really prescribe what Clojure language constructs you use to
+implement a component; the return value of <code>ig/init-key</code> can be whatever you
+want.</p>
+</div>
+<div class="paragraph">
+<p>That being said, it&#8217;s common to define component interfaces using protocols and
+to have <code>ig/init-key</code> return some object that implements the component&#8217;s
+protocols. There&#8217;s some debate over whether or not it&#8217;s a good idea to use
+protocols in this context, and ultimately that choice is up to you. I personally
+prefer protocols because they force me to make good design choices, and as a
+side benefit they make testing easier. As a consequence Sweet Tooth provides
+some useful tools for creating test mocks for components that take the protocol
+approach.</p>
+</div>
+<div class="paragraph">
+<p>TODO explain component design more. Link to testing tools.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modularity_through_keyword_hierarchies"><a class="anchor" href="#_modularity_through_keyword_hierarchies"></a>Modularity Through Keyword Hierarchies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Integrant has an interesting feature that greatly expands its usefulness in
+building composable systems, especially when it comes to building a framework
+and building an ecosystem of framework components. Clojure allows you to create
+create keyword hierarchies using <code>derive</code>, and Integrant takes advantage of this
+when resolving component references created by <code>ig/ref</code>. Here&#8217;s an example:</p>
+</div>
+<div class="listingblock">
+<div class="title">using keyword hierarchies</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-clojure hljs" data-lang="clojure">(ns integrant-duct-example.hierarchy
+  (:require [integrant.core :as ig]))
+
+(defmethod ig/init-key ::message-store [_ {:keys [message]}]
+  (atom message))
+
+(defmethod ig/init-key ::printer [_ {:keys [store]}]
+  (prn (format "%s says: %s" ::printer @store)))
+
+(derive ::message-store ::store)
+
+(ig/init {::message-store {:message "love yourself, homie"}
+          ::printer       {:store   (ig/ref ::store)}})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>::printer</code> component refers to a <code>::store</code> component. There are no
+components named <code>::store</code>, but <code>::message-store</code> is derived from <code>::store</code>, so
+Integrant uses that. This allows components to declare the <em>kind of</em> components
+they depend on, which makes it a lot easier to create modular component
+libraries. It&#8217;s another way of declaring a component&#8217;s interface: Component A
+depends on a component of Type X. As long as Component B is of Type X, Component
+A can use it; it doesn&#8217;t matter what Component B&#8217;s implementation is.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/duct-framework/module.web">Duct web module</a>, for example, <a href="https://github.com/duct-framework/module.web/blob/master/src/duct/module/web.clj#L54">configures its request handler</a> as depending on
+a <code>:duct/router</code>. It doesn&#8217;t provide any components named <code>:duct/router</code>, but
+the Duct Ataraxy module will add a component named <code>:duct.router/ataraxy</code>, which
+is derived from <code>:duct/router.</code> It&#8217;s possible for us to create our own router
+component and use that instead, as long as the component&#8217;s name is derived from
+<code>:duct/router</code>.</p>
+</div>
+<div class="paragraph">
+<p>In fact, that&#8217;s exactly what Sweet Tooth does with its
+<code>:sweet-tooth.endpoint.module.liberator-reitit-router/reitit-router</code> component.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_components"><a class="anchor" href="#_adding_components"></a>Adding Components</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO explain how to add components like a queue or cronut</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_systems_as_data"><a class="anchor" href="#_systems_as_data"></a>Systems as Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A non-obvious benefit of using Integrant is that it provides a layer of
+abstraction between <em>the process</em> and <em>the system</em>. We&#8217;re used to there being a
+one-to-one relationship between a process and an application; a process is your
+application being executed. The entrypoint to your application is <code>-main</code>, which
+is responsible for initializing all resources and otherwise just gettin' things
+started.</p>
+</div>
+<div class="paragraph">
+<p>Integrant introduces a different model for starting your application (system),
+one that&#8217;s under programmatic control. It&#8217;s almost like a virtualization layer.
+You can use it to start multiple systems simultaneously, which is extremely
+useful during development because it lets you run and interact with a dev
+system, and at the same time run tests against a test system. The dev and test
+systems can be configured to use different databases, and they&#8217;re initialized
+with separate component instances. If you follow the dependency injection
+pattern and don&#8217;t rely on shared global state, your dev and test systems will
+behave as if they&#8217;re executing in two separate containers. Pretty sweet.</p>
+</div>
+<div class="paragraph">
+<p>BTW I&#8217;m still trying to figure out the best way to articulate this and welcome
+any feedback.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_architecture_as_data"><a class="anchor" href="#_architecture_as_data"></a>Architecture as Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s worth highlighting the the fact that Integrant takes a data-oriented
+approach to defining a system&#8217;s architecture. Personally, I think this is an
+innovation on par with Ruby&#8217;s Rack, which inspired the Ring library. From Ring&#8217;s
+docs:</p>
+</div>
+<div class="paragraph">
+<p>#+begin_quote
+Ring is a Clojure web applications library inspired by Python&#8217;s WSGI and Ruby&#8217;s
+Rack. By abstracting the details of HTTP into a simple, unified API, Ring allows
+web applications to be constructed of modular components that can be shared
+among a variety of applications, web servers, and web frameworks.
+#+end_quote</p>
+</div>
+<div class="paragraph">
+<p>The Ring API allows independent library authors to create middleware for
+functionality like <a href="https://github.com/funcool/buddy-auth">auth management</a> or <a href="https://github.com/sethtrain/raven-clj">exception reporting</a>. Developers can easily
+compose this functionality as they see fit, and develop their own.</p>
+</div>
+<div class="paragraph">
+<p>Integrant does the same thing for architecture: It abstracts the details of
+configuring, composing, and managing the lifecycle of components into a simple,
+unified API, laying the groundwork for modular components that can be shared
+across different applications. It&#8217;s a powerful new tool in the developer&#8217;s
+toolkit, and I hope that it gains wide adoption.</p>
+</div>
+<div class="paragraph">
+<p>Integrant separates <em>the description of the system to run</em> (the system config)
+from <em>the execution of that system</em> (<code>ig/init</code>). By encoding the system&#8217;s
+description as plain ol' Clojure map, system composition becomes data
+composition. Pretty badass.</p>
+</div>
+<div class="paragraph">
+<p>I think we still have yet to fully explore the implications of this but here are
+some of the consequences I&#8217;ve noticed so far:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It&#8217;s easier to inspect the system. You have one source of truth, the system
+config, to examine to figure out what components are running and how they&#8217;re
+related. It would be trivial to generate a diagram of the system dependency
+graph.</p>
+</li>
+<li>
+<p>You can implement a structured approach to validating a system configuration.
+Integrant actually provides an <code>ig/pre-init-spec</code> multimethod that you can use
+to define a spec for a component&#8217;s configuration. In the past I&#8217;ve even rolled
+my own validation methods that provide advice how to fix a config in addition
+just alerting that a config is invalid.</p>
+</li>
+<li>
+<p>You can easily transform the system for different contexts. For example, in a
+testing context you could replace a component that AWS&#8217;s Simple Queue Service
+(SQS) with a component that uses core.async.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Server Architecture: Components and Beyond</a></span>
+  <span class="next"><a href="duct-tutorial.html">Duct Tutorial</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
