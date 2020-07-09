@@ -45,12 +45,14 @@ benefits of continuous feedback.
 
 Sweet Tooth's (ST) approach is to provide abstractions and helpers for common
 SPA concerns like form workflows, routing and navigation, and HTTP request
-management. These use cases are not particular to the app you're trying to
-build, but as a Clojurian you've likely had to figure them out for yourself when
-building an SPA. In the same way that you shouldn't have to write your own
+management. Special attention has been paid to the process of introducing new
+CRUD interactions. These use cases are not particular to the app you're trying
+to build, but as a Clojurian you've likely had to figure them out for yourself
+when building an SPA. In the same way that you shouldn't have to write your own
 filesystem when making a desktop app, you shouldn't have to write your own form
 handling system to launch your idea. ST also introduces a collection of https://www.ansible.com/[Ansible]
-scripts tailored to Sweet Tooth apps so that you can start deploying immediately.
+scripts tailored to Sweet Tooth apps so that you can start deploying
+immediately.
 
 Whether or not this approach makes development easier, faster, and funner for a
 broad audience has yet to be proven. It's definitely helped me in creating my
