@@ -201,7 +201,7 @@ systematizing the running of an OS project. That's a big if, though!
 The following people have contributed to Sweet Tooth's development:
 
 - [[https://github.com/walterl][Walter Leibbrandt]]
-- Andrew Sinclair
+- [[https://github.com/andrewsinclair][Andrew Sinclair]]
 - [[https://github.com/tlrobinson][Tom Robinson]]
 - [[https://github.com/sbelak][Simon Belak]]
 - [[https://github.com/yogthos][Dmitri Sotnikov]]
