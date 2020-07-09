@@ -265,3 +265,11 @@ along with some namespace aliases:
 #+END_SRC
 
 And now you should be able to add new hobbits!
+
+* What's next?
+
+For an explanation of (some of) what you just did, the
+xref:todo-example:ROOT:index.adoc[To-Do Example Walkthrough] covers frontend
+routing, navigation, and form handling in significant detail. The
+xref:endpoint:ROOT:index.adoc[endpoint] docs explain what's going on in the
+backend.
