@@ -892,6 +892,8 @@ be easy to use and understand.</p>
 subject is definitely an ongoing process, but here&#8217;s what I have so far: A
 well-designed framework is <em>modular</em>, <em>extensible</em>, and <em>composable</em>.</p>
 </div>
+<div class="sect2">
+<h3 id="_modular"><a class="anchor" href="#_modular"></a>Modular</h3>
 <div class="paragraph">
 <p><em>Modular</em> means that the framework&#8217;s responsibilities should be well-defined,
 and it should be possible for you to swap out one implementation of a
@@ -907,6 +909,9 @@ libraries instead On the frontend, ST is built on top of re-frame, which act as
 a kind of filesystem and messaging system. Using Sweet Tooth means using
 re-frame and Integrant.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_extensible"><a class="anchor" href="#_extensible"></a>Extensible</h3>
 <div class="paragraph">
 <p><em>Extensibile</em> means that devs should be able to easily introduce custom
 implementations of core framework offerings. (OMG I need to find a better way to
@@ -918,6 +923,9 @@ trivial to extend the system for new components, for example by introducing a
 markdown editor component. The to-do example walkthrough will show you how this
 works.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_composable"><a class="anchor" href="#_composable"></a>Composable</h3>
 <div class="paragraph">
 <p><em>Composable</em> means two things: first, that the framework should be written from
 a UNIX-y "do one thing well" standpoint. Back to form components: the form
@@ -932,6 +940,7 @@ handlers, or you could introduce your own.</p>
 example, you should be able to write an auth plugin that spans the frontend and
 backend, introducing API endpoints and reagent components that Just Work. I
 haven&#8217;t put much thought into supporting this kind of compsability.</p>
+</div>
 </div>
 </div>
 </div>
