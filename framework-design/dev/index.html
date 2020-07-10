@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Framework Design :: Sweet Tooth, a Clojure Single-Page App Framework</title>
+    <link rel="canonical" href="https://www.sweettooth.dev/framework-design/dev/index.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.sweettooth.dev">Sweet Tooth, a Clojure Single-Page App Framework</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://github.com/sweet-tooth-clojure/">GitHub Repos</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/endpoint">endpoint</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/frontend">frontend</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/todo-example">todo example</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/describe">describe</a>
+            <a class="navbar-item" href="https://github.com/sweet-tooth-clojure/documentation">documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="framework-design" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <!-- <h3 class="title"><a href="index.html">Framework Design</a></h3> -->
+      <h3 class="title"><a href="../../overview/dev/index.html">Overview</a></h3>
+        <h3 class="title"><a href="../../quickstart/dev/index.html">Quickstart</a></h3>
+        <h3 class="title"><a href="../../todo-example/dev/index.html">To-Do Example Walkthrough</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../todo-example/dev/initial-rendering.html">Initial Rendering</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../todo-example/dev/form-handling.html">Form Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="../../endpoint/dev/index.html">endpoint</a></h3>
+  <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/index.html">Routes and Handlers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/routes-in-depth.html">Routes in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/handlers-in-depth.html">Handlers in Depth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/responses.html">Responses</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/routes-and-handlers/request-handling-intro.html">Introduction to Request Handling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../endpoint/dev/architecture/index.html">Server Architecture: Components and Beyond</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/architecture/integrant-tutorial.html">Integrant Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../endpoint/dev/architecture/duct-tutorial.html">Duct Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../endpoint/dev/systems/index.html">Systems</a>
+  </li>
+</ul>
+  </li>
+</ul>
+      <h3 class="title"><a href="index.html">Framework Design</a></h3>
+    </nav>
+</div>
+<div class="nav-panel-explore " data-panel="explore">
+  <div class="context">
+    <span class="title">Framework Design</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">endpoint</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../endpoint/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">Framework Design</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Overview</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../overview/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Quickstart</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../quickstart/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">To-Do Example Walkthrough</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../todo-example/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../overview/dev/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Framework Design</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Writing a framework is a foolish endeavor that can be made a little less foolish
+by clarifying what makes a good framework. If you&#8217;re going to spend an
+inordinate amount of time toiling away in front of a monitor for no tangible
+benefit then you might as well try to do a good job of it.</p>
+</div>
+<div class="paragraph">
+<p>So far I haven&#8217;t found a guide to good framework design (or even a good
+explanation of what a framework <em>is</em>!), so here&#8217;s my attempt to fill that void.
+A framework framework, if you will. I hope you find it useful. I hope even more
+that you&#8217;ve found something more useful and can point me to it. (If that sounds
+like a cry for help, that&#8217;s because it is!)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_a_framework"><a class="anchor" href="#_what_is_a_framework"></a>What is a Framework?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A framework is a set of libraries that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Manages the complexity of coordinating the <em>resources</em> needed to write an
+application&#8230;&#8203;</p>
+</li>
+<li>
+<p>by providing <em>abstractions</em> for those resources&#8230;&#8203;</p>
+</li>
+<li>
+<p>and <em>systems for communicating</em> between those resources&#8230;&#8203;</p>
+</li>
+<li>
+<p>within an <em>environment</em>&#8230;&#8203;</p>
+</li>
+<li>
+<p>so that programmers can <em>focus on writing the business logic</em> that&#8217;s specific
+to their product</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I&#8217;ll elaborate on each of these points using examples from <a href="https://rubyonrails.org/">Rails</a> and from the
+ultimate framework: the <em>operating system</em>.</p>
+</div>
+<div class="paragraph">
+<p>You might wonder, how is an OS a framework? When you look at the list of
+framework responsibilities, you&#8217;ll notice that the OS handles all of them, and
+it handles them exceedingly well. Briefly: an OS provides virtual abstractions
+for hardware resources so that programmers don&#8217;t have to focus on the details
+of, say, pushing bytes onto some particular disk or managing CPU scheduling. It
+also provides the conventions of a hierarchical filesystem with an addressing
+system consisting of names separated by forward slashes, and these conventions
+provide one way for resources to communicate with each other (Process A can
+write to <code>/foo/bar</code> while Process B reads from it) - if every programmer came up
+with her own bespoke addressing system, it would be a disaster. The OS handles
+this for us so we can focus on application-specific tasks.</p>
+</div>
+<div class="paragraph">
+<p>Because operating systems are such successful frameworks we&#8217;ll look at a few of
+their features in some detail so that we can get a better understanding of what
+good framework design looks like.</p>
+</div>
+<div class="sect2">
+<h3 id="_coordinating_resources"><a class="anchor" href="#_coordinating_resources"></a>Coordinating Resources</h3>
+<div class="paragraph">
+<p><em>Resources</em> are the "materials" used by programs to do their work, and can be
+divided into four categories: storage, computation, communication, and
+interfaces. Examples of storage include files, databases, and caches.
+Computation examples include processes, threads, actors, background jobs, and
+core.async processes. For communication there are HTTP requests, message queues,
+and event buses. Interfaces typically include keyboard and mouse, plus screens
+and the systems used to display stuff on them: gui toolkits, browsers and the
+DOM, etc.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/resource-categories.jpg" alt="resource categories">
+</div>
+<div class="title">Figure 1. the four resource categories</div>
+</div>
+<div class="paragraph">
+<p>Specialized resources are built on top of more general-purpose resources. (Some
+refer to these specialized resources as <em>services</em> or <em>components</em>.) We start
+with hardware and build virtual resources on top. With storage, the OS starts
+with disks and memory and creates the filesystem as a virtual storage resource
+on top. Databases like Postgres use the filesystem to create another virtual
+storage resource to handle use cases not met by the filesystem. Datomic uses
+other databases like Cassandra or DynamoDB as its storage layer. Browsers create
+their own virtual environments and introduce new resources like local storage
+and cookies.</p>
+</div>
+<div class="paragraph">
+<p>For computation, the OS introduces processes and threads as virtual resources
+representing and organizing program execution. Erlang creates an environment
+with a process model that&#8217;s dramatically different from the underlying OS&#8217;s.
+Same deal with Clojure&#8217;s <code>core.async</code>, which introduces the <em>communicating
+sequential processes</em> computation model. It&#8217;s a virtual model defined by Clojure
+macros, "compiled" to core clojure, then compiled to JVM bytecode (or
+JavaScript!), which then has to be executed by operating system processes.</p>
+</div>
+<div class="paragraph">
+<p>Interfaces follow the same pattern: on the visual display side, the OS paints to
+monitors, applications paint to their own virtual canvas, browsers are
+applications which introduce their own resources (the DOM and <code>&lt;canvas&gt;</code>), and
+React introduces a virtual DOM. Emacs is an operating system on top of the
+operating system, and it provides windows and frames.</p>
+</div>
+<div class="paragraph">
+<p>Resources <em>manage</em> their own <em>entities</em>: in a database, entities could include
+tables, rows, triggers, and sequences. Filesystem entities include directories
+and files. A GUI manages windows, menu bars, and other components. To manage a
+resource is to create, validate, secure, and dispose of resource entities.</p>
+</div>
+<div class="paragraph">
+<p>(I realize that this description of <em>resource</em> is not the kind of airtight,
+axiomatic, comprehensive description that programmers like. One shortcoming is
+that the boundary between resource and application is pretty thin: Postgres is
+an application in its own right, but from the perspective of a Rails app it&#8217;s a
+resource. Still, hopefully my use of <em>resource</em> is clear enough that you
+nevertheless understand what the f I&#8217;m talking about when I talk about
+resources.)</p>
+</div>
+<div class="paragraph">
+<p><em>Coordinating</em> these resources is inherently complex. Hell, coordinating anything
+is complex. I still remember the first time I got smacked in the face with a
+baseball in little league thanks to a lack of coordination. There was also a
+time period where I, as a child, took tae kwon do classes and frequently ended
+up sitting with my back against the wall with my eyes closed in pain because a)
+my mom for some reason refused to buy me an athletic cup and b) I did not
+possess the coordination to otherwise protect myself during sparring.</p>
+</div>
+<div class="paragraph">
+<p>When building a product, you have to decide how to create, validate, secure, and
+dispose of resource entities; how to convey entities from one resource to
+another; and how to deal with issues like timing (race conditions) and failure
+handling that arise whenever resources interact, all without getting hit in the
+face. Rails, for instance, was designed to coordinate browsers, HTTP servers,
+and databases. It had to convey user input to a database, and also retrieve and
+render database records for display by the user interface, via HTTP requests and
+responses.</p>
+</div>
+<div class="paragraph">
+<p>There is no obvious or objectively correct way to coordinate these resources. In
+Rails, HTTP requests would get dispatched to a Controller, which was responsible
+for interacting with a database and making data available to a View, which would
+render HTML that could be sent back to the browser.</p>
+</div>
+<div class="paragraph">
+<p>You don&#8217;t <em>have</em> to coordinate web app resources using the Model/View/Controller
+(MVC) approach Rails uses, but you do have to coordinate these resources
+<em>somehow</em>. These decisions involve making tradeoffs and imposing constraints to
+achieve a balance of extensibility (creating a system generic enough for new
+resources to participate) and power (allowing the system to fully exploit the
+unique features of a specific resource).</p>
+</div>
+<div class="paragraph">
+<p>This is a very difficult task even for experienced developers, and the choices
+you make could have negative repercussions that aren&#8217;t apparent until you&#8217;re
+heavily invested in them. With Rails, for instance, ActiveRecord (AR) provided a
+good generic abstraction for databases, but early on it was very easy to produce
+extremely inefficient SQL, and sometimes very difficult to produce efficient
+SQL. You&#8217;d often have to hand-write SQL, eliminating some of the benefits of
+using AR in the first place.</p>
+</div>
+<div class="paragraph">
+<p>For complete beginners, the task of making these tradeoffs is impossible because
+doing so requires experience. Beginners won&#8217;t even know that it&#8217;s necessary to
+make these decisions. At the same time, more experienced developers would prefer
+to spend their time and energy solving more important problems.</p>
+</div>
+<div class="paragraph">
+<p>Frameworks make these decisions for us, allowing us to focus on business logic.
+The <em>manage</em> resources by by introducing <em>communication systems</em> and
+<em>abstractions</em>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resource_management"><a class="anchor" href="#_resource_management"></a>Resource Management</h3>
+<div class="paragraph">
+<p>Let&#8217;s decompose "resource management" to better understand what exactly
+frameworks are responsible for. To start, it&#8217;s useful to break down resource
+management into the <em>component level</em> and the <em>entity level</em>. At the component
+level, we talk about:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Starting and stopping a database</p>
+</li>
+<li>
+<p>Starting, stopping, pausing, and resuming a job scheduler</p>
+</li>
+<li>
+<p>Starting and stopping an HTTP server</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In general, component management is about start, stopping, and sometimes pausing
+and resuming a sub-system which itself manages entities. For operating systems,
+we have tools like systemd and upstart to handle this. In Clojure apps, we have
+<a href="https://github.com/weavejester/integrant">Integrant</a>, <a href="https://github.com/tolitius/mount">mount</a>, and <a href="https://github.com/stuartsierra/component">component</a>.</p>
+</div>
+<div class="paragraph">
+<p>At the entity level, resource management involves task like:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>create / read / update / delete a database record</p>
+</li>
+<li>
+<p>add / pause / remove a background job</p>
+</li>
+<li>
+<p>create / wait for / respond to XHR request</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Stepping back, we might say that resource management is about changing state and
+responding to state changes. "State" is one of those very overloaded programming
+terms, so like, don&#8217;t kill me if I use it differently than you. But when talking
+about state, I think it&#8217;s important to differentiate between <em>operational state</em>
+and <em>content</em>.</p>
+</div>
+<div class="paragraph">
+<p>Content examples include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The screenplay you&#8217;re writing</p>
+</li>
+<li>
+<p>The source of the framework you&#8217;re building for some reason</p>
+</li>
+<li>
+<p>HTTP headers and body</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We perform CRUD operations to change content.</p>
+</div>
+<div class="paragraph">
+<p>Operational state, on the other hand, is metadata relevant to state change
+operations. (Note to self: this definition may need work?) Examples include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Whether form input is valid or invalid</p>
+</li>
+<li>
+<p>Whether a file is writeable or read-only</p>
+</li>
+<li>
+<p>Whether an operation succeeded or failed</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This distinction has been helpful for me because it&#8217;s helped me be more rigorous
+in creating good user experiences. A lot of creating a good user experience is
+about providing feedback to the user. But what is feedback? Feedback is
+information about the operational state of resource entities, and frameworks
+help us manage that.</p>
+</div>
+<div class="paragraph">
+<p>So anyway, we have to manage resources somehow. But how? That&#8217;s where
+abstractions come in.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resource_abstractions"><a class="anchor" href="#_resource_abstractions"></a>Resource Abstractions</h3>
+<div class="paragraph">
+<p>Our software interacts with resources via their <em>abstractions</em>. I think of
+abstractions as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the data structures used to represent a resource</p>
+</li>
+<li>
+<p>the set of messages for changing retrieving state</p>
+</li>
+<li>
+<p>the set of possible operational states</p>
+</li>
+<li>
+<p>the mechanisms for responding to operational state changes</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>(<em>Abstraction</em> might be a terrible word to use here. Every developer over three
+years old has their own definition, and if mine doesn&#8217;t correspond to yours just
+cut me a little slack and run with it :)</p>
+</div>
+<div class="paragraph">
+<p>Rails exposes a database resource that your application code interacts with via
+the <code>ActiveRecord</code> abstraction. Tables correspond to classes, and rows to
+objects of that class. This a choice with tradeoffs - rows could have been
+represented as Ruby hashes (a primitive akin to a JSON object), which might have
+made them more portable while making it more difficult to concisely express
+database operations like <code>save</code> and <code>destroy</code>. The abstraction also responds to
+<code>find</code>, <code>create</code>, <code>update</code>, and <code>destroy</code>. You respond to operational state
+changes via lifecycle callback methods like <code>before/validation</code>. Frameworks add
+value by identifying these state transitions and providing interfaces for them
+when they&#8217;re absent from the underlying resource.</p>
+</div>
+<div class="paragraph">
+<p>You already know this, but it bears saying: abstractions let us code at a higher
+level. Framework abstractions handle the concerns that are specific to resource
+management, letting us focus on building products. Designed well, they enable
+loose coupling.</p>
+</div>
+<div class="paragraph">
+<p>Nothing exemplifies this better than the massively successful <em>file</em> abstraction
+that the UNIX framework introduced. We&#8217;re going to look at in detail because it
+embodies design wisdom that can help us understand what makes a good framework.</p>
+</div>
+<div class="paragraph">
+<p>The core file functions are <code>open</code>, <code>read</code>, <code>write</code>, and <code>close</code>. Files are
+represented as sequential streams of bytes, which is just as much a choice as
+ActiveRecord&#8217;s choice to use Ruby objects. Within processes, open files are
+represented as <em>file descriptors</em>, which are usually a small integer. The <code>open</code>
+function takes a path and returns a file descriptor, and <code>read</code>, <code>write</code>, and
+<code>close</code> take a file descriptor as an argument to do their work.</p>
+</div>
+<div class="paragraph">
+<p>Now here&#8217;s the amazing magical kicker: <em>file</em> doesn&#8217;t have to mean <em>file on
+disk</em>. Just as Rails implements the ActiveRecord abstraction for MySQL and
+Postgres, the OS implements the file abstraction for <strong>pipes</strong>, terminals, and
+other resources, meaning that your programs can write to them using the same
+system calls as you&#8217;d use to write files to disk - indeed, from your program&#8217;s
+standpoint, all it knows is that it&#8217;s writing to a file; it doesn&#8217;t know that
+the "file" that a file descriptor refers to might actually be a pipe.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Exercise for the reader: write a couple paragraphs explaining precisely
+the design choices that enable this degree of loose coupling. How can these
+choices help us in evaluating and designing frameworks?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This design is a huge part of UNIX&#8217;s famed simplicity. It&#8217;s what lets us run
+this in a shell:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># list files in the current directory and perform a word count on the output
+ls | wc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The shell interprets this by launching an <code>ls</code> process. Normally, when a process
+is launched it creates three file descriptors (which, remember, represent open
+files): <code>0</code> for <code>STDIN</code>, <code>1</code> for <code>STDOUT</code>, and <code>2</code> for <code>STDERR</code>, and the shell
+sets each file descriptor to refer to your terminal (terminals can be files!!
+what!?!?). Your shell sees the pipe, <code>|</code>, and sets <code>ls&#8217;s `STDOUT</code> to the pipe&#8217;s
+<code>STDIN</code>, and the pipe&#8217;s <code>STDOUT</code> to <code>wc&#8217;s `STDIN</code>. The pipe links processes'
+file descriptors, while the processes get to read and write "files" without
+having to know what&#8217;s actually on the other end. No joke, every time I think of
+this I get a little excited tingle at the base of my spine because I am a:</p>
+</div>
+<div class="paragraph">
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IRsPheErBj8[https://www.youtube.com/embed/IRsPheErBj8]"
+frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
+picture-in-picture" allowfullscreen></iframe>
+</p>
+</div>
+<div class="paragraph">
+<p>This is why file I/O is referred to as <em>the universal I/O model</em>. I&#8217;ll have more
+to say about this in the next section, but I share it here to illustrate how
+much more powerful your programming environment can be if you find the right
+abstractions. The file I/O model still dominates decades after its introduction,
+making our lives easier <em>without our even having to understand how it actually
+works</em>.</p>
+</div>
+<div class="paragraph">
+<p>The canonical first exercise any beginner programmer performs is to write a
+program that prints out, <em>What up, y&#8217;all?</em>. This program makes use of the file
+model, but the beginner doesn&#8217;t have to even know that such a thing exists. This
+is what a good framework does. A well-designed framework lets you easily get
+started building simple applications, without preventing you building more
+complicated and useful ones as you learn more.</p>
+</div>
+<div class="paragraph">
+<p>One final point about abstractions: they provide mechanisms for calling your
+application&#8217;s code. We saw this a bit earlier with ActiveRecord&#8217;s lifecycle
+methods. Frameworks will usually provide the overall structure for how an
+application should interact with its environment, defining sets of events that
+you write custom handlers for. With ActiveRecord lifecycles, the structure of
+<code>before/create</code>, <code>create</code>, <code>after/create</code> is predetermined, but you can define
+what happens at each step. This pattern is called <em>inversion of control</em>, and
+many developers consider it a key feature of frameworks.</p>
+</div>
+<div class="paragraph">
+<p>With *nix operating systems, you could say that in C programs the <code>main</code>
+function is a kind of <code>onStart</code> callback. The OS calls <code>main</code>, and <code>main</code> tells
+the OS what instructions should be run. However, the OS controls when
+instructions are actually executed because the OS is in charge of scheduling.
+It&#8217;s a kind of inversion of control, right? 🤔</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_communication"><a class="anchor" href="#_communication"></a>Communication</h3>
+<div class="paragraph">
+<p>Frameworks coordinate resources, and (it&#8217;s almost a tautology to say this)
+coordination requires <em>communication</em>. Communication is <em>hard</em>. Frameworks make
+it easier by translating the disparate "languages" spoken by resources into one
+or more common languages that are easy to understand and efficient, while also
+ensuring extensibility and composability. Frameworks also do some of the work of
+ensuring resilience. This usually entails:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Establishing naming and addressing conventions</p>
+</li>
+<li>
+<p>Establishing conventions for how to structure content</p>
+</li>
+<li>
+<p>Introducing communication brokers</p>
+</li>
+<li>
+<p>Handling communication failures (the database is down! that file
+doesn&#8217;t exist!)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>One example many people are familiar with is the HTTP stack, a "language" used
+to communicate between browser and server resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HTTP structures content (request headers and request body as text)</p>
+</li>
+<li>
+<p>TCP handles communication failures</p>
+</li>
+<li>
+<p>IP handles addressing</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_conventions"><a class="anchor" href="#_conventions"></a>Conventions</h4>
+<div class="paragraph">
+<p>The file model is a "common language", and the OS uses device drivers to
+translate between between the file model and whatever local language is spoken
+by hardware devices. It has naming and addressing conventions, letting you
+specify files on the filesystem using character strings separated by slashes
+that it translates to an internal inode (a data structure that stores file and
+directory details, like ownership and permissions). We&#8217;re so used to this that
+it&#8217;s easy to forget it&#8217;s a convention; *nix systems could have been designed so
+that you had to refer to files using a number or a UUID. The file descriptors I
+described in the last section are also a convention.</p>
+</div>
+<div class="paragraph">
+<p>Another convention the file model introduces is to structure content as byte
+streams, as opposed to bit streams, character streams, or xml documents.
+However, bytes are usually too low-level, so the OS includes a suite of command
+line tools that introduce the further convention of structuring bytes by
+interpreting them as characters (<code>sed</code>, <code>awk</code>, <code>grep</code>, and friends). More
+recently, more tools have been introduced that interpret text as YAML or JSON.
+The Clojure world has further tools to interpret JSON as transit. My YAML tools
+can&#8217;t do jack with your JSON files, but because these formats are all expressed
+in terms of lower-level formats, the lower-level tools can still work with them.
+Structure affects composability.</p>
+</div>
+<div class="paragraph">
+<p>The file model&#8217;s simplicity is what allows it to be the "universal I/O model." I
+mean, just imagine if all Linux processes had to communicate with XML instead of
+byte streams! Hoo boy, what a crazy world that would be. Having a simple,
+universal communication system makes it extremely easy for new resources to
+participate without having to be directly aware of each other. It allows us to
+easily compose command line tools. It allows one program to write to a log while
+another reads from it. In other words, it enables loose coupling and all the
+attendant benefits.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_communication_brokers"><a class="anchor" href="#_communication_brokers"></a>Communication Brokers</h4>
+<div class="paragraph">
+<p><em>Globally addressable communication brokers</em> (like the filesystem, or Kafka
+queues, or databases) are essential to enabling composable systems. <em>Global</em>
+means that every resource can access it. <em>Addressable</em> means that the broker
+maintains identifiers for entities independently of its clients, and it&#8217;s
+possible for clients to specify entities using those identifiers. <em>Communication
+broker</em> means that the system&#8217;s purpose is to convey data from one resource to
+another, and it has well-defined semantics: a queue has FIFO semantics, the file
+system has update-in-place semantics, etc.</p>
+</div>
+<div class="paragraph">
+<p>If Linux had no filesystem and processes were only allowed to communicate via
+pipes, it would be a nightmare. Indirect communication is more flexible than
+direct communication. It supports decoupling over time, in that reads and writes
+don&#8217;t have to happen synchronously. It also allows participants to drop in and
+out of the communication system independently of each other. (By the way, I
+can&#8217;t think of the name for this concept or some better way to express it, and
+would love feedback here.)</p>
+</div>
+<div class="paragraph">
+<p>I think this is the trickiest part of framework design. At the beginning of the
+article I mentioned that developers might end up hacking around a framework&#8217;s
+constraints, and I think the main constraint is often the absence of a
+communication broker. The framework&#8217;s designers introduce new resources and
+abstractions, but the only way to compose them is through direct communication,
+and sometimes that direct communication is handled magically. (I seem to recall
+that Rails worked with this way, with tight coupling between Controller and
+Views and a lack of options for conveying Controller data to other parts of the
+system). If someone wants to introduce new abstractions, they have to untangle
+all the magic and hook deep into the framework&#8217;s internals, using&#8201;&#8212;&#8201;or even
+patching!&#8201;&#8212;&#8201;code that&#8217;s meant to be private.</p>
+</div>
+<div class="paragraph">
+<p>I remember running into this with Rails back when MongoDB was released; the
+<em>document database</em> resource was sufficiently different from the <em>relational
+database resource</em> that it was pretty much impossible for MongoDB to take part
+in the ActiveRecord abstraction, and it was also very difficult to introduce a
+new data store abstraction that would play well with the rest of the Rails
+ecosystem.</p>
+</div>
+<div class="paragraph">
+<p>For a more current example, a frontend framework might identify the form as a
+resource, and create a nice abstraction for it that handles things like
+validation and the submission lifecycle. If the form abstraction is written in a
+framework that has no communication broker (like a global state container), then
+it will be very difficult to meet the common use case of using a form to filter
+rows in a table because there&#8217;s no way for the code that renders table data to
+access the form inputs' values. You might come up with some hack like defining
+handlers for exporting the form&#8217;s state, but doing this on an ad-hoc basis
+results in confusing and brittle code.</p>
+</div>
+<div class="paragraph">
+<p>By contrast, the presence of a communication broker can make life much easier.
+In the Clojure world, the React frameworks <a href="https://github.com/Day8/re-frame/">re-frame</a> and <a href="https://github.com/omcljs/om">om.next</a> have embraced
+global state atoms, a kind of communication broker similar to the filesystem
+(atoms are an in-memory storage mechanism). They also both have well defined
+communication protocols. I&#8217;m not very familiar with <a href="https://redux.js.org/">Redux</a> but I&#8217;ve heard tell
+that it also has embraced a global, central state container.</p>
+</div>
+<div class="paragraph">
+<p>If you create a form abstraction using re-frame, it&#8217;s possible to track its
+state in a global state atom. It&#8217;s further possible to establish a naming
+convention for forms, making it easier for other participants to look up the
+form&#8217;s data and react to it. (Sweet Tooth does this.)</p>
+</div>
+<div class="paragraph">
+<p>Communication systems are fundamental. Without them, it&#8217;s difficult to build
+anything but the simplest applications. By providing communication systems,
+frameworks relieve much of the cognitive burden of building a program. By
+establishing communication standards, frameworks make it possible for developers
+to create composable tools, tools that benefit everybody who uses that
+framework. Standards make infrastructure possible, and infrastructure enables
+productivity.</p>
+</div>
+<div class="paragraph">
+<p>In this section I focused primarily on the file model because it&#8217;s been so
+successful and I think we can learn a lot from it. Other models include event
+buses and message queues. I&#8217;m not going to write about these because I&#8217;m not
+made of words, ok?!?</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_environments"><a class="anchor" href="#_environments"></a>Environments</h3>
+<div class="paragraph">
+<p>Frameworks are built to coordinate resources within a particular <em>environment</em>.
+When we talk about desktop apps, web apps, single page apps, and mobile apps,
+we&#8217;re talking about different environments. From the developer&#8217;s perspective,
+environments are distinguished by the resources that are available, while from
+the user&#8217;s perspective different environments entail different usage patterns
+and expectations about distribution, availability, licensing, and payment.</p>
+</div>
+<div class="paragraph">
+<p>As technology advances, new resources become available (the Internet! databases!
+smart phones! powerful browsers! AWS!), new environments evolve to combine those
+resources, and frameworks are created to target those environments. This is why
+we talk about mobile frameworks and desktop frameworks and the like.</p>
+</div>
+<div class="paragraph">
+<p>One of the reasons I stopped using Rails was because it was a <em>web application
+framework</em>, but I wanted to build <em>single page applications</em>. At the time
+(around 2012?), I was learning to use Angular and wanted to deploy applications
+that used it, but it didn&#8217;t really fit with Rails&#8217;s design.</p>
+</div>
+<div class="paragraph">
+<p>And that&#8217;s OK. Some people write programs for Linux, some people write for
+macOS, some people still write for Windows for some reason (just kidding! don&#8217;t
+kill me!). A framework is a tool, and tools are built for a specific purpose. If
+you&#8217;re trying to achieve a purpose the tool isn&#8217;t built for, use a different
+tool.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_more_benefits_of_using_frameworks"><a class="anchor" href="#_more_benefits_of_using_frameworks"></a>More Benefits of Using Frameworks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far I&#8217;ve mostly discussed how frameworks bring benefits to the individual
+developer. In this section I&#8217;ll explain how frameworks benefit communities, how
+they make programming fun, and (perhaps most importantly) how they are a great
+boon for beginners.</p>
+</div>
+<div class="paragraph">
+<p>First, to recap, a framework is a set of libraries that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Manages the complexity of coordinating the <em>resources</em> needed to write an
+application</p>
+</li>
+<li>
+<p>By providing <em>abstractions</em> for those resources</p>
+</li>
+<li>
+<p>And <em>systems for communicating</em> between those resources</p>
+</li>
+<li>
+<p>Within an <em>environment</em></p>
+</li>
+<li>
+<p>So that programmers can focus on writing the business logic that&#8217;s specific to
+their product</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This alone lifts a huge burden off of developers. In case I haven&#8217;t said it
+enough, this kind of work is <em>hard</em>, and if you had to do it every time you
+wanted to make an application it would be frustrating an exhausting. Actually,
+let me rephrase that: I <em>have</em> had to do this work, and it <em>is</em> frustrating and
+exhausting. It&#8217;s why Rails was such a godsend when I first encountered it
+in 2005.</p>
+</div>
+<div class="sect2">
+<h3 id="_frameworks_bring_community_benefits"><a class="anchor" href="#_frameworks_bring_community_benefits"></a>Frameworks Bring Community Benefits</h3>
+<div class="paragraph">
+<p>Clear abstractions and communication systems allow people to share modules,
+plugins, or whatever you want to call framework extensions, creating a vibrant
+ecosystem of reusable components.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, Rails makes it possible for developers to identify specialized
+resources and extend the framework to easily support them. One of the most
+popular and powerful is [Devise](<a href="https://github.com/plataformatec/devise">https://github.com/plataformatec/devise</a>), which
+coordinates Rails resources to introduce a new user authentication resource.
+Just as using Postgres is usually preferable to rolling your own database, using
+Devise is usually preferable to rolling your own authentication system.</p>
+</div>
+<div class="paragraph">
+<p>If you accept my assertion that an operating system is a framework, then you can
+consider any program which communicates via one of the OS&#8217;s communication
+systems (sockets, the file model, etc) to be an extension of the framework.
+Postgres is a framework extension that adds an RDBMS resource. statsd is an
+extension that adds a monitoring resource.</p>
+</div>
+<div class="paragraph">
+<p>Would it be possible to create a Devise for Clojure? I don&#8217;t think so. Devise is
+designed to be database agnostic, but because Clojure doesn&#8217;t really have a
+go-to framework that anoints or introduces a go-to database abstraction, no one
+can write the equivalent of Devise in such a way that it could easily target any
+RDBMS. Without a framework, it&#8217;s unlikely that someone will be able to write a
+full-featured authentication solution that you can reuse, and if you write one
+it&#8217;s unlikely others would see much benefit if you shared it. I think it&#8217;s too
+bad that Clojure is missing out on these kinds of ecosystem benefits.</p>
+</div>
+<div class="paragraph">
+<p>Another subtler benefit frameworks bring is that they present a coherent story
+for how developers can build applications in your language, and that makes your
+language more attractive. Building an application means coordinating resources
+for the environment you&#8217;re targeting (desktop, mobile, SPA, whatever). If your
+language has no frameworks for a target environment, then learning or using the
+language is much riskier. There&#8217;s a much higher barrier to building products:
+not only does a dev have to learn the language&#8217;s syntax and paradigms, she has
+to figure out how to perform the complex task of abstracting and coordinating
+resources using the language&#8217;s paradigms. If your goal is to create a
+mass-market product, choosing a language that doesn&#8217;t have frameworks for your
+target environments is a risky choice.</p>
+</div>
+<div class="paragraph">
+<p>Finally, frameworks become a base layer that you can create tooling for. The
+introduction of the filesystem made it possible for people to write tools that
+easily create and manipulate files. Rails&#8217;s abstractions made it easy to
+generate code for creating a new database table, along with an entire stack -
+model, view, controller - for interacting with it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_frameworks_make_development_fun"><a class="anchor" href="#_frameworks_make_development_fun"></a>Frameworks Make Development Fun</h3>
+<div class="paragraph">
+<p>If you still think frameworks are overkill or more trouble than they&#8217;re worth,
+believe me I get it. When I switched from Rails to Clojure and its "libraries
+not frameworks" approach, I <em>loved</em> it. A framework felt unnecessary because all
+the pieces were so simple that it was trivial for me to glue them together
+myself. Also, it was just plain fun to solve a problem I was familiar with
+because it helped me learn the language.</p>
+</div>
+<div class="paragraph">
+<p>Well, call me a jaded millenial fart, but I don&#8217;t think that this work is fun
+anymore. I want to build products, not build the infrastructure for building
+products. I want a plugin that will handle the reset password process for me. I
+want an admin panel that I can get working in five minutes. Frameworks handle
+the kind of work that ideally only has to be done once. I don&#8217;t want to have to
+do this work over and over every time I want to make something.</p>
+</div>
+<div class="paragraph">
+<p>For me, programming is a creative endeavor. I love making dumb things and
+putting them in front of people to see what will happen. Rails let me build (now
+defunct) sites like phobiatopia.com, where users could share what they&#8217;re afraid
+of. The site would use their IP address to come up with some geo coordinates and
+use Google Maps to display a global fear map. A lot of people were afraid of
+bears.</p>
+</div>
+<div class="paragraph">
+<p>Frameworks let you focus on the fun parts of building an app. They let you
+release an idea, however dumb, more quickly.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_frameworks_help_beginners"><a class="anchor" href="#_frameworks_help_beginners"></a>Frameworks Help Beginners</h3>
+<div class="paragraph">
+<p>Frameworks help beginners by empowering them to build real, honest-to-god
+running applications that they can show to their friends and even make money
+with, without having to fully understand or even be aware of all the technology
+they&#8217;re using. Being able to conjure up a complete creation, no matter how small
+or ill-made, is the very breath of wonder and delight. (I don&#8217;t know exactly
+what this means, but I like how it sounds!)</p>
+</div>
+<div class="paragraph">
+<p>There&#8217;s a kind of thinking that says frameworks are bad because they allow
+beginners to make stuff without having to know how it all works. ActiveRecord is
+corrupting the youth, allowing them to build apps without even knowing how to
+pronounce <em>SQL</em>.</p>
+</div>
+<div class="paragraph">
+<p>There&#8217;s another line of thinking that says it&#8217;s bad to try to make things easier
+for beginners. It&#8217;s somehow virtuous for people to struggle or suffer for the
+sake of learning.</p>
+</div>
+<div class="paragraph">
+<p>Hogwash. Fiddlefaddle. Poppycock. Joy beats suffering every time, and making
+learning more joyful allows more people to reap the benefits of whatever tool or
+product you&#8217;ve created.</p>
+</div>
+<div class="paragraph">
+<p>I am a photographer. I have a professional camera, and I know how to use it.
+Some of my photos require a fair amount of technical knowledge and specialized
+equipment:</p>
+</div>
+<div class="paragraph">
+<p>![tea](/assets/images/posts/why-programmers-need-frameworks/tea.jpg)</p>
+</div>
+<div class="paragraph">
+<p>This isn&#8217;t something you can create with a camera phone, yet somehow I&#8217;m able to
+enjoy myself and my art without complaining that point-and-shoot cameras exist
+and that people like them.</p>
+</div>
+<div class="paragraph">
+<p>Novices benefit greatly from expert guidance. I don&#8217;t think you can become a
+master photographer using your phone&#8217;s camera, but with the phone&#8217;s "guidance"
+you can take some damn good photos and be proud of them. And if you do want to
+become a master, that kind of positive feedback and sense of accomplishment will
+give you the motivation to stick with it and learn the hard stuff. Frameworks
+provide this guidance by creating a safe path around all the quicksand and pit
+traps that you can stumble into when creating an app. Frameworks help beginners.
+This is a feature, not a bug.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_a_clojure_framework"><a class="anchor" href="#_a_clojure_framework"></a>A Clojure Framework</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Frameworks are all about managing the complexity of coordinating resources.
+Well, guess what: Managing Complexity is Clojure&#8217;s middle name. Clojure
+"Managing Complexity" McCarthy-Lisp. Personally, I want a single-page app (SPA)
+framework, and there are many aspects of Clojure&#8217;s design and philosophy that I
+think will make it possible to create one that seriously kicks ass. I&#8217;ll give
+just a few examples.</p>
+</div>
+<div class="paragraph">
+<p>First, consider how Linux tools like <code>sed</code> and <code>awk</code> are text-oriented.
+Developers can add additional structure to text by formatting it as JSON or
+YAML, and those text-processing tools can still work the structured text.</p>
+</div>
+<div class="paragraph">
+<p>In the same way, Clojure&#8217;s emphasis on simple data structures means that we can
+create specialized structures to represent forms and ajax request, and tools to
+process those structures. If we define those structures in terms of maps and
+vectors, though, we&#8217;ll still be able to use a vast ecosystem of functions for
+working with those simpler structures. In other words, creating specialized
+structures does not preclude us from using the tools built for simpler
+structures, and this isn&#8217;t the case for many other languages.</p>
+</div>
+<div class="paragraph">
+<p>Second, Clojure&#8217;s abstraction mechanisms (protocols and multimethods) are
+extremely flexible, making it easy for us to implement abstractions for new
+resources as they become available.</p>
+</div>
+<div class="paragraph">
+<p>Third, <em>you can use the same language for the frontend and backend!!!</em> Not only
+that, Transit allows the two to effortlessly communicate. This eliminates an
+entire class of coordination problems that frameworks in other languages have to
+contend with.</p>
+</div>
+<div class="paragraph">
+<p>In my opinion, the Clojurian stance that frameworks are more trouble than
+they&#8217;re worth is completely backwards: Clojure gives us the foundation to build
+a completely kick-ass framework! One that&#8217;s simple <em>and</em> easy. One can dream,
+right?</p>
+</div>
+<div class="paragraph">
+<p>My ambition in building a SPA framework is to empower current and future Clojure
+devs to get our ideas into production <em>fast</em>. I want us to be able to spend more
+time on the hard stuff, the fun stuff, the interesting stuff. And I want us to
+be able to easily ship with confidence.</p>
+</div>
+<div class="paragraph">
+<p>The framework I&#8217;m building is built on top of some truly amazing libraries,
+primarily Integrant, re-frame, and Liberator. Integrant introduces a <em>component</em>
+abstraction and handles the start/stop lifecycle of an application. re-frame
+provides a filesystem and communication broker for the frontend. Liberator
+introduces a standard model for handling HTTP requests.</p>
+</div>
+<div class="paragraph">
+<p>If my framework is useful at all it&#8217;s because the creators of those tools have
+done all the heavy lifting. My framework introduces more resources and
+abstractions specific to creating single-page apps. For example, it creates an
+abstraction for wrapping AJAX requests so that you can easily display activity
+indicators when a request is active. It creates a form abstraction that handles
+all the plumbing of handling input changes and dispatching form submission, as
+well the entire form lifecycle of <em>fresh</em>, <em>dirty</em>, <em>submitted</em>, <em>invalid</em>,
+<em>succeeded</em>, etc. It imposes some conventions for organizing data.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;d like to see a production app that uses the framework, however, I invite
+you to check out [Grateful Place](<a href="https://gratefulplace.com">https://gratefulplace.com</a>), a community site
+for people who want to support each other in growing resilience, peace, and joy
+by practicing compassion, gratitude, generosity, and other positive values. By
+joining, you&#8217;re not just helping yourself, you&#8217;re helping others by letting them
+know that you support them and share their values.</p>
+</div>
+<div class="paragraph">
+<p>Please click around and look at the snazzy loading animations. And if you feel
+so moved, please do join! I <em>love</em> getting to interact with people in that
+context of mutual support for shared values. One of the only things I care about
+more than Clojure is helping people develop the tools to navigate this crazy-ass
+world :D</p>
+</div>
+<div class="paragraph">
+<p>In the mean time, I&#8217;ll keep working on getting this framework ready for public
+consumption. Expect another blawg article sharing some details on how Grateful
+Place is implemented. Then, eventually, hopefully, an actual announcement for
+the framework itself :)</p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t want to wait for my slow butt, then check out some ofthe amazing
+Clojure tools that already exist:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[Luminus](<a href="http://www.luminusweb.net">http://www.luminusweb.net</a>)</p>
+</li>
+<li>
+<p>[Fulcro](<a href="http://book.fulcrologic.com/">http://book.fulcrologic.com/</a>) which probably does everything I want
+my framework to, only better</p>
+</li>
+<li>
+<p>[re-frame](<a href="https://github.com/Day8/re-frame/">https://github.com/Day8/re-frame/</a>) remains my favorite frontend
+framework</p>
+</li>
+<li>
+<p>[duct](<a href="https://github.com/duct-framework/duct">https://github.com/duct-framework/duct</a>) is great but its docs aren&#8217;t
+that great yet</p>
+</li>
+<li>
+<p>[Coast on Clojure](<a href="https://github.com/coast-framework/coast">https://github.com/coast-framework/coast</a>), a full stack web
+framework</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>(Sorry if I neglected your amazing Clojure tool!)</p>
+</div>
+<div class="paragraph">
+<p>Thanks to the following people who read drafts of this article and helped me
+develop it:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mark Bastian</p>
+</li>
+<li>
+<p>[Dmitri Sotnikov aka @yogthos](<a href="https://twitter.com/yogthos">https://twitter.com/yogthos</a>)</p>
+</li>
+<li>
+<p>Joe Jackson</p>
+</li>
+<li>
+<p>Sergey Shvets</p>
+</li>
+<li>
+<p>Kenneth Kalmer</p>
+</li>
+<li>
+<p>Sean whose last name I don&#8217;t know</p>
+</li>
+<li>
+<p>Tom Brooke</p>
+</li>
+<li>
+<p>Patrick whose last name I don&#8217;t know (update: It&#8217;s Patrick French!)</p>
+</li>
+<li>
+<p>Fed Reggiardo</p>
+</li>
+<li>
+<p>Vincent Raerek</p>
+</li>
+<li>
+<p>Ernesto de Feria</p>
+</li>
+<li>
+<p>Bobby Towers</p>
+</li>
+<li>
+<p>Chris Oakman</p>
+</li>
+<li>
+<p>The TriClojure meetup</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <a href="https://github.com/sweet-tooth-clojure/">Sweet Tooth</a>, a single-page app framework for Clojure
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
