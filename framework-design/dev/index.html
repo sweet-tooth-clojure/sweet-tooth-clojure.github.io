@@ -184,6 +184,9 @@ A framework framework, if you will. I hope you find it useful. I hope even more
 that you&#8217;ve found something more useful and can point me to it. (If that sounds
 like a cry for help, that&#8217;s because it is!)</p>
 </div>
+<div class="paragraph">
+<p>(This guide is adapted from <a href="http://flyingmachinestudios.com/programming/why-programmers-need-frameworks/">Frameworks and Why (Clojure) Programmers Need Them</a>.)</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -573,7 +576,7 @@ started building simple applications, without preventing you building more
 complicated and useful ones as you learn more.</p>
 </div>
 <div class="paragraph">
-<p>One final point about abstractions: they provide mechanisms for calling your
+<p>One final point about abstractions: they define mechanisms for calling your
 application&#8217;s code. We saw this a bit earlier with ActiveRecord&#8217;s lifecycle
 methods. Frameworks will usually provide the overall structure for how an
 application should interact with its environment, defining sets of events that
@@ -784,182 +787,151 @@ you&#8217;re trying to achieve a purpose the tool isn&#8217;t built for, use a d
 tool.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_more_benefits_of_using_frameworks"><a class="anchor" href="#_more_benefits_of_using_frameworks"></a>More Benefits of Using Frameworks</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_additional_responsibilities"><a class="anchor" href="#_additional_responsibilities"></a>Additional Responsibilities</h3>
 <div class="paragraph">
-<p>So far I&#8217;ve mostly discussed how frameworks bring benefits to the individual
-developer. In this section I&#8217;ll explain how frameworks benefit communities, how
-they make programming fun, and (perhaps most importantly) how they are a great
-boon for beginners.</p>
-</div>
-<div class="paragraph">
-<p>First, to recap, a framework is a set of libraries that:</p>
+<p>While the core purpose of frameworks is to manage resources, they also handle
+secondary responsibilities, including:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Manages the complexity of coordinating the <em>resources</em> needed to write an
-application</p>
+<p>Code generation</p>
 </li>
 <li>
-<p>By providing <em>abstractions</em> for those resources</p>
-</li>
-<li>
-<p>And <em>systems for communicating</em> between those resources</p>
-</li>
-<li>
-<p>Within an <em>environment</em></p>
-</li>
-<li>
-<p>So that programmers can focus on writing the business logic that&#8217;s specific to
-their product</p>
+<p>Build tooling</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This alone lifts a huge burden off of developers. In case I haven&#8217;t said it
-enough, this kind of work is <em>hard</em>, and if you had to do it every time you
-wanted to make an application it would be frustrating an exhausting. Actually,
-let me rephrase that: I <em>have</em> had to do this work, and it <em>is</em> frustrating and
-exhausting. It&#8217;s why Rails was such a godsend when I first encountered it
-in 2005.</p>
-</div>
-<div class="sect2">
-<h3 id="_frameworks_bring_community_benefits"><a class="anchor" href="#_frameworks_bring_community_benefits"></a>Frameworks Bring Community Benefits</h3>
-<div class="paragraph">
-<p>Clear abstractions and communication systems allow people to share modules,
-plugins, or whatever you want to call framework extensions, creating a vibrant
-ecosystem of reusable components.</p>
+<p>Code generation reduces the amount of effort it takes to introduce the artifacts
+(files, text) required to add new instances of a framework abstraction (like a
+Model in a Rails app). This effort takes two forms: the mechanical effort of
+typing, and the mental effort of remembering what the code is supposed to look
+like.</p>
 </div>
 <div class="paragraph">
-<p>Similarly, Rails makes it possible for developers to identify specialized
-resources and extend the framework to easily support them. One of the most
-popular and powerful is [Devise](<a href="https://github.com/plataformatec/devise">https://github.com/plataformatec/devise</a>), which
-coordinates Rails resources to introduce a new user authentication resource.
-Just as using Postgres is usually preferable to rolling your own database, using
-Devise is usually preferable to rolling your own authentication system.</p>
+<p>Build tooling is helpful in fulfilling an application framework&#8217;s purpose of
+empowering you to create, well, applications. It reduces the effort required to
+produce a working application.</p>
 </div>
 <div class="paragraph">
-<p>If you accept my assertion that an operating system is a framework, then you can
-consider any program which communicates via one of the OS&#8217;s communication
-systems (sockets, the file model, etc) to be an extension of the framework.
-Postgres is a framework extension that adds an RDBMS resource. statsd is an
-extension that adds a monitoring resource.</p>
+<p>Frameworks might take on additional responsibilities, but I think I&#8217;ve covered
+the most important ones here. Now that we have a better idea of what a framework
+<em>is</em>, we can start exploring what makes a framework <em>good</em>. We can see a hint in
+the previous two paragraphs: frameworks reduce effort. They make our jobs
+<em>easier</em>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_good_framework_design"><a class="anchor" href="#_what_is_good_framework_design"></a>What is good framework design?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If we take a step back and look at all the a framework is responsible for, we
+can see that frameworks make development <em>easier</em>. <em>Easier</em> simply means that
+less effort is involved: mental effort to understand your system (what we call
+<em>struggling</em>), mechanical effort typing (what we call <em>tedium</em>), repeated effort
+implementing solutions to the same problem over and over (what we call
+<em>consulting</em>). A well-designed framework is one that makes development easier,
+both in the short term and in the long term.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>I think the whole simple vs. easy discussion in the Clojure world has been
+effective at conveying the value of simple constructs, but at the cost of making
+it almost, like, gauche to advocate for the importance of making work easier for
+developers. I think this has ultimately been detrimental to the Clojure
+community.</p>
 </div>
 <div class="paragraph">
-<p>Would it be possible to create a Devise for Clojure? I don&#8217;t think so. Devise is
-designed to be database agnostic, but because Clojure doesn&#8217;t really have a
-go-to framework that anoints or introduces a go-to database abstraction, no one
-can write the equivalent of Devise in such a way that it could easily target any
-RDBMS. Without a framework, it&#8217;s unlikely that someone will be able to write a
-full-featured authentication solution that you can reuse, and if you write one
-it&#8217;s unlikely others would see much benefit if you shared it. I think it&#8217;s too
-bad that Clojure is missing out on these kinds of ecosystem benefits.</p>
+<p>This comes in part from defining easy as "near at hand", which is not how anyone
+actually uses the word. Easy and difficult describe the amount of effort
+involved. So it&#8217;s been weird to see "easy" disparaged, because that&#8217;s what the
+programming game is all about! It&#8217;s about reducing effort.</p>
 </div>
 <div class="paragraph">
-<p>Another subtler benefit frameworks bring is that they present a coherent story
-for how developers can build applications in your language, and that makes your
-language more attractive. Building an application means coordinating resources
-for the environment you&#8217;re targeting (desktop, mobile, SPA, whatever). If your
-language has no frameworks for a target environment, then learning or using the
-language is much riskier. There&#8217;s a much higher barrier to building products:
-not only does a dev have to learn the language&#8217;s syntax and paradigms, she has
-to figure out how to perform the complex task of abstracting and coordinating
-resources using the language&#8217;s paradigms. If your goal is to create a
-mass-market product, choosing a language that doesn&#8217;t have frameworks for your
-target environments is a risky choice.</p>
+<p>The simple vs. easy discussion has it all backwards: Simplicity&#8217;s value is that
+it makes development easier. Would anyone advocate for simple code if it made
+programming harder? Also, it is just one factor of many to consider when writing
+software. Imagine writing the simplest code in the universe, and then running it
+through a minifier: it&#8217;s still simple, but now it&#8217;s significantly more difficult
+to understand.</p>
 </div>
 <div class="paragraph">
-<p>Finally, frameworks become a base layer that you can create tooling for. The
-introduction of the filesystem made it possible for people to write tools that
-easily create and manipulate files. Rails&#8217;s abstractions made it easy to
-generate code for creating a new database table, along with an entire stack -
-model, view, controller - for interacting with it.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_frameworks_make_development_fun"><a class="anchor" href="#_frameworks_make_development_fun"></a>Frameworks Make Development Fun</h3>
-<div class="paragraph">
-<p>If you still think frameworks are overkill or more trouble than they&#8217;re worth,
-believe me I get it. When I switched from Rails to Clojure and its "libraries
-not frameworks" approach, I <em>loved</em> it. A framework felt unnecessary because all
-the pieces were so simple that it was trivial for me to glue them together
-myself. Also, it was just plain fun to solve a problem I was familiar with
-because it helped me learn the language.</p>
+<p>It seemed to me like the framing of SvE was meant mostly to caution against
+optimizing for short-term effort at the expense of increasing long-term effort,
+which I think is helpful. But it also seemed like it was meant to chastise
+people for trying to reduce effort in any fashion, and I think that was
+detrimental. Specifically, the idea of building web sites in a day was derided
+as "a stupid thing to be important."</p>
 </div>
 <div class="paragraph">
-<p>Well, call me a jaded millenial fart, but I don&#8217;t think that this work is fun
-anymore. I want to build products, not build the infrastructure for building
-products. I want a plugin that will handle the reset password process for me. I
-want an admin panel that I can get working in five minutes. Frameworks handle
-the kind of work that ideally only has to be done once. I don&#8217;t want to have to
-do this work over and over every time I want to make something.</p>
+<p>But it&#8217;s not stupid. It&#8217;s helpful to make things easy. It&#8217;s helpful to do the
+work of identifying where the people who use tools might struggle, and to reduce
+the amount of struggling necessary.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>For me, programming is a creative endeavor. I love making dumb things and
-putting them in front of people to see what will happen. Rails let me build (now
-defunct) sites like phobiatopia.com, where users could share what they&#8217;re afraid
-of. The site would use their IP address to come up with some geo coordinates and
-use Google Maps to display a global fear map. A lot of people were afraid of
-bears.</p>
+<p>How do we accomplish this? First, by writing code to meets the responsibilities
+listed in the last section. But just writing some code isn&#8217;t enough: it needs to
+be easy to use and understand.</p>
 </div>
 <div class="paragraph">
-<p>Frameworks let you focus on the fun parts of building an app. They let you
-release an idea, however dumb, more quickly.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_frameworks_help_beginners"><a class="anchor" href="#_frameworks_help_beginners"></a>Frameworks Help Beginners</h3>
-<div class="paragraph">
-<p>Frameworks help beginners by empowering them to build real, honest-to-god
-running applications that they can show to their friends and even make money
-with, without having to fully understand or even be aware of all the technology
-they&#8217;re using. Being able to conjure up a complete creation, no matter how small
-or ill-made, is the very breath of wonder and delight. (I don&#8217;t know exactly
-what this means, but I like how it sounds!)</p>
+<p>Figuring out and articulating my thoughts on this
+subject is definitely an ongoing process, but here&#8217;s what I have so far: A
+well-designed framework is <em>modular</em>, <em>extensible</em>, and <em>composable</em>.</p>
 </div>
 <div class="paragraph">
-<p>There&#8217;s a kind of thinking that says frameworks are bad because they allow
-beginners to make stuff without having to know how it all works. ActiveRecord is
-corrupting the youth, allowing them to build apps without even knowing how to
-pronounce <em>SQL</em>.</p>
+<p><em>Modular</em> means that the framework&#8217;s responsibilities should be well-defined,
+and it should be possible for you to swap out one implementation of a
+responsibility for another. For example, Sweet Tooth uses reitit for routing,
+but it&#8217;s possible for you to use a different library as long as you can adapt it
+to the routing protocol.</p>
 </div>
 <div class="paragraph">
-<p>There&#8217;s another line of thinking that says it&#8217;s bad to try to make things easier
-for beginners. It&#8217;s somehow virtuous for people to struggle or suffer for the
-sake of learning.</p>
+<p>At the same time, some core responsibilities cannot be made modular. Sweet Tooth
+is built on top of Integrant, which is used to define, configure, and manage the
+lifecycle of the system&#8217;s architecture; you can&#8217;t use the mount or component
+libraries instead On the frontend, ST is built on top of re-frame, which act as
+a kind of filesystem and messaging system. Using Sweet Tooth means using
+re-frame and Integrant.</p>
 </div>
 <div class="paragraph">
-<p>Hogwash. Fiddlefaddle. Poppycock. Joy beats suffering every time, and making
-learning more joyful allows more people to reap the benefits of whatever tool or
-product you&#8217;ve created.</p>
+<p><em>Extensibile</em> means that devs should be able to easily introduce custom
+implementations of core framework offerings. (OMG I need to find a better way to
+phrase this!) In practice this mostly means identifying where it&#8217;s possible and
+appropriate to use a multimethod, and doing so. One example is Sweet Tooth&#8217;s
+form component system: ST takes care of all the details for storing a form
+input&#8217;s data on the frontend and submiting that data to the backend. It&#8217;s
+trivial to extend the system for new components, for example by introducing a
+markdown editor component. The to-do example walkthrough will show you how this
+works.</p>
 </div>
 <div class="paragraph">
-<p>I am a photographer. I have a professional camera, and I know how to use it.
-Some of my photos require a fair amount of technical knowledge and specialized
-equipment:</p>
+<p><em>Composable</em> means two things: first, that the framework should be written from
+a UNIX-y "do one thing well" standpoint. Back to form components: the form
+component system is layered, with re-frame subscriptions and handlers as the
+bottom layer. A multimethod composes those subscriptions and handlers into DOM
+options like <code>:on-change</code> and <code>:checked</code> as appropriate for the different kinds
+of inputs. You can use this system for composing the re-frame subscriptions and
+handlers, or you could introduce your own.</p>
 </div>
 <div class="paragraph">
-<p>![tea](/assets/images/posts/why-programmers-need-frameworks/tea.jpg)</p>
-</div>
-<div class="paragraph">
-<p>This isn&#8217;t something you can create with a camera phone, yet somehow I&#8217;m able to
-enjoy myself and my art without complaining that point-and-shoot cameras exist
-and that people like them.</p>
-</div>
-<div class="paragraph">
-<p>Novices benefit greatly from expert guidance. I don&#8217;t think you can become a
-master photographer using your phone&#8217;s camera, but with the phone&#8217;s "guidance"
-you can take some damn good photos and be proud of them. And if you do want to
-become a master, that kind of positive feedback and sense of accomplishment will
-give you the motivation to stick with it and learn the hard stuff. Frameworks
-provide this guidance by creating a safe path around all the quicksand and pit
-traps that you can stumble into when creating an app. Frameworks help beginners.
-This is a feature, not a bug.</p>
-</div>
+<p>The second meaning is that it should be possible to write framework plugins. For
+example, you should be able to write an auth plugin that spans the frontend and
+backend, introducing API endpoints and reagent components that Just Work. I
+haven&#8217;t put much thought into supporting this kind of compsability.</p>
 </div>
 </div>
 </div>
@@ -1032,26 +1004,10 @@ well the entire form lifecycle of <em>fresh</em>, <em>dirty</em>, <em>submitted<
 <p>If you&#8217;d like to see a production app that uses the framework, however, I invite
 you to check out [Grateful Place](<a href="https://gratefulplace.com">https://gratefulplace.com</a>), a community site
 for people who want to support each other in growing resilience, peace, and joy
-by practicing compassion, gratitude, generosity, and other positive values. By
-joining, you&#8217;re not just helping yourself, you&#8217;re helping others by letting them
-know that you support them and share their values.</p>
+by practicing compassion, gratitude, generosity, and other positive values.</p>
 </div>
 <div class="paragraph">
-<p>Please click around and look at the snazzy loading animations. And if you feel
-so moved, please do join! I <em>love</em> getting to interact with people in that
-context of mutual support for shared values. One of the only things I care about
-more than Clojure is helping people develop the tools to navigate this crazy-ass
-world :D</p>
-</div>
-<div class="paragraph">
-<p>In the mean time, I&#8217;ll keep working on getting this framework ready for public
-consumption. Expect another blawg article sharing some details on how Grateful
-Place is implemented. Then, eventually, hopefully, an actual announcement for
-the framework itself :)</p>
-</div>
-<div class="paragraph">
-<p>If you don&#8217;t want to wait for my slow butt, then check out some ofthe amazing
-Clojure tools that already exist:</p>
+<p>Other Clojure frameworks include:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1077,7 +1033,7 @@ framework</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>(Sorry if I neglected your amazing Clojure tool!)</p>
+<p>(Sorry if I neglected your Clojure tool!)</p>
 </div>
 <div class="paragraph">
 <p>Thanks to the following people who read drafts of this article and helped me
