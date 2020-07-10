@@ -397,10 +397,14 @@ we have tools like systemd and upstart to handle this. In Clojure apps, we have
 </div>
 <div class="paragraph">
 <p>Stepping back, we might say that resource management is about changing state and
-responding to state changes. "State" is one of those very overloaded programming
-terms, so like, don&#8217;t kill me if I use it differently than you. But when talking
-about state, I think it&#8217;s important to differentiate between <em>operational state</em>
-and <em>content</em>.</p>
+responding to state changes. (You can even think of components themselves as
+entities of the larger system; is starting and stopping a database fundamentally
+different from managing background jobs?)</p>
+</div>
+<div class="paragraph">
+<p>"State" is one of those very overloaded programming terms, so like, don&#8217;t kill
+me if I use it differently than you. But when talking about state, I think it&#8217;s
+important to differentiate between <em>operational state</em> and <em>content</em>.</p>
 </div>
 <div class="paragraph">
 <p>Content examples include:</p>
